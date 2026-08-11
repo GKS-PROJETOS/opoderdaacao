@@ -1,0 +1,640 @@
+/* O Poder da Acao - imersao presencial
+   Valores lidos do CSS aplicado em eusougustavosampaio.com/opoderdaacao.
+   A pagina original e feita na GreatPages: blocos empilhados sobre um canvas
+   de 980px centrado, com cada elemento posicionado de forma absoluta. Aqui a
+   mesma composicao foi remontada com grid/flex, mantendo tipografia, cores,
+   imagens e medidas - o que faz o layout continuar valido fora do desktop.  */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+
+:root {
+  --font: "Poppins", "Helvetica Neue", Arial, sans-serif;
+  --font-btn: "Open Sans", "Helvetica Neue", Arial, sans-serif;
+
+  --bg: #12141C;          /* fundo de quase todos os blocos */
+  --band: #212836;        /* faixa da citacao */
+  --card: #1B1E2A;        /* caixa de preco */
+  --box: #1D2232;         /* cards: numeros, "o que vai levar", perguntas */
+  --gold: #E49525;        /* rotulos e bordas */
+  --orange: #D96A1F;      /* "O PODER" e a borda da caixa de data/hora/local */
+  --red: #FF0000;         /* contorno dos icones de "esse evento e para voce" */
+  --steel: #A3BAC6;       /* contorno da caixa de preco */
+  --btn: #DD8810;         /* botoes de compra */
+  --wa: #0EA94A;          /* botao do WhatsApp */
+  --muted: #91999D;       /* textos de apoio */
+  --stat: #F2F2F2;
+
+  --wrap: 1090px;         /* largura util da maioria das secoes */
+}
+
+html { background: var(--bg); }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: #fff;
+  font-family: var(--font);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { display: block; max-width: 100%; height: auto; }
+h1, h2, h3, p, ul { margin: 0; }
+ul { list-style: none; padding: 0; }
+
+section { padding-inline: 20px; }
+
+/* item de grid nao encolhe abaixo do proprio conteudo por padrao (min-width:auto),
+   e um botao de 385px acabava estourando a coluna em telas estreitas */
+.hero__wrap > *, .areas__grid > *, .band__wrap > *, .para__grid > *,
+.mentor__wrap > *, .levar__row > *, .stats > *, .faq__cols > * { min-width: 0; }
+
+/* rotulo dourado que abre varias secoes */
+.eyebrow {
+  font-size: 16px;
+  line-height: 22.4px;
+  font-weight: 700;
+  color: var(--gold);
+}
+.eyebrow--center { text-align: center; font-weight: 400; }
+
+/* ---------------------------------------------------------------- botoes -- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-btn);
+  font-size: 18px;
+  line-height: 23.4px;
+  color: #000;
+  text-decoration: none;
+  transition: filter .2s ease, transform .2s ease;
+}
+.btn:hover { filter: brightness(1.08); }
+.btn:active { transform: translateY(1px); }
+
+.btn--cta { width: 385px; max-width: 100%; height: 59px; background: var(--btn); border-radius: 14px; }
+.btn--buy { width: 322px; max-width: 100%; height: 47px; background: var(--btn); border-radius: 9px; }
+.btn--wa  { width: 317px; max-width: 100%; height: 54px; background: var(--wa); border-radius: 9px; color: #fff; }
+
+/* ------------------------------------------------------------------ hero -- */
+
+.hero { padding-block: 0; overflow: hidden; }
+
+.hero__wrap {
+  max-width: 1082px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 520px 549px;
+  gap: 13px;
+  align-items: start;
+}
+
+.hero__text { padding-top: 83px; padding-bottom: 36px; }
+
+.hero__kicker {
+  font-size: 37px;
+  line-height: 51.8px;
+  margin-bottom: 12px;
+}
+.hero__kicker .hi { color: var(--orange); }
+
+.hero__title {
+  font-size: 47px;
+  line-height: 65.8px;
+  font-weight: 400;
+  margin-bottom: 14px;
+}
+
+.hero__lead {
+  font-size: 16px;
+  line-height: 22.4px;
+  max-width: 490px;
+  margin-bottom: 39px;
+}
+
+/* data / hora / local ficam dentro de uma caixa de contorno laranja */
+.facts {
+  width: 484px;
+  max-width: 100%;
+  display: grid;
+  gap: 9px;
+  padding: 16px 18px;
+  margin-bottom: 23px;
+  background: var(--bg);
+  border: 1px solid var(--orange);
+  border-radius: 12px;
+}
+.facts li {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 18px;
+  line-height: 25.2px;
+}
+.facts img { width: 33px; height: 33px; flex: none; }
+.facts li:last-child img { width: 36px; height: 36px; }
+
+/* a foto encosta no topo do bloco; um degrade a dissolve no fundo escuro */
+.hero__figure { position: relative; align-self: start; }
+.hero__photo { width: 549px; }
+.hero__figure::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 150px;
+  background: linear-gradient(rgba(18,20,28,0) 0%, rgba(18,20,28,.22) 10%,
+    rgba(18,20,28,.35) 20%, rgba(18,20,28,.46) 30%, rgba(18,20,28,.55) 40%,
+    rgba(18,20,28,.63) 50%, rgba(18,20,28,.71) 60%, rgba(18,20,28,.79) 70%,
+    rgba(18,20,28,.87) 80%, rgba(18,20,28,.94) 90%, #12141C 100%);
+}
+
+/* ---------------------------------------------------------------- 6 areas -- */
+
+.areas { padding-block: 27px 45px; }
+
+.areas__title {
+  max-width: 860px;
+  margin: 0 auto 46px;
+  font-size: 33px;
+  line-height: 46.2px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.areas__grid {
+  max-width: 1286px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 43px 13px;
+}
+
+.area { display: flex; gap: 6px; align-items: flex-start; }
+.area img { flex: none; }
+.area h3 { font-size: 21px; line-height: 29.4px; font-weight: 700; margin-bottom: 8px; }
+.area p  { font-size: 15px; line-height: 21px; color: var(--muted); }
+
+/* ------------------------------------------------------- faixa da citacao -- */
+
+.band {
+  background: var(--band) url("assets/img/faixa-citacao.png") center / cover no-repeat;
+  padding-block: 90px;
+}
+
+.band__wrap {
+  max-width: 700px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 290px 1fr;
+  column-gap: 60px;
+  align-items: center;
+}
+
+.band__lead  { font-size: 18px; line-height: 25.2px; }
+.band__quote { font-size: 23px; line-height: 32.2px; font-weight: 700; margin-bottom: 33px; }
+.band .btn--cta { grid-column: 2; width: 342px; height: 53px; }
+
+/* --------------------------------------------------------- para voce que -- */
+
+.para { padding-block: 61px 19px; }
+
+.para__grid {
+  max-width: 1095px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 100px 35px;
+}
+
+.para__title {
+  font-size: 39px;
+  line-height: 54.6px;
+  font-weight: 700;
+  align-self: center;
+}
+
+/* cada icone vive numa caixa de contorno vermelho, como no original */
+.para__ico {
+  width: 110px;
+  height: 104px;
+  margin-bottom: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+  border: 1px solid var(--red);
+  border-radius: 20px;
+}
+.para__item p { font-size: 16px; line-height: 22.4px; }
+
+.para__btn { display: flex; margin: 80px auto 0; }
+
+.para__foot {
+  margin-top: 15px;
+  text-align: center;
+  font-size: 15px;
+  line-height: 21px;
+}
+.para__foot strong { font-weight: 700; }
+
+/* ---------------------------------------------------------------- mentor -- */
+
+.mentor { padding-block: 36px 24px; }
+
+.mentor__wrap {
+  max-width: 990px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 353px 1fr;
+  gap: 93px;
+  align-items: start;
+}
+
+/* a foto tem atras de si uma moldura dourada deslocada 8px a direita e 15 abaixo */
+.mentor__figure { position: relative; width: 353px; }
+.mentor__photo { width: 353px; border-radius: 14px; position: relative; z-index: 1; }
+.mentor__figure::before {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 15px;
+  width: 360px;
+  height: 529px;
+  background: var(--bg);
+  border: 2px solid var(--gold);
+  border-radius: 14px;
+}
+
+.mentor__text h2 {
+  font-size: 48px;
+  line-height: 67.2px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.mentor__text p { font-size: 16px; line-height: 22.4px; margin-bottom: 22px; }
+.mentor__text .eyebrow { margin-bottom: 0; }   /* o rotulo cola no nome */
+.mentor__role { color: var(--gold); font-weight: 700; }
+.mentor__text .strong { font-weight: 700; }
+
+.mentor__social { display: flex; align-items: center; gap: 8px; margin-top: 20px; }
+.mentor__social a { display: flex; transition: opacity .2s ease; }
+.mentor__social a:hover { opacity: .75; }
+
+.mentor__xp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 20px 0 17px;
+  font-size: 14px;
+  line-height: 19.6px;
+  color: var(--muted);
+}
+
+.stats {
+  max-width: 1090px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  text-align: center;
+}
+/* cada numero fica num card escuro de contorno dourado */
+.stats > div {
+  min-height: 200px;
+  padding: 32px 20px;
+  background: var(--box);
+  border: 1px solid var(--gold);
+  border-radius: 7px;
+}
+.stats strong {
+  display: block;
+  font-size: 56px;
+  line-height: 78.4px;
+  font-weight: 700;
+  color: var(--stat);
+}
+.stats span { font-size: 21px; line-height: 29.4px; color: var(--muted); }
+
+/* ------------------------------------------------- o que vai levar do evento */
+
+.levar { padding-block: 58px 86px; }
+
+.levar__title {
+  font-size: 32px;
+  line-height: 44.8px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* imagem 437 + texto 544, como no original: e a largura do texto que decide
+   quantas linhas o titulo ocupa, e dai a altura da linha inteira */
+.levar__row {
+  max-width: var(--wrap);
+  margin: 0 auto 21px;
+  display: grid;
+  grid-template-columns: 437px 544px;
+  gap: 56px;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  background: var(--box);
+  border-radius: 25px;
+}
+.levar__row:last-child { margin-bottom: 0; }
+
+/* a terceira linha inverte a ordem, como no original */
+.levar__row--flip img { order: 2; }
+
+.levar__row img { width: 437px; border-radius: 15px; }
+.levar__row h3 { font-size: 32px; line-height: 44.8px; font-weight: 400; margin-bottom: 12px; }
+.levar__row p  { font-size: 16px; line-height: 22.4px; color: var(--muted); }
+
+/* ----------------------------------------------------------------- preco -- */
+
+.preco { padding-block: 47px 68px; }
+
+.preco__title {
+  font-size: 33px;
+  line-height: 46.2px;
+  font-weight: 700;
+  text-align: center;
+  margin: 12px 0 14px;
+}
+
+.preco__lead {
+  max-width: 549px;
+  margin: 0 auto 45px;
+  font-size: 16px;
+  line-height: 22.4px;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* tres pacotes lado a lado dentro da largura util da pagina */
+.cards {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.cards > * { min-width: 0; }
+
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: 30px 24px 32px;
+  background: var(--card);
+  border: 1px solid var(--gold);
+  border-radius: 10px;
+  text-align: center;
+}
+
+/* o do meio e o recomendado: contorno mais forte, apoio de sombra e o selo */
+.card--destaque {
+  position: relative;
+  border-width: 2px;
+  padding: 29px 23px 31px;   /* compensa o 1px extra da borda */
+  box-shadow: 0 18px 40px -24px #000;
+}
+
+.card__tag {
+  position: absolute;
+  top: -13px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 4px 14px;
+  background: var(--gold);
+  border-radius: 100px;
+  font-family: var(--font-btn);
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  color: #12141C;
+  white-space: nowrap;
+}
+
+.card h3 { font-size: 26px; line-height: 36.4px; font-weight: 700; }
+.card__sub { font-size: 15px; line-height: 21px; color: var(--muted); margin-bottom: 24px; }
+
+/* lista de beneficios; o "check" e desenhado no CSS, sem imagem nova */
+.card__itens {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 26px;
+  text-align: left;
+}
+.card__itens li {
+  position: relative;
+  padding-left: 26px;
+  font-size: 14px;
+  line-height: 21px;
+  color: var(--muted);
+}
+.card__itens li::before {
+  content: "";
+  position: absolute;
+  left: 3px;
+  top: 5px;
+  width: 11px;
+  height: 6px;
+  border-left: 2px solid var(--gold);
+  border-bottom: 2px solid var(--gold);
+  transform: rotate(-45deg);
+}
+
+/* o preco cola no rodape do card: os tres botoes ficam na mesma linha, mesmo
+   com as listas de tamanhos diferentes */
+.card__price {
+  margin-top: auto;
+  background: var(--bg);
+  border: 1px solid var(--steel);
+  border-radius: 8px;
+  padding: 16px 14px 14px;
+}
+
+.card__apenas {
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: 700;
+  color: var(--muted);
+  letter-spacing: .04em;
+}
+
+/* "6x de R$" fica na linha de base do numero grande */
+.card__value {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 8px;
+  font-size: 44px;
+  line-height: 61.6px;
+  font-weight: 700;
+}
+.card__parc { font-size: 17px; line-height: 23.8px; font-weight: 700; color: var(--gold); }
+.card__avista { font-size: 14px; line-height: 19.6px; color: var(--muted); }
+
+.card .btn--buy { width: 100%; margin-top: 18px; }
+
+/* ------------------------------------------------------------------- faq -- */
+
+.faq { padding-block: 30px 8px; }
+
+.faq__title {
+  font-size: 38px;
+  line-height: 53.2px;
+  font-weight: 700;
+  text-align: center;
+  margin: 8px 0 20px;
+}
+
+.faq__cols {
+  max-width: 1087px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 518px 545px;
+  justify-content: center;
+  gap: 0 24px;
+  align-items: start;
+}
+
+/* Pergunta e resposta formam UM card: o raio de 8px e o overflow ficam no item,
+   entao o painel aberto continua o mesmo bloco escuro do cabecalho. */
+.faq__item {
+  margin-bottom: 14px;
+  background: var(--box);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.faq__col > .faq__item:last-child { margin-bottom: 0; }
+
+.faq__q {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 48px;
+  padding: 11px 12px;
+  background: none;
+  border: 0;
+  color: #fff;
+  font-family: var(--font);
+  font-size: 18px;
+  line-height: 25.2px;
+  text-align: left;
+  cursor: pointer;
+}
+.faq__q:focus-visible { outline: 2px solid var(--gold); outline-offset: -2px; }
+
+/* "+" que gira 45deg e vira "x" ao abrir, como o icone do acordeao original */
+.faq__ico {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background:
+    linear-gradient(#fff, #fff) center / 13px 1.5px no-repeat,
+    linear-gradient(#fff, #fff) center / 1.5px 13px no-repeat;
+  transition: transform .28s ease;
+}
+.faq__q[aria-expanded="true"] .faq__ico { transform: rotate(45deg); }
+
+/* painel que desliza; a altura e animada pelo script no fim do index.html */
+.faq__ans { overflow: hidden; transition: height .28s ease; }
+
+.faq__ans p {
+  padding: 0 12px 12px;
+  font-size: 15.48px;
+  line-height: 22px;
+  color: var(--muted);
+}
+
+/* ----------------------------------------------------------------- ajuda -- */
+
+.ajuda { padding-block: 54px 53px; }
+
+.ajuda__wrap {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+.ajuda h2 { font-size: 40px; line-height: 56px; font-weight: 700; }
+.ajuda p  { font-size: 17px; line-height: 23.8px; margin-top: 16px; }
+
+/* ---------------------------------------------------------------- rodape -- */
+
+.rodape {
+  padding: 12px 20px 22px;
+  text-align: center;
+  font-size: 16px;
+  line-height: 22.4px;
+}
+
+/* --------------------------------------------------------------- responsivo */
+
+@media (max-width: 1120px) {
+  .areas__grid { gap: 36px 24px; }
+  .hero__wrap { grid-template-columns: 1fr 45%; gap: 24px; }
+  .mentor__wrap { gap: 48px; }
+}
+
+@media (max-width: 900px) {
+  .hero__wrap { grid-template-columns: 1fr; }
+  .hero__figure { width: 100%; max-width: 420px; margin-inline: auto; order: -1; }
+  .hero__photo { width: 100%; }
+  .hero__text { padding-top: 32px; }
+  .areas__grid,
+  .para__grid { grid-template-columns: repeat(2, 1fr); }
+  .para__grid { gap: 48px 32px; }
+  .para__btn { margin-top: 56px; }
+  .mentor__wrap { grid-template-columns: 1fr; gap: 32px; }
+  /* sem espaco para a moldura deslocada: a foto fica sozinha */
+  .mentor__figure { width: 100%; max-width: 353px; }
+  .mentor__figure::before { display: none; }
+  .mentor__photo { width: 100%; }
+  .levar__row { grid-template-columns: 1fr; gap: 20px; }
+  .levar__row img { width: 100%; }
+  .levar__row--flip img { order: 0; }
+  .faq__cols { grid-template-columns: 1fr; justify-content: stretch; }
+  .band__wrap { grid-template-columns: 1fr; gap: 24px; text-align: center; }
+  .band .btn--cta { grid-column: 1; margin-inline: auto; }
+  .ajuda__wrap { flex-direction: column; text-align: center; }
+  /* tres colunas de ~270px ficariam apertadas: os pacotes empilham */
+  .cards { grid-template-columns: 1fr; max-width: 480px; gap: 34px; }
+}
+
+@media (max-width: 620px) {
+  .hero__kicker { font-size: 26px; line-height: 36px; }
+  .hero__title  { font-size: 32px; line-height: 44px; }
+  .areas__title { font-size: 26px; line-height: 36px; }
+  .areas__grid,
+  .para__grid,
+  .stats { grid-template-columns: 1fr; }
+  .para__title  { font-size: 30px; line-height: 42px; }
+  .mentor__text h2 { font-size: 36px; line-height: 50px; }
+  .levar__title, .levar__row h3 { font-size: 26px; line-height: 36px; }
+  .preco__title { font-size: 26px; line-height: 36px; }
+  .faq__title   { font-size: 30px; line-height: 42px; }
+  .ajuda h2     { font-size: 30px; line-height: 42px; }
+  .card { padding: 26px 18px 28px; }
+  .card--destaque { padding: 25px 17px 27px; }
+  .card h3 { font-size: 24px; line-height: 33.6px; }
+  .card__value { font-size: 40px; line-height: 56px; }
+  .stats strong { font-size: 44px; line-height: 62px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn, .faq__ico, .faq__ans, .mentor__social a { transition: none; }
+}
