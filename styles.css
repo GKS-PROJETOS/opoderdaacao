@@ -61,23 +61,82 @@ section { padding-inline: 20px; }
 
 /* ---------------------------------------------------------------- botoes -- */
 
+/* O botao do original e uma cor chapada com peso 400 - fica apagado. Aqui:
+   peso 700, degrade vertical para dar volume, luz interna na aresta de cima,
+   halo colorido embaixo, e um brilho que atravessa no hover. */
 .btn {
+  position: relative;
+  overflow: hidden;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  padding-inline: 18px;
   font-family: var(--font-btn);
   font-size: 18px;
   line-height: 23.4px;
+  font-weight: 700;
+  letter-spacing: .02em;
+  text-align: center;
   color: #000;
   text-decoration: none;
-  transition: filter .2s ease, transform .2s ease;
+  border: 0;
+  cursor: pointer;
+  transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
 }
-.btn:hover { filter: brightness(1.08); }
-.btn:active { transform: translateY(1px); }
 
-.btn--cta { width: 385px; max-width: 100%; height: 59px; background: var(--btn); border-radius: 14px; }
-.btn--buy { width: 322px; max-width: 100%; height: 47px; background: var(--btn); border-radius: 9px; }
-.btn--wa  { width: 317px; max-width: 100%; height: 54px; background: var(--wa); border-radius: 9px; color: #fff; }
+/* faixa de luz que corre da esquerda para a direita ao passar o mouse */
+.btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -60%;
+  width: 45%;
+  background: linear-gradient(100deg, transparent, rgba(255,255,255,.4), transparent);
+  transform: skewX(-18deg);
+  transition: left .55s ease;
+  pointer-events: none;
+}
+.btn:hover::after { left: 115%; }
+
+.btn:hover { transform: translateY(-2px); filter: brightness(1.03); }
+.btn:active { transform: translateY(1px); transition-duration: .05s; }
+.btn:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+
+/* os dois dourados dividem o mesmo acabamento; muda so tamanho e raio */
+.btn--cta,
+.btn--buy {
+  background: linear-gradient(180deg, #F2A82C 0%, var(--btn) 52%, #BF730A 100%);
+  box-shadow: 0 8px 22px -8px rgba(221,136,16,.65),
+              inset 0 1px 0 rgba(255,255,255,.45),
+              inset 0 -1px 0 rgba(0,0,0,.18);
+}
+.btn--cta:hover,
+.btn--buy:hover {
+  box-shadow: 0 13px 30px -8px rgba(221,136,16,.8),
+              inset 0 1px 0 rgba(255,255,255,.5),
+              inset 0 -1px 0 rgba(0,0,0,.18);
+}
+
+.btn--cta { width: 385px; max-width: 100%; height: 59px; border-radius: 14px; }
+.btn--buy { width: 322px; max-width: 100%; height: 47px; border-radius: 9px; }
+
+.btn--wa {
+  width: 317px;
+  max-width: 100%;
+  height: 54px;
+  border-radius: 9px;
+  color: #fff;
+  background: linear-gradient(180deg, #15C25A 0%, var(--wa) 52%, #0A8038 100%);
+  box-shadow: 0 8px 22px -8px rgba(14,169,74,.6),
+              inset 0 1px 0 rgba(255,255,255,.3),
+              inset 0 -1px 0 rgba(0,0,0,.2);
+}
+.btn--wa:hover {
+  box-shadow: 0 13px 30px -8px rgba(14,169,74,.75),
+              inset 0 1px 0 rgba(255,255,255,.35),
+              inset 0 -1px 0 rgba(0,0,0,.2);
+}
 
 /* ------------------------------------------------------------------ hero -- */
 
@@ -136,6 +195,12 @@ section { padding-inline: 20px; }
 }
 .facts img { width: 33px; height: 33px; flex: none; }
 .facts li:last-child img { width: 36px; height: 36px; }
+
+/* No original a caixa de data/hora/local (484px) e o botao (385px) dividem o
+   mesmo eixo central: caixa em x=86, botao em x=135, os dois com centro em 328.
+   O recuo de 49,5px reproduz isso sem precisar de wrapper novo no HTML - sem
+   ele o botao fica encostado na esquerda, bem menor que a caixa acima dele. */
+.hero__text .btn--cta { margin-left: calc((484px - 385px) / 2); }
 
 /* a foto encosta no topo do bloco; um degrade a dissolve no fundo escuro */
 .hero__figure { position: relative; align-self: start; }
@@ -397,7 +462,8 @@ section { padding-inline: 20px; }
   text-align: center;
 }
 
-/* o do meio e o recomendado: contorno mais forte, apoio de sombra e o selo */
+/* o do meio continua com o contorno mais forte e a sombra de apoio, so que
+   agora sem selo escrito em cima */
 .card--destaque {
   position: relative;
   border-width: 2px;
@@ -405,31 +471,14 @@ section { padding-inline: 20px; }
   box-shadow: 0 18px 40px -24px #000;
 }
 
-.card__tag {
-  position: absolute;
-  top: -13px;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 4px 14px;
-  background: var(--gold);
-  border-radius: 100px;
-  font-family: var(--font-btn);
-  font-size: 12px;
-  line-height: 18px;
-  font-weight: 700;
-  letter-spacing: .06em;
-  color: #12141C;
-  white-space: nowrap;
-}
-
 .card h3 { font-size: 26px; line-height: 36.4px; font-weight: 700; }
-.card__sub { font-size: 15px; line-height: 21px; color: var(--muted); margin-bottom: 24px; }
+.card__sub { font-size: 15px; line-height: 21px; color: var(--muted); margin-bottom: 22px; }
 
-/* lista de beneficios; o "check" e desenhado no CSS, sem imagem nova */
+/* motivos para escolher o pacote; o "check" e desenhado no CSS, sem imagem */
 .card__itens {
   display: grid;
   gap: 10px;
-  margin-bottom: 26px;
+  margin-bottom: 24px;
   text-align: left;
 }
 .card__itens li {
@@ -452,7 +501,7 @@ section { padding-inline: 20px; }
 }
 
 /* o preco cola no rodape do card: os tres botoes ficam na mesma linha, mesmo
-   com as listas de tamanhos diferentes */
+   quando um card tem "de" riscado e selo de economia e o outro nao */
 .card__price {
   margin-top: auto;
   background: var(--bg);
@@ -482,7 +531,67 @@ section { padding-inline: 20px; }
 .card__parc { font-size: 17px; line-height: 23.8px; font-weight: 700; color: var(--gold); }
 .card__avista { font-size: 14px; line-height: 19.6px; color: var(--muted); }
 
+/* "De R$ 594,00" riscado, acima do POR APENAS. O card de 1 ingresso nao tem
+   essa linha nem o selo de economia: como a caixa de preco cola no rodape, as
+   tres ficam alinhadas por baixo e a diferenca de altura sobra em cima. */
+.card__de { font-size: 14px; line-height: 19.6px; color: var(--muted); }
+.card__de s { text-decoration-color: var(--steel); }
+
+/* selo de economia: pilula dourada vazada, no rodape da caixa de preco */
+.card__economia {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 3px 12px;
+  background: rgba(228, 149, 37, .12);
+  border: 1px solid var(--gold);
+  border-radius: 100px;
+  font-family: var(--font-btn);
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  color: var(--gold);
+}
+
 .card .btn--buy { width: 100%; margin-top: 18px; }
+
+/* faixa de orcamento abaixo dos pacotes, para quantidade que nao seja 1, 2 ou
+   10. Quem resolve quantidade e valor e o comercial no WhatsApp - a pagina nao
+   calcula preco, porque so existe preco oficial para esses tres.
+   O material e o mesmo do .card - fundo --card, borda dourada de 1px, raio
+   10px, padding de 30px 24px e a mesma escala de texto (h3 de 26px, apoio de
+   15px). Ocupa a largura dos tres pacotes, com tudo centralizado e os motivos
+   lado a lado. */
+.comercial {
+  max-width: var(--wrap);
+  margin: 24px auto 0;
+  padding: 30px 24px 32px;
+  background: var(--card);
+  border: 1px solid var(--gold);
+  border-radius: 10px;
+  text-align: center;
+}
+
+.comercial h3 { font-size: 26px; line-height: 36.4px; font-weight: 700; }
+.comercial__sub {
+  max-width: 640px;
+  margin: 4px auto 0;
+  font-size: 15px;
+  line-height: 21px;
+  color: var(--muted);
+}
+
+/* herda o check de .card__itens; aqui os dois motivos ficam em linha */
+.comercial__itens {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px 30px;
+  max-width: 700px;
+  margin: 24px auto 26px;
+}
+.comercial__itens > * { min-width: 0; }
+
+/* o botao e inline-flex, entao o text-align:center do pai ja o centraliza */
+.comercial__btn { margin-bottom: 2px; }
 
 /* ------------------------------------------------------------------- faq -- */
 
@@ -613,28 +722,114 @@ section { padding-inline: 20px; }
   .ajuda__wrap { flex-direction: column; text-align: center; }
   /* tres colunas de ~270px ficariam apertadas: os pacotes empilham */
   .cards { grid-template-columns: 1fr; max-width: 480px; gap: 34px; }
+  /* a faixa acompanha a largura dos pacotes empilhados, e os tres motivos nao
+     cabem em 480px lado a lado: viram coluna, alinhados a esquerda */
+  .comercial { max-width: 480px; }
+  .comercial__itens { grid-template-columns: 1fr; max-width: none; }
 }
 
 @media (max-width: 620px) {
-  .hero__kicker { font-size: 26px; line-height: 36px; }
-  .hero__title  { font-size: 32px; line-height: 44px; }
-  .areas__title { font-size: 26px; line-height: 36px; }
+
+  /* --- topo da pagina: a organizacao do original no telefone --------------
+     No original a foto do Gustavo e o FUNDO do primeiro bloco, com 463px de
+     altura, e "O PODER DA AÇÃO" mais a chamada aparecem sobrepostos na base
+     dela, centralizados. O texto de apoio, a caixa de data/hora/local e o
+     botao ficam ABAIXO da foto, ja no fundo escuro.
+     Aqui a foto sai do fluxo e vira fundo do .hero__intro, que carrega o
+     kicker e o titulo; o resto do .hero__text segue embaixo. As medidas
+     (463px, 31px, 24px) foram lidas do site no ar em 375px de largura. */
+  .hero__wrap { display: block; }
+  .hero__figure { display: none; }
+  .hero__text { padding-top: 0; padding-bottom: 30px; text-align: center; }
+
+  .hero__intro {
+    min-height: 463px;
+    margin-inline: -20px;          /* fura o padding lateral da section */
+    margin-bottom: 20px;
+    /* lateral apertada de proposito: no original a chamada usa 366 dos 375px
+       de tela e cabe em duas linhas (Poppins 24px/33.6px, conferido no site no
+       ar). Com os 20px da section ela quebraria em tres linhas e empurraria o
+       kicker para cima, tirando o texto da base da foto. O corpo abaixo da
+       foto continua com os 20px normais - so o kicker e o titulo usam 4px. */
+    padding: 0 4px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;     /* o texto encosta na base da foto */
+    background-image:
+      linear-gradient(rgba(18,20,28,0) 30%, rgba(18,20,28,.45) 58%,
+                      rgba(18,20,28,.8) 80%, rgba(18,20,28,.97) 100%),
+      url("assets/img/hero-gustavo.png");
+    background-size: cover, cover;
+    background-position: center top, center top;
+    background-repeat: no-repeat, no-repeat;
+  }
+
+  .hero__kicker { font-size: 31px; line-height: 44px; margin-bottom: 2px; }
+  .hero__title  { font-size: 24px; line-height: 33.6px; margin-bottom: 0; }
+  .hero__lead   { font-size: 13px; line-height: 19px; max-width: none; margin-bottom: 20px; }
+
+  .facts { width: 100%; padding: 14px 16px; margin-bottom: 20px; }
+  .facts li { font-size: 15px; line-height: 21px; }
+  .facts img { width: 27px; height: 27px; }
+  .facts li:last-child img { width: 29px; height: 29px; }
+
+  /* --- botoes: 16px como no original, e largura cheia no telefone --------- */
+  .btn { font-size: 16px; }
+  .btn--cta { width: 100%; max-width: 340px; height: 54px; }
+  /* aqui a caixa de data/hora ocupa 100%, entao o recuo de 49,5px do desktop
+     sai de cena - quem centraliza e o text-align do .hero__text */
+  .hero__text .btn--cta { margin-left: 0; }
+  .btn--buy { width: 100%; }
+  .btn--wa  { width: 100%; max-width: 340px; }
+
+  /* --- tipografia das secoes: no telefone o original desce bastante ------- */
+  .areas__title { font-size: 20px; line-height: 28px; }
   .areas__grid,
   .para__grid,
   .stats { grid-template-columns: 1fr; }
-  .para__title  { font-size: 30px; line-height: 42px; }
-  .mentor__text h2 { font-size: 36px; line-height: 50px; }
-  .levar__title, .levar__row h3 { font-size: 26px; line-height: 36px; }
+  .areas__grid h3 { font-size: 20px; line-height: 28px; }
+  .areas__grid p  { font-size: 13px; line-height: 19px; }
+
+  .para__title  { font-size: 26px; line-height: 36px; }
+  .para__grid p { font-size: 14px; line-height: 20px; }
+
+  .mentor__text h2 { font-size: 32px; line-height: 44px; }
+
+  .levar__title  { font-size: 26px; line-height: 36px; }
+  .levar__row h3 { font-size: 18px; line-height: 25px; }
+  .levar__row p  { font-size: 13px; line-height: 19px; }
+
   .preco__title { font-size: 26px; line-height: 36px; }
-  .faq__title   { font-size: 30px; line-height: 42px; }
-  .ajuda h2     { font-size: 30px; line-height: 42px; }
+  .preco__lead  { font-size: 14px; line-height: 20px; }
+
+  .faq__title { font-size: 26px; line-height: 36px; }
+  .faq__q     { font-size: 16px; line-height: 22px; }
+  .faq__ans p { font-size: 14px; line-height: 20px; }
+
+  .ajuda h2 { font-size: 26px; line-height: 36px; }
+  .ajuda p  { font-size: 15px; line-height: 21px; }
+
+  /* --- pacotes ------------------------------------------------------------ */
   .card { padding: 26px 18px 28px; }
   .card--destaque { padding: 25px 17px 27px; }
-  .card h3 { font-size: 24px; line-height: 33.6px; }
+  .card h3 { font-size: 22px; line-height: 30.8px; }
+  .card__sub { font-size: 13px; line-height: 19px; margin-bottom: 18px; }
+  .card__itens { margin-bottom: 20px; }
+  .card__itens li { font-size: 13px; line-height: 19px; }
   .card__value { font-size: 40px; line-height: 56px; }
+  .card__avista { font-size: 13px; line-height: 19px; }
+
   .stats strong { font-size: 44px; line-height: 62px; }
+
+  .comercial { padding: 26px 18px 28px; }
+  .comercial h3 { font-size: 22px; line-height: 30.8px; }
+  .comercial__sub { font-size: 14px; line-height: 20px; }
+  .comercial__itens { margin: 18px auto 22px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .btn, .faq__ico, .faq__ans, .mentor__social a { transition: none; }
+  .btn, .btn::after, .faq__ico, .faq__ans, .mentor__social a { transition: none; }
+  /* sem o brilho atravessando e sem o levantar no hover */
+  .btn::after { display: none; }
+  .btn:hover { transform: none; }
 }

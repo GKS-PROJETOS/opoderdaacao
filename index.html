@@ -7,7 +7,7 @@
 <meta name="description" content="Imersão presencial O Poder da Ação com Gustavo Sampaio. 12 de setembro de 2026, das 9h as 17h, no Auditorio Family - Goiania.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Open+Sans:wght@400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -16,8 +16,14 @@
 <section class="hero">
   <div class="hero__wrap">
     <div class="hero__text">
-      <p class="hero__kicker"><span class="hi">O PODER</span> DA AÇÃO</p>
-      <h1 class="hero__title">Você sabe que tem potencial. Mas algo está travando você.</h1>
+      <!-- kicker + titulo ficam juntos porque no telefone eles sobem para
+           dentro da foto (ver .hero__intro no styles.css); o lead, a caixa de
+           data/hora/local e o botao passam para baixo dela, como no original -->
+      <div class="hero__intro">
+        <p class="hero__kicker"><span class="hi">O PODER</span> DA AÇÃO</p>
+        <h1 class="hero__title">Você sabe que tem potencial. Mas algo está travando você.</h1>
+      </div>
+
       <p class="hero__lead">“O Poder da Ação”, o best-seller que já transformou milhões de vidas,
         agora vai transformar a sua vida, neste treinamento presencial com o Gustavo Sampaio.</p>
 
@@ -203,19 +209,25 @@
   <h2 class="preco__title">Invista no seu Desenvolvimento</h2>
   <p class="preco__lead">Garanta sua vaga hoje com condições exclusivas e prepare-se para elevar seus negócios e sua vida pessoal a um novo patamar.</p>
 
-  <!-- Os tres pacotes. O PADRAO e o ingresso que existe hoje (R$ 297 / 6x 49,50)
-       e o link dele e o real. PREMIUM e VIP entraram novos: os itens, os precos
-       e os links estao marcados com TROCAR e precisam ser confirmados. -->
+  <!-- Os tres pacotes, agora por quantidade de ingressos (no lugar de
+       PADRAO/PREMIUM/VIP, que eram provisorios).
+
+       O de 1 ingresso e o que existe hoje: R$ 297 / 6x 49,50, checkout real.
+       Os outros dois sao novos e AINDA NAO TEM CHECKOUT PROPRIO - por isso
+       estao marcados com TROCAR e apontam para o link do de 1 ingresso.
+       Quando os links chegarem, trocar o href dos dois <a data-checkout>.
+
+       Parcela = valor a vista / 6, arredondado para cima (mesma regra que ja
+       estava na pagina: 1297 / 6 = 216,17). -->
   <div class="cards">
 
     <article class="card">
-      <h3>PADRÃO</h3>
+      <h3>1 INGRESSO</h3>
       <p class="card__sub">Ingresso O Poder da Ação</p>
 
       <ul class="card__itens">
-        <li>Acesso ao dia completo de imersão, das 9h às 17h</li>
-        <li>Material de apoio do evento</li>
-        <li>Certificado de participação</li>
+        <li>Para quem vai sozinho e já quer garantir a vaga</li>
+        <li>Certificado e material de apoio inclusos</li>
         <li>Assentos livres, por ordem de chegada</li>
       </ul>
 
@@ -229,53 +241,67 @@
     </article>
 
     <article class="card card--destaque">
-      <p class="card__tag">MAIS ESCOLHIDO</p>
-      <h3>PREMIUM</h3>
-      <p class="card__sub">Ingresso O Poder da Ação</p>
+      <h3>2 INGRESSOS</h3>
+      <p class="card__sub">Ingressos O Poder da Ação</p>
 
-      <!-- TROCAR: itens do Premium -->
       <ul class="card__itens">
-        <li>Tudo do ingresso Padrão</li>
-        <li>Assentos nas primeiras fileiras</li>
-        <li>Entrada antecipada, sem fila</li>
-        <li>Kit exclusivo do participante</li>
+        <li>Traga alguém com você e os dois pagam menos</li>
+        <li>Certificado e material de apoio para os dois</li>
+        <li>Bom para sócio, cônjuge ou dupla de trabalho</li>
       </ul>
 
-      <!-- TROCAR: preco do Premium -->
       <div class="card__price">
+        <p class="card__de">De <s>R$ 594,00</s></p>
         <p class="card__apenas">POR APENAS</p>
-        <p class="card__value"><span class="card__parc">6x de R$</span>99,50</p>
-        <p class="card__avista">ou R$ 597,00 à vista</p>
+        <p class="card__value"><span class="card__parc">6x de R$</span>82,84</p>
+        <p class="card__avista">ou R$ 497,00 à vista</p>
+        <p class="card__economia">Economia de R$ 97</p>
       </div>
 
-      <!-- TROCAR: checkout do Premium (hoje aponta para o do Padrao) -->
-      <a class="btn btn--buy" href="https://chk.eduzz.com/E0DKDO4D91?np=6" target="_blank" rel="noopener">QUERO O PREMIUM</a>
+      <!-- TROCAR: checkout da Casadinha (hoje aponta para o de 1 ingresso) -->
+      <a class="btn btn--buy" data-checkout="casadinha" href="https://chk.eduzz.com/E0DKDO4D91?np=6" target="_blank" rel="noopener">QUERO 2 INGRESSOS</a>
     </article>
 
     <article class="card">
-      <h3>VIP</h3>
-      <p class="card__sub">Ingresso O Poder da Ação</p>
+      <h3>10 INGRESSOS</h3>
+      <p class="card__sub">Ingressos O Poder da Ação</p>
 
-      <!-- TROCAR: itens do VIP -->
       <ul class="card__itens">
-        <li>Tudo do ingresso Premium</li>
-        <li>Assentos na primeira fileira, ao lado do palco</li>
-        <li>Meet &amp; greet com Gustavo Sampaio</li>
-        <li>Almoço no lounge privativo</li>
-        <li>Mentoria online e ao vivo depois do evento</li>
+        <li>Leve a sua equipe inteira na mesma turma</li>
+        <li>Certificado e material de apoio para as 10 pessoas</li>
+        <li>Um só pedido para todo mundo</li>
       </ul>
 
-      <!-- TROCAR: preco do VIP -->
       <div class="card__price">
+        <p class="card__de">De <s>R$ 2.997,00</s></p>
         <p class="card__apenas">POR APENAS</p>
-        <p class="card__value"><span class="card__parc">6x de R$</span>216,17</p>
-        <p class="card__avista">ou R$ 1.297,00 à vista</p>
+        <p class="card__value"><span class="card__parc">6x de R$</span>416,17</p>
+        <p class="card__avista">ou R$ 2.497,00 à vista</p>
+        <p class="card__economia">Economia de R$ 500</p>
       </div>
 
-      <!-- TROCAR: checkout do VIP (hoje aponta para o do Padrao) -->
-      <a class="btn btn--buy" href="https://chk.eduzz.com/E0DKDO4D91?np=6" target="_blank" rel="noopener">QUERO O VIP</a>
+      <!-- TROCAR: checkout do pacote de 10 (hoje aponta para o de 1 ingresso) -->
+      <a class="btn btn--buy" data-checkout="pacote-10" href="https://chk.eduzz.com/E0DKDO4D91?np=6" target="_blank" rel="noopener">LEVAR MINHA EQUIPE</a>
     </article>
 
+  </div>
+
+  <!-- Orcamento para quem nao tem exatamente 1, 2 ou 10 pessoas: a quantidade e
+       o valor sao resolvidos com o comercial no WhatsApp, nao aqui na pagina.
+       Mesmo material dos cards (fundo --card, borda dourada de 1px, raio 10px) e
+       o mesmo botao dourado --buy, tudo centralizado.
+       Usa o numero do WhatsApp com o 9 (5562981084247), nao o de 8 digitos que
+       esta no botao "Fale com nosso time" - ver LEIA-ME. -->
+  <div class="comercial">
+    <h3>FAÇA SEU ORÇAMENTO</h3>
+    <p class="comercial__sub">Fale com o comercial no WhatsApp e faça o orçamento para a quantidade que você precisa.</p>
+
+    <ul class="card__itens comercial__itens">
+      <li>Orçamento para qualquer quantidade de ingressos</li>
+      <li>Conversa direta com o comercial, sem formulário</li>
+    </ul>
+
+    <a class="btn btn--buy comercial__btn" href="https://wa.me/5562981084247?text=Ol%C3%A1%2C%20quero%20fazer%20um%20or%C3%A7amento%20de%20ingressos%20para%20a%20Imers%C3%A3o%20O%20Poder%20da%20A%C3%A7%C3%A3o." target="_blank" rel="noopener">FAZER MEU ORÇAMENTO</a>
   </div>
 </section>
 

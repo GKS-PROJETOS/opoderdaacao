@@ -27,24 +27,106 @@ está, o link provavelmente não abre a conversa.
 Reproduzi exatamente como está no ar. Para corrigir, troque `556281084247` por
 `5562981084247` no `index.html` (está marcado com comentário).
 
-## Mudança pedida: 3 pacotes no lugar de 1
+## Mudança pedida: 3 pacotes por quantidade, no lugar de 1
 
-O site no ar tem **um único ingresso** (R$ 297 à vista / 6x R$ 49,50). A seção de
-preço aqui foi refeita com **três pacotes lado a lado** — PADRÃO, PREMIUM e VIP —
-numa grade de 3 colunas de 347px dentro dos 1090px da página. O card do meio é o
-recomendado: contorno de 2px e o selo "MAIS ESCOLHIDO".
+O site no ar tem **um único ingresso** (R$ 297 à vista / 6x R$ 49,50). Aqui a
+seção de preço virou **três pacotes por quantidade de ingressos**, numa grade de
+3 colunas de 347px dentro dos 1090px da página:
 
-O preço e o botão ficam colados no rodapé de cada card (`margin-top:auto`), então
-os três botões alinham na mesma linha mesmo com listas de tamanhos diferentes.
+| | 1 INGRESSO | 2 INGRESSOS (destaque) | 10 INGRESSOS |
+|---|---|---|---|
+| De | — | ~~R$ 594,00~~ | ~~R$ 2.997,00~~ |
+| Parcelado | 6x R$ 49,50 | 6x R$ 82,84 | 6x R$ 416,17 |
+| À vista | R$ 297,00 | R$ 497,00 | R$ 2.497,00 |
+| Selo | — | Economia de R$ 97 | Economia de R$ 500 |
+
+A parcela é sempre **o valor à vista dividido por 6, arredondado para cima** —
+a mesma regra que já estava na página (1297 / 6 = 216,17).
+
+Cada card tem três motivos em `.card__itens`, com o "check" desenhado no CSS
+(sem imagem nova). Eles falam do **motivo de escolher aquele pacote**, não das
+características do evento: o de 2 é "traga alguém com você e os dois pagam
+menos", o de 10 é "leve a sua equipe inteira na mesma turma".
+
+O preço e o botão ficam colados no rodapé (`margin-top:auto`), então os três
+botões alinham na mesma linha mesmo com um card tendo "de" riscado e selo de
+economia e outro não. O do meio mantém o contorno de 2px, sem selo escrito.
 Abaixo de 900px os cards empilham em coluna única de 480px.
 
-**Só o PADRÃO tem dado real** — é o ingresso e o link que existem hoje. Os itens,
-os preços e os links de PREMIUM e VIP são provisórios e estão marcados no
-`index.html` com o comentário `TROCAR`. Cada pacote precisa do seu próprio
-checkout na Eduzz; hoje os três apontam para `E0DKDO4D91`.
+## Faça seu orçamento
 
-Com isso a seção de preço passou de 752px para 856px de altura, e a página deixa
-de bater com a original nessa seção — a tabela abaixo é de antes da mudança.
+Abaixo dos três cards, a faixa **`.comercial`** atende quem não tem exatamente 1,
+2 ou 10 pessoas na equipe. **A quantidade e o valor são resolvidos com o comercial
+no WhatsApp, não na página** — não há calculadora nem preço por quantidade aqui.
+
+Isso é de propósito: só existe preço oficial para 1, 2 e 10 ingressos. Qualquer
+valor mostrado para 4, 7 ou 12 seria invenção, e num compromisso público de preço
+isso não se faz. Quem decide é o comercial, na conversa.
+
+Mesmo material dos cards (fundo `#1B1E2A`, borda dourada de 1px, raio 10px,
+padding 30/24, h3 de 26px), ocupando a largura dos três, tudo centralizado:
+título, chamada, dois motivos em 2 colunas e o botão "FAZER MEU ORÇAMENTO". O
+botão é `inline-flex`, então quem o centraliza é o `text-align:center` do pai. A
+lista reaproveita `.card__itens` só para herdar o check; `.comercial__itens` troca
+as colunas. Abaixo de 900px a faixa vai para 480px e os motivos viram coluna
+única.
+
+O link vai para o WhatsApp com o número **de 9 dígitos** (`5562981084247`), não o
+de 8 do botão "Fale com nosso time".
+
+**Só o de 1 ingresso tem checkout real.** Os outros dois apontam para o mesmo
+`E0DKDO4D91` e estão marcados no `index.html` com `TROCAR` e com
+`data-checkout="casadinha"` / `data-checkout="pacote-10"` — é trocar os dois
+`href` quando os links chegarem.
+
+Os valores vieram do comercial. Há duas conferências de arredondamento
+pendentes, registradas fora deste repositório.
+
+Com isso a seção de preço passou de 752px para 1176px de altura no desktop, e a
+página deixa de bater com a original nessa seção — a tabela abaixo é de antes
+da mudança.
+
+## Botões
+
+**Alinhamento do CTA do hero.** No original a caixa de data/hora/local (484px) e
+o botão (385px) dividem o mesmo eixo central: caixa em `x=86`, botão em `x=135`,
+os dois com centro em **328**. Ou seja, o botão é recuado em 49,5px, não encostado
+à esquerda. `.hero__text .btn--cta { margin-left: calc((484px - 385px) / 2) }`
+reproduz isso sem wrapper novo no HTML, e abaixo de 620px o recuo volta a zero —
+lá a caixa ocupa 100% e quem centraliza é o `text-align` do `.hero__text`.
+
+Os outros dois CTAs não levam recuo: no original o da faixa da citação fica à
+direita do texto e o de "esse evento é para você" já é centrado na página.
+
+O original usa cor chapada com peso 400, o que deixa o botão apagado. Aqui todos
+os `.btn` levam peso **700**, degradê vertical, luz interna na aresta de cima,
+halo colorido embaixo e uma faixa de brilho que atravessa no hover (`::after`),
+mais `translateY(-2px)` ao passar o mouse e afundar de 1px no clique. O
+`prefers-reduced-motion` desliga o brilho e o levantar. Isso exigiu carregar
+**Open Sans 700** no `<link>` das fontes — sem isso o navegador fabricava um
+negrito falso.
+
+## Telefone
+
+A maior parte do tráfego vem do celular, e abaixo de **620px** a organização do
+topo passa a ser a mesma do original:
+
+- a foto do Gustavo sai do fluxo (`.hero__figure` escondida) e vira **fundo** do
+  `.hero__intro`, uma caixa de 463px de altura com degradê dissolvendo no fundo;
+- `O PODER DA AÇÃO` (31px) e a chamada (24px/33.6px) ficam **sobrepostos na base
+  da foto**, centralizados. O `.hero__intro` usa 4px de lateral em vez dos 20px
+  da section: é o que o original faz, e é o que mantém a chamada em duas linhas;
+- o texto de apoio, a caixa de data/hora/local e o botão passam para **baixo da
+  foto**, já no fundo escuro.
+
+A escala de tipografia das seções também desceu para perto da do original
+(descrições em 13px, itens de "esse evento é para você" em 14px, títulos de "o
+que vai levar" em 18px, respostas do FAQ em 14px). Onde o original usa 12px eu
+subi para 13px — 12px é pequeno demais para ler no telefone.
+
+Resultado: a página no telefone caiu de **12267px para 10366px**. O original tem
+8473px, e a diferença que sobra é quase toda a seção de preço, que aqui tem três
+pacotes e uma faixa em vez de um card só.
 
 ## Como foi feito
 
