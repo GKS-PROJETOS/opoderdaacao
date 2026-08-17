@@ -183,3 +183,8 @@ no CSS aplicado do site:
 - Todos os botões de compra vão para `chk.eduzz.com/E0DKDO4D91?np=6`.
 - A foto do mentor vinha em 2333×3499 para uma caixa de 353px; reduzi para 2x.
   Os originais estão intactos em `assets/real/`.
+
+
+## Deploy no Cloudflare
+
+Este projeto agora e publicado em eusougustavosampaio.com/opoderdaacao via uma rota do Cloudflare Workers apontando para este worker. O build empacota os arquivos dentro de uma subpasta opoderdaacao/ para casar com o prefixo da rota.
