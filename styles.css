@@ -553,10 +553,22 @@ section { padding-inline: 20px; }
   color: var(--gold);
 }
 
+/* linha de escape do card de 5+: o checkout fecha 5 unidades, entao quem quer
+   mais vai para o orcamento. Fica logo acima do botao, pequena e apagada, para
+   informar sem disputar com o dourado. */
+.card__nota {
+  margin-top: 12px;
+  font-size: 13px;
+  line-height: 19px;
+  color: var(--muted);
+}
+.card__nota a { color: var(--gold); text-decoration: underline; }
+.card__nota a:hover { color: #fff; }
+
 .card .btn--buy { width: 100%; margin-top: 18px; }
 
 /* faixa de orcamento abaixo dos pacotes, para quantidade que nao seja 1, 2 ou
-   10. Quem resolve quantidade e valor e o comercial no WhatsApp - a pagina nao
+   5. Quem resolve quantidade e valor e o comercial no WhatsApp - a pagina nao
    calcula preco, porque so existe preco oficial para esses tres.
    O material e o mesmo do .card - fundo --card, borda dourada de 1px, raio
    10px, padding de 30px 24px e a mesma escala de texto (h3 de 26px, apoio de
@@ -592,6 +604,41 @@ section { padding-inline: 20px; }
 
 /* o botao e inline-flex, entao o text-align:center do pai ja o centraliza */
 .comercial__btn { margin-bottom: 2px; }
+
+/* faixa de patrocinio, o ultimo bloco da secao de preco. Mesma largura util e
+   mesmo fundo --card das outras caixas, mas contorno de aco (nao dourado),
+   altura baixa e texto a esquerda com o botao a direita: e um convite para
+   empresa, nao um pacote a venda, e nao pode competir com os tres botoes
+   dourados. No mobile empilha e centraliza, como o resto da pagina. */
+.patrocinio {
+  max-width: var(--wrap);
+  margin: 16px auto 0;
+  padding: 22px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px 30px;
+  flex-wrap: wrap;
+  background: var(--card);
+  border: 1px solid var(--steel);
+  border-radius: 10px;
+}
+
+/* o texto ocupa a sobra da linha: sem isso ele fecha em ~430px, a frase de
+   apoio quebra em tres linhas e a faixa fica alta como um card */
+.patrocinio__texto { flex: 1 1 auto; min-width: 0; }
+.patrocinio h3 { margin-top: 2px; font-size: 20px; line-height: 28px; font-weight: 700; }
+.patrocinio__sub {
+  max-width: 620px;
+  margin-top: 6px;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--muted);
+}
+
+/* o verde do WhatsApp em tamanho menor que o .btn--wa do rodape, para caber na
+   altura da faixa sem virar o elemento mais alto dela */
+.patrocinio__btn { flex: 0 0 auto; width: auto; min-width: 236px; height: 48px; }
 
 /* ------------------------------------------------------------------- faq -- */
 
@@ -717,6 +764,9 @@ section { padding-inline: 20px; }
   .levar__row img { width: 100%; }
   .levar__row--flip img { order: 0; }
   .faq__cols { grid-template-columns: 1fr; justify-content: stretch; }
+  /* colunas empilham no mobile: sem isso, o :last-child zerado do desktop
+     cola o ultimo item da 1a coluna no primeiro da 2a */
+  .faq__col:not(:last-child) { margin-bottom: 14px; }
   .band__wrap { grid-template-columns: 1fr; gap: 24px; text-align: center; }
   .band .btn--cta { grid-column: 1; margin-inline: auto; }
   .ajuda__wrap { flex-direction: column; text-align: center; }
@@ -726,6 +776,11 @@ section { padding-inline: 20px; }
      cabem em 480px lado a lado: viram coluna, alinhados a esquerda */
   .comercial { max-width: 480px; }
   .comercial__itens { grid-template-columns: 1fr; max-width: none; }
+  /* a faixa de patrocinio segue a mesma largura dos pacotes empilhados; texto
+     e botao viram uma coluna centralizada */
+  .patrocinio { max-width: 480px; flex-direction: column; text-align: center; }
+  .patrocinio__texto { flex: none; }
+  .patrocinio__sub { max-width: none; }
 }
 
 @media (max-width: 620px) {
@@ -825,6 +880,12 @@ section { padding-inline: 20px; }
   .comercial h3 { font-size: 22px; line-height: 30.8px; }
   .comercial__sub { font-size: 14px; line-height: 20px; }
   .comercial__itens { margin: 18px auto 22px; }
+
+  .patrocinio { padding: 22px 18px 24px; }
+  .patrocinio h3 { font-size: 18px; line-height: 25px; }
+  .patrocinio__sub { font-size: 13px; line-height: 19px; }
+  /* no telefone o .btn--wa vira 100%/340px; a faixa acompanha */
+  .patrocinio__btn { width: 100%; max-width: 340px; min-width: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {

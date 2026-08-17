@@ -9,6 +9,15 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+
+<!-- icone da aba: o alvo com a flecha da capa do livro. O SVG atende o
+     navegador moderno; o PNG de 32px e o .ico ficam de reserva para quem nao
+     le SVG, e o de 180px e o atalho do iPhone. Ver assets/icon/. -->
+<link rel="icon" href="assets/icon/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/icon/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="alternate icon" href="assets/icon/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="assets/icon/apple-touch-icon.png">
+<meta name="theme-color" content="#12141C">
 </head>
 <body>
 
@@ -209,16 +218,27 @@
   <h2 class="preco__title">Invista no seu Desenvolvimento</h2>
   <p class="preco__lead">Garanta sua vaga hoje com condições exclusivas e prepare-se para elevar seus negócios e sua vida pessoal a um novo patamar.</p>
 
-  <!-- Os tres pacotes, agora por quantidade de ingressos (no lugar de
-       PADRAO/PREMIUM/VIP, que eram provisorios).
+  <!-- Os tres pacotes, por quantidade de ingressos.
 
-       O de 1 ingresso e o que existe hoje: R$ 297 / 6x 49,50, checkout real.
-       Os outros dois sao novos e AINDA NAO TEM CHECKOUT PROPRIO - por isso
-       estao marcados com TROCAR e apontam para o link do de 1 ingresso.
-       Quando os links chegarem, trocar o href dos dois <a data-checkout>.
+       Checkouts da Eduzz (14/08/2026):
+         1 ingresso  -> E0DKDO4D91  "Lote 1"
+         2 ingressos -> 7WXG5GQY0A  "Ingresso Duplo"
 
-       Parcela = valor a vista / 6, arredondado para cima (mesma regra que ja
-       estava na pagina: 1297 / 6 = 216,17). -->
+       Em 17/08/2026 o pacote de 10 virou "5 ingressos ou mais", a R$ 249,70 por
+       ingresso, com checkout proprio:
+         5 ingressos -> 39YNB33QWO  "Lote 5" (R$ 1.248,50 = 5 x 249,70)
+       O antigo G96RVR8YW1 ("Lote 10 Ingressos", R$ 2.497 fixo) saiu da pagina.
+       Atencao: o 39YNB33QWO vende exatamente 5 unidades - a quantidade nao e
+       editavel na tela da Eduzz. Quem quer 6 ou mais cai no orcamento pelo
+       WhatsApp, e por isso o card tem a linha "Mais de 5 ingressos?" abaixo do
+       botao. Se um dia existir checkout com quantidade variavel, trocar o link
+       e apagar essa linha.
+
+       Parcela = o que a Eduzz mostra na propria tela de checkout, NAO o a vista
+       dividido por 6. O parcelamento tem juros (ate 3,49% a.m.), entao 297 a
+       vista sai 6x 55,72 (e nao 49,50) e 1.248,50 sai 6x 234,23 (e nao 208,08).
+       Ao mexer em preco, conferir os dois numeros direto no checkout - o site
+       nao pode anunciar parcela menor que a cobrada. -->
   <div class="cards">
 
     <article class="card">
@@ -233,7 +253,7 @@
 
       <div class="card__price">
         <p class="card__apenas">POR APENAS</p>
-        <p class="card__value"><span class="card__parc">6x de R$</span>49,50</p>
+        <p class="card__value"><span class="card__parc">6x de R$</span>55,72</p>
         <p class="card__avista">ou R$ 297,00 à vista</p>
       </div>
 
@@ -253,46 +273,60 @@
       <div class="card__price">
         <p class="card__de">De <s>R$ 594,00</s></p>
         <p class="card__apenas">POR APENAS</p>
-        <p class="card__value"><span class="card__parc">6x de R$</span>82,84</p>
+        <p class="card__value"><span class="card__parc">6x de R$</span>93,24</p>
         <p class="card__avista">ou R$ 497,00 à vista</p>
         <p class="card__economia">Economia de R$ 97</p>
       </div>
 
-      <!-- TROCAR: checkout da Casadinha (hoje aponta para o de 1 ingresso) -->
-      <a class="btn btn--buy" data-checkout="casadinha" href="https://chk.eduzz.com/E0DKDO4D91?np=6" target="_blank" rel="noopener">QUERO 2 INGRESSOS</a>
+      <!-- Checkout "Ingresso Duplo" -->
+      <a class="btn btn--buy" data-checkout="casadinha" href="https://chk.eduzz.com/7WXG5GQY0A?np=6" target="_blank" rel="noopener">QUERO 2 INGRESSOS</a>
     </article>
 
     <article class="card">
-      <h3>10 INGRESSOS</h3>
+      <h3>5 INGRESSOS OU MAIS</h3>
       <p class="card__sub">Ingressos O Poder da Ação</p>
 
       <ul class="card__itens">
         <li>Leve a sua equipe inteira na mesma turma</li>
-        <li>Certificado e material de apoio para as 10 pessoas</li>
-        <li>Um só pedido para todo mundo</li>
+        <li>Certificado e material de apoio para a equipe</li>
+        <li>Um só pedido, a partir de 5 pessoas</li>
       </ul>
 
+      <!-- Contas do pacote, a R$ 249,70 o ingresso:
+             De  = 5 x 297,00    = 1.485,00
+             Por = 5 x 249,70    = 1.248,50   (economia de 236,50)
+           A parcela de 234,23 foi lida na tela do 39YNB33QWO, nao calculada.
+           De proposito o card nao anuncia "R$ 249,70 por ingresso": ao lado do
+           card de 2 (R$ 248,50 por pessoa) isso mostraria a escada de preco
+           invertida - o pacote maior sai mais caro por cabeca. -->
       <div class="card__price">
-        <p class="card__de">De <s>R$ 2.997,00</s></p>
+        <p class="card__de">De <s>R$ 1.485,00</s></p>
         <p class="card__apenas">POR APENAS</p>
-        <p class="card__value"><span class="card__parc">6x de R$</span>416,17</p>
-        <p class="card__avista">ou R$ 2.497,00 à vista</p>
-        <p class="card__economia">Economia de R$ 500</p>
+        <p class="card__value"><span class="card__parc">6x de R$</span>234,23</p>
+        <p class="card__avista">ou R$ 1.248,50 à vista</p>
+        <p class="card__economia">Economia de R$ 236,50</p>
       </div>
 
-      <!-- TROCAR: checkout do pacote de 10 (hoje aponta para o de 1 ingresso) -->
-      <a class="btn btn--buy" data-checkout="pacote-10" href="https://chk.eduzz.com/E0DKDO4D91?np=6" target="_blank" rel="noopener">LEVAR MINHA EQUIPE</a>
+      <!-- a nota vem ANTES do botao de proposito: o .card__price tem
+           margin-top:auto, entao o que fica abaixo dele encosta no rodape do
+           card. Com a nota depois do botao, o botao deste card subia 29px e
+           saia da linha dos outros dois. -->
+      <p class="card__nota">Mais de 5 ingressos? <a href="#orcamento">Faça seu orçamento</a>.</p>
+
+      <!-- Checkout "Lote 5" - fecha 5 unidades, valor fixo -->
+      <a class="btn btn--buy" data-checkout="pacote-5" href="https://chk.eduzz.com/39YNB33QWO?np=6" target="_blank" rel="noopener">LEVAR MINHA EQUIPE</a>
     </article>
 
   </div>
 
-  <!-- Orcamento para quem nao tem exatamente 1, 2 ou 10 pessoas: a quantidade e
+  <!-- Orcamento para quem nao tem exatamente 1, 2 ou 5+ pessoas (3, 4, nota no
+       CNPJ, condicao especial): a quantidade e
        o valor sao resolvidos com o comercial no WhatsApp, nao aqui na pagina.
        Mesmo material dos cards (fundo --card, borda dourada de 1px, raio 10px) e
        o mesmo botao dourado --buy, tudo centralizado.
        Usa o numero do WhatsApp com o 9 (5562981084247), nao o de 8 digitos que
        esta no botao "Fale com nosso time" - ver LEIA-ME. -->
-  <div class="comercial">
+  <div class="comercial" id="orcamento">
     <h3>FAÇA SEU ORÇAMENTO</h3>
     <p class="comercial__sub">Fale com o comercial no WhatsApp e faça o orçamento para a quantidade que você precisa.</p>
 
@@ -302,6 +336,22 @@
     </ul>
 
     <a class="btn btn--buy comercial__btn" href="https://wa.me/5562981084247?text=Ol%C3%A1%2C%20quero%20fazer%20um%20or%C3%A7amento%20de%20ingressos%20para%20a%20Imers%C3%A3o%20O%20Poder%20da%20A%C3%A7%C3%A3o." target="_blank" rel="noopener">FAZER MEU ORÇAMENTO</a>
+  </div>
+
+  <!-- Patrocinio: faixa curta abaixo do orcamento, para a empresa que quer
+       expor a marca no evento em vez de comprar ingresso. De proposito e uma
+       faixa baixa, com borda de aco em vez de dourada e botao verde de
+       WhatsApp: e um convite, nao um quarto pacote, e nao pode disputar
+       atencao com os tres botoes de compra logo acima.
+       Vai para o mesmo WhatsApp do comercial (5562981084247), com mensagem
+       propria - trocar aqui se o patrocinio ganhar contato separado. -->
+  <div class="patrocinio" id="patrocinio">
+    <div class="patrocinio__texto">
+      <p class="eyebrow">Patrocínio</p>
+      <h3>Sua marca dentro do O Poder da Ação</h3>
+      <p class="patrocinio__sub">Temos cotas de patrocínio para empresas que querem apresentar a marca a uma plateia de empresários e líderes. Fale com a gente e receba as opções.</p>
+    </div>
+    <a class="btn btn--wa patrocinio__btn" href="https://wa.me/5562981084247?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20as%20cotas%20de%20patroc%C3%ADnio%20da%20Imers%C3%A3o%20O%20Poder%20da%20A%C3%A7%C3%A3o." target="_blank" rel="noopener">QUERO PATROCINAR</a>
   </div>
 </section>
 

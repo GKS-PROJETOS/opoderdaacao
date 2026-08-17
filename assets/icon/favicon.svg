@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="O Poder da Ação">
+  <title>O Poder da Ação</title>
+  <!-- alvo: quatro faixas alternadas + mosca. As medidas sao as mesmas usadas
+       para gerar os PNG desta pasta (ver LEIA-ME) - mexer aqui pede gerar os
+       PNG de novo. -->
+  <circle cx="32" cy="32" r="31" fill="#E02A1B"/>
+  <circle cx="32" cy="32" r="24" fill="#FFFFFF"/>
+  <circle cx="32" cy="32" r="17" fill="#E02A1B"/>
+  <circle cx="32" cy="32" r="10" fill="#FFFFFF"/>
+  <circle cx="32" cy="32" r="4.5" fill="#E02A1B"/>
+
+  <!-- flecha: desenhada na vertical e girada 45 graus, para cravar na mosca
+       vindo de cima a direita. E um poligono unico (penas + haste + ponta) de
+       proposito: em pecas separadas o contorno de cada uma aparece por dentro
+       e a 16px a flecha vira um borrao escuro. -->
+  <path transform="rotate(45 32 32)"
+        d="M32 37 L39.5 24 L34.6 24 L34.6 13 L41.5 20 L41.5 13.6 L34.6 5
+           L29.4 5 L22.5 13.6 L22.5 20 L29.4 13 L29.4 24 L24.5 24 Z"
+        fill="#E49525" stroke="#12141C" stroke-width="1.8" stroke-linejoin="round"/>
+</svg>

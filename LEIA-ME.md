@@ -33,20 +33,54 @@ O site no ar tem **um único ingresso** (R$ 297 à vista / 6x R$ 49,50). Aqui a
 seção de preço virou **três pacotes por quantidade de ingressos**, numa grade de
 3 colunas de 347px dentro dos 1090px da página:
 
-| | 1 INGRESSO | 2 INGRESSOS (destaque) | 10 INGRESSOS |
+| | 1 INGRESSO | 2 INGRESSOS (destaque) | 5 INGRESSOS OU MAIS |
 |---|---|---|---|
-| De | — | ~~R$ 594,00~~ | ~~R$ 2.997,00~~ |
-| Parcelado | 6x R$ 49,50 | 6x R$ 82,84 | 6x R$ 416,17 |
-| À vista | R$ 297,00 | R$ 497,00 | R$ 2.497,00 |
-| Selo | — | Economia de R$ 97 | Economia de R$ 500 |
+| De | — | ~~R$ 594,00~~ | ~~R$ 1.485,00~~ |
+| Parcelado | 6x R$ 55,72 | 6x R$ 93,24 | 6x R$ 234,23 |
+| À vista | R$ 297,00 | R$ 497,00 | R$ 1.248,50 |
+| Selo | — | Economia de R$ 97 | Economia de R$ 236,50 |
+| Checkout | `E0DKDO4D91` | `7WXG5GQY0A` | `39YNB33QWO` |
 
-A parcela é sempre **o valor à vista dividido por 6, arredondado para cima** —
-a mesma regra que já estava na página (1297 / 6 = 216,17).
+**O terceiro card era "10 INGRESSOS" (R$ 2.497 fixo) e virou "5 INGRESSOS OU
+MAIS" em 17/08/2026**, a R$ 249,70 o ingresso. As contas do card saem daí, sobre
+o piso de 5 pessoas:
+
+```
+De  = 5 × 297,00 = 1.485,00
+Por = 5 × 249,70 = 1.248,50     economia de 236,50
+```
+
+O checkout próprio (`39YNB33QWO`) chegou no mesmo dia e o botão passou a apontar
+para ele, com `data-checkout="pacote-5"`. **Ele fecha exatamente 5 unidades** —
+a "Quantidade de ingressos" na tela da Eduzz é fixa, não dá para o comprador
+subir para 6. Por isso o card tem, logo acima do botão, a linha *Mais de 5
+ingressos? Faça seu orçamento* (`.card__nota`), que leva à faixa `#orcamento`
+desta mesma seção. Se um dia existir produto com quantidade variável a
+R$ 249,70, trocar o `href` e apagar essa linha.
+
+> A nota fica **antes** do `<a>` no HTML, não depois. Como `.card__price` tem
+> `margin-top:auto`, o que vier depois dela encosta no rodapé do card: com a
+> nota abaixo do botão, o botão deste card subia 29px e saía da linha dos
+> outros dois.
+
+> **Escada de preço invertida.** A casadinha sai a R$ 248,50 por pessoa e o
+> pacote de 5 a R$ 249,70 — comprar 2 ingressos é R$ 1,20 mais barato por
+> cabeça do que comprar 5. Por isso o card **não** anuncia "R$ 249,70 por
+> ingresso" em lugar nenhum: só o total. Some se o pacote cair para R$ 1.198,50
+> (R$ 239,70 cada) ou se a casadinha subir.
+
+A parcela é **o valor que a Eduzz mostra na própria tela de checkout**, não o à
+vista dividido por 6. O parcelamento em 6x tem juros (até 3,49% a.m.): R$ 297 à
+vista dá 6x R$ 55,72 (R$ 334,32), e não 6x R$ 49,50; R$ 1.248,50 dá 6x
+R$ 234,23, e não 6x R$ 208,08. A página chegou a mostrar a divisão
+simples; foi corrigido em 14/08/2026, porque anunciar parcela menor que a
+cobrada é propaganda enganosa. **Ao mexer em preço, ler os dois números direto
+no checkout.**
 
 Cada card tem três motivos em `.card__itens`, com o "check" desenhado no CSS
 (sem imagem nova). Eles falam do **motivo de escolher aquele pacote**, não das
 características do evento: o de 2 é "traga alguém com você e os dois pagam
-menos", o de 10 é "leve a sua equipe inteira na mesma turma".
+menos", o de 5+ é "leve a sua equipe inteira na mesma turma".
 
 O preço e o botão ficam colados no rodapé (`margin-top:auto`), então os três
 botões alinham na mesma linha mesmo com um card tendo "de" riscado e selo de
@@ -55,12 +89,13 @@ Abaixo de 900px os cards empilham em coluna única de 480px.
 
 ## Faça seu orçamento
 
-Abaixo dos três cards, a faixa **`.comercial`** atende quem não tem exatamente 1,
-2 ou 10 pessoas na equipe. **A quantidade e o valor são resolvidos com o comercial
-no WhatsApp, não na página** — não há calculadora nem preço por quantidade aqui.
+Abaixo dos três cards, a faixa **`.comercial`** atende quem não se encaixa nos
+três cards — 3 ou 4 ingressos, nota no CNPJ, condição especial. **A quantidade e
+o valor são resolvidos com o comercial no WhatsApp, não na página** — não há
+calculadora nem preço por quantidade aqui.
 
-Isso é de propósito: só existe preço oficial para 1, 2 e 10 ingressos. Qualquer
-valor mostrado para 4, 7 ou 12 seria invenção, e num compromisso público de preço
+Isso é de propósito: só existe preço oficial para 1, 2 e 5+ ingressos. Qualquer
+valor mostrado para 3 ou 4 seria invenção, e num compromisso público de preço
 isso não se faz. Quem decide é o comercial, na conversa.
 
 Mesmo material dos cards (fundo `#1B1E2A`, borda dourada de 1px, raio 10px,
@@ -74,17 +109,70 @@ as colunas. Abaixo de 900px a faixa vai para 480px e os motivos viram coluna
 O link vai para o WhatsApp com o número **de 9 dígitos** (`5562981084247`), não o
 de 8 do botão "Fale com nosso time".
 
-**Só o de 1 ingresso tem checkout real.** Os outros dois apontam para o mesmo
-`E0DKDO4D91` e estão marcados no `index.html` com `TROCAR` e com
-`data-checkout="casadinha"` / `data-checkout="pacote-10"` — é trocar os dois
-`href` quando os links chegarem.
+## Patrocínio
 
-Os valores vieram do comercial. Há duas conferências de arredondamento
-pendentes, registradas fora deste repositório.
+Último bloco da seção de preço, logo abaixo do orçamento: a faixa
+**`.patrocinio`**, para a empresa que quer expor a marca no evento em vez de
+comprar ingresso. Título, uma frase de apoio e o botão **QUERO PATROCINAR**,
+que vai para o mesmo WhatsApp do comercial com mensagem própria.
 
-Com isso a seção de preço passou de 752px para 1176px de altura no desktop, e a
-página deixa de bater com a original nessa seção — a tabela abaixo é de antes
-da mudança.
+É de propósito uma faixa **baixa** (144px no desktop contra 287px do orçamento),
+com borda de aço `#A3BAC6` em vez de dourada e botão **verde de WhatsApp**: é um
+convite, não um quarto pacote, e não pode disputar atenção com os três botões
+dourados de compra logo acima. Texto à esquerda e botão à direita
+(`justify-content: space-between`); abaixo de 900px empilha e centraliza, e
+abaixo de 620px o botão vai a 100%/340px como os outros.
+
+Não fala de valor de cota — quem define é o comercial, mesma regra do orçamento.
+Se o patrocínio ganhar um contato próprio (e-mail ou outro número), trocar só o
+`href` desse botão, marcado com comentário no HTML.
+
+## Checkouts
+
+| Card | Produto na Eduzz | Link |
+|---|---|---|
+| 1 ingresso | Ingresso O Poder da Ação — Lote 1 | `chk.eduzz.com/E0DKDO4D91?np=6` |
+| 2 ingressos | Ingresso Duplo | `chk.eduzz.com/7WXG5GQY0A?np=6` |
+| 5 ingressos ou mais | Lote 5 (5 unidades, R$ 1.248,50) | `chk.eduzz.com/39YNB33QWO?np=6` |
+
+Os dois primeiros chegaram em 14/08/2026 e o terceiro em 17/08/2026; antes disso
+todos apontavam para o `E0DKDO4D91` do de 1 ingresso. O `G96RVR8YW1` ("Ingresso
+10 pessoas — Lote 10 Ingressos", R$ 2.497 fixo) **saiu da página** em 17/08/2026,
+quando o card de 10 virou 5+ — continua existindo na Eduzz, mas não é usado. Os
+`<a>` continuam marcados com `data-checkout="casadinha"` e
+`data-checkout="pacote-5"` para achar rápido.
+
+O nome do produto na Eduzz não é igual ao título do card ("Ingresso Duplo" ×
+"2 INGRESSOS"). Quem clica vê o nome da Eduzz no checkout.
+
+Com isso a seção de preço passou de 752px para **1338px** de altura no desktop
+(1176px antes da faixa de patrocínio), e a página deixa de bater com a original
+nessa seção — a tabela abaixo é de antes da mudança.
+
+## Ícone da aba (favicon)
+
+Até 17/08/2026 a página não tinha ícone nenhum — a aba do navegador mostrava o
+globo cinza padrão. Agora usa o **alvo com a flecha**, o mesmo motivo da capa do
+livro, em `assets/icon/`:
+
+| Arquivo | Para quê |
+|---|---|
+| `favicon.svg` | a fonte, e o que o navegador moderno usa (escala sem borrar) |
+| `favicon-32.png` | reserva de quem não lê SVG |
+| `favicon.ico` | 16/32/48px, reserva de navegador antigo |
+| `apple-touch-icon.png` | 180px, atalho na tela inicial do iPhone |
+
+O desenho é geometria pura, sem imagem externa: cinco círculos concêntricos
+(r 31 / 24 / 17 / 10 / 4,5 num `viewBox` de 64) alternando vermelho `#E02A1B` e
+branco, e a flecha desenhada na vertical e girada 45° para cravar na mosca vindo
+de cima à direita. Ela é **um polígono só** (penas + haste + ponta), em dourado
+`#E49525` com contorno `#12141C`: em peças separadas o contorno de cada uma
+aparece por dentro e a 16px a flecha vira um borrão escuro.
+
+O `apple-touch-icon` é o único com fundo (`#12141C`, o `--bg` do site), porque o
+iPhone não respeita transparência no atalho. **Mexeu no SVG, gerar os PNG de
+novo** — eles não saem do SVG sozinhos; foram desenhados com a mesma geometria
+em Pillow, com 16× de supersampling e redução em LANCZOS.
 
 ## Botões
 
@@ -180,7 +268,9 @@ no CSS aplicado do site:
   O "+" gira 45° e vira "×" ao abrir, e o painel desliza em 280ms.
   Sem JavaScript as respostas ficam abertas e legíveis — é o script que as
   recolhe, então a página nunca fica com conteúdo inacessível.
-- Todos os botões de compra vão para `chk.eduzz.com/E0DKDO4D91?np=6`.
+- Os três CTAs de fora da seção de preço (hero, faixa da citação, "esse evento é
+  para você") vão para o checkout de **1 ingresso** (`E0DKDO4D91`); os botões dos
+  cards vão cada um para o seu, na tabela acima.
 - A foto do mentor vinha em 2333×3499 para uma caixa de 353px; reduzi para 2x.
   Os originais estão intactos em `assets/real/`.
 
