@@ -53,15 +53,17 @@ Por = 5 × 249,70 = 1.248,50     economia de 236,50
 O checkout próprio (`39YNB33QWO`) chegou no mesmo dia e o botão passou a apontar
 para ele, com `data-checkout="pacote-5"`. **Ele fecha exatamente 5 unidades** —
 a "Quantidade de ingressos" na tela da Eduzz é fixa, não dá para o comprador
-subir para 6. Por isso o card tem, logo acima do botão, a linha *Mais de 5
-ingressos? Faça seu orçamento* (`.card__nota`), que leva à faixa `#orcamento`
-desta mesma seção. Se um dia existir produto com quantidade variável a
-R$ 249,70, trocar o `href` e apagar essa linha.
+subir para 6. Quem quer mais resolve na faixa **FAÇA SEU ORÇAMENTO**, logo
+abaixo dos cards. Se um dia existir produto com quantidade variável a R$ 249,70,
+é só trocar o `href`.
 
-> A nota fica **antes** do `<a>` no HTML, não depois. Como `.card__price` tem
-> `margin-top:auto`, o que vier depois dela encosta no rodapé do card: com a
-> nota abaixo do botão, o botão deste card subia 29px e saía da linha dos
-> outros dois.
+> O card chegou a ter, acima do botão, a linha *Mais de 5 ingressos? Faça seu
+> orçamento* (`.card__nota`). Saiu no mesmo dia, a pedido: a faixa de orçamento
+> vem logo depois e já diz isso, e a linha era a única coisa fora de padrão
+> dentro dos três cards. Se voltar, tem que ficar **antes** do `<a>` — como
+> `.card__price` tem `margin-top:auto`, o que vier depois dela encosta no rodapé
+> do card, e com a nota abaixo do botão o botão deste card subia 29px e saía da
+> linha dos outros dois.
 
 > **Escada de preço invertida.** A casadinha sai a R$ 248,50 por pessoa e o
 > pacote de 5 a R$ 249,70 — comprar 2 ingressos é R$ 1,20 mais barato por
@@ -116,12 +118,20 @@ de 8 do botão "Fale com nosso time".
 comprar ingresso. Título, uma frase de apoio e o botão **QUERO PATROCINAR**,
 que vai para o mesmo WhatsApp do comercial com mensagem própria.
 
-É de propósito uma faixa **baixa** (144px no desktop contra 287px do orçamento),
+É de propósito uma faixa **baixa** (155px no desktop contra 287px do orçamento),
 com borda de aço `#A3BAC6` em vez de dourada e botão **verde de WhatsApp**: é um
 convite, não um quarto pacote, e não pode disputar atenção com os três botões
 dourados de compra logo acima. Texto à esquerda e botão à direita
 (`justify-content: space-between`); abaixo de 900px empilha e centraliza, e
 abaixo de 620px o botão vai a 100%/340px como os outros.
+
+**Baixa é a altura, não a letra.** A faixa nasceu com título de 20px, apoio de
+14px e botão de 236×48 — menor que tudo em volta, o que a fazia parecer um
+rodapé. Em 17/08/2026 passou para a escala padrão da seção: h3 de 26px/36,4px e
+apoio de 15px/21px (igual ao `.comercial` e aos cards), botão no tamanho normal
+do `.btn--wa` (317×54, o mesmo do rodapé), e no mobile 22px/14px como o
+orçamento. O que segura a altura é o padding de 22px e o texto em uma linha só
+de conteúdo, não a tipografia miúda.
 
 Não fala de valor de cota — quem define é o comercial, mesma regra do orçamento.
 Se o patrocínio ganhar um contato próprio (e-mail ou outro número), trocar só o

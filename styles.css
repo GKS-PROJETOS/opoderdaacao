@@ -553,18 +553,6 @@ section { padding-inline: 20px; }
   color: var(--gold);
 }
 
-/* linha de escape do card de 5+: o checkout fecha 5 unidades, entao quem quer
-   mais vai para o orcamento. Fica logo acima do botao, pequena e apagada, para
-   informar sem disputar com o dourado. */
-.card__nota {
-  margin-top: 12px;
-  font-size: 13px;
-  line-height: 19px;
-  color: var(--muted);
-}
-.card__nota a { color: var(--gold); text-decoration: underline; }
-.card__nota a:hover { color: #fff; }
-
 .card .btn--buy { width: 100%; margin-top: 18px; }
 
 /* faixa de orcamento abaixo dos pacotes, para quantidade que nao seja 1, 2 ou
@@ -627,18 +615,22 @@ section { padding-inline: 20px; }
 /* o texto ocupa a sobra da linha: sem isso ele fecha em ~430px, a frase de
    apoio quebra em tres linhas e a faixa fica alta como um card */
 .patrocinio__texto { flex: 1 1 auto; min-width: 0; }
-.patrocinio h3 { margin-top: 2px; font-size: 20px; line-height: 28px; font-weight: 700; }
+
+/* mesma escala de texto do .comercial e dos cards - h3 de 26px e apoio de 15px.
+   A faixa nasceu com 20px/14px e ficava com letra menor que todo o resto da
+   secao; padronizado em 17/08/2026. */
+.patrocinio h3 { margin-top: 2px; font-size: 26px; line-height: 36.4px; font-weight: 700; }
 .patrocinio__sub {
-  max-width: 620px;
+  max-width: 640px;
   margin-top: 6px;
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 15px;
+  line-height: 21px;
   color: var(--muted);
 }
 
-/* o verde do WhatsApp em tamanho menor que o .btn--wa do rodape, para caber na
-   altura da faixa sem virar o elemento mais alto dela */
-.patrocinio__btn { flex: 0 0 auto; width: auto; min-width: 236px; height: 48px; }
+/* o .btn--wa no tamanho padrao (317x54), igual ao do rodape: so nao pode
+   encolher junto com o texto */
+.patrocinio__btn { flex: 0 0 auto; }
 
 /* ------------------------------------------------------------------- faq -- */
 
@@ -882,10 +874,10 @@ section { padding-inline: 20px; }
   .comercial__itens { margin: 18px auto 22px; }
 
   .patrocinio { padding: 22px 18px 24px; }
-  .patrocinio h3 { font-size: 18px; line-height: 25px; }
-  .patrocinio__sub { font-size: 13px; line-height: 19px; }
+  .patrocinio h3 { font-size: 22px; line-height: 30.8px; }
+  .patrocinio__sub { font-size: 14px; line-height: 20px; }
   /* no telefone o .btn--wa vira 100%/340px; a faixa acompanha */
-  .patrocinio__btn { width: 100%; max-width: 340px; min-width: 0; }
+  .patrocinio__btn { width: 100%; max-width: 340px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
