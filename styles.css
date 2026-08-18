@@ -761,6 +761,16 @@ section { padding-inline: 20px; }
   .faq__col:not(:last-child) { margin-bottom: 14px; }
   .band__wrap { grid-template-columns: 1fr; gap: 24px; text-align: center; }
   .band .btn--cta { grid-column: 1; margin-inline: auto; }
+  /* empilhado, o texto fica mais alto que a faixa borrada/opaca no centro da
+     foto, e as pontas (topo e rodape) acabam caindo sobre trechos nitidos da
+     imagem. Um veu escuro por cima garante contraste em qualquer altura. */
+  .band {
+    background-image: linear-gradient(rgba(18, 20, 28, .62), rgba(18, 20, 28, .62)),
+      url("assets/img/faixa-citacao.png");
+    background-size: cover, cover;
+    background-position: center, center;
+    background-repeat: no-repeat, no-repeat;
+  }
   .ajuda__wrap { flex-direction: column; text-align: center; }
   /* tres colunas de ~270px ficariam apertadas: os pacotes empilham */
   .cards { grid-template-columns: 1fr; max-width: 480px; gap: 34px; }
@@ -816,7 +826,12 @@ section { padding-inline: 20px; }
   .hero__lead   { font-size: 13px; line-height: 19px; max-width: none; margin-bottom: 20px; }
 
   .facts { width: 100%; padding: 14px 16px; margin-bottom: 20px; }
-  .facts li { font-size: 15px; line-height: 21px; }
+  /* o .hero__text centraliza tudo no telefone, mas o endereco quebra em 2
+     linhas e isso jogava a 2a linha ("n. 40") centralizada e solta no meio da
+     caixa. O texto do fato fica a esquerda, e o icone sobe para o topo em vez
+     de centralizar no bloco de 2 linhas - senao ele flutua entre as linhas. */
+  .facts li { font-size: 15px; line-height: 21px; text-align: left; }
+  .facts li:last-child { align-items: flex-start; }
   .facts img { width: 27px; height: 27px; }
   .facts li:last-child img { width: 29px; height: 29px; }
 
@@ -841,6 +856,14 @@ section { padding-inline: 20px; }
   .para__grid p { font-size: 14px; line-height: 20px; }
 
   .mentor__text h2 { font-size: 32px; line-height: 44px; }
+
+  /* no desktop os 133px de vao (86 de baixo do levar + 47 de cima do preco)
+     acompanham o resto da pagina; no telefone, empilhado e mais compacto,
+     ficam como um buraco vazio entre o ultimo card e "Invista no seu
+     Desenvolvimento". Reduzido para ficar no ritmo dos outros vaos entre
+     secoes no telefone (~55-80px). */
+  .levar { padding-block: 58px 40px; }
+  .preco { padding-block: 24px 68px; }
 
   .levar__title  { font-size: 26px; line-height: 36px; }
   .levar__row h3 { font-size: 18px; line-height: 25px; }
