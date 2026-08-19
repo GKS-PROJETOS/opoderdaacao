@@ -36,9 +36,9 @@ seção de preço virou **três pacotes por quantidade de ingressos**, numa grad
 | | 1 INGRESSO | 2 INGRESSOS (destaque) | 5 INGRESSOS OU MAIS |
 |---|---|---|---|
 | De | — | ~~R$ 594,00~~ | ~~R$ 1.485,00~~ |
-| Parcelado | 6x R$ 55,72 | 6x R$ 93,24 | 6x R$ 234,23 |
-| À vista | R$ 297,00 | R$ 497,00 | R$ 1.248,50 |
-| Selo | — | Economia de R$ 97 | Economia de R$ 236,50 |
+| Parcelado | 6x R$ 55,72 | 6x R$ 104,27 | 6x R$ 234,23 |
+| À vista | R$ 297,00 | R$ 555,80 | R$ 1.248,50 |
+| Selo | — | Economia de R$ 38,20 | Economia de R$ 236,50 |
 | Checkout | `E0DKDO4D91` | `7WXG5GQY0A` | `39YNB33QWO` |
 
 **O terceiro card era "10 INGRESSOS" (R$ 2.497 fixo) e virou "5 INGRESSOS OU
@@ -65,11 +65,17 @@ abaixo dos cards. Se um dia existir produto com quantidade variável a R$ 249,70
 > do card, e com a nota abaixo do botão o botão deste card subia 29px e saía da
 > linha dos outros dois.
 
-> **Escada de preço invertida.** A casadinha sai a R$ 248,50 por pessoa e o
-> pacote de 5 a R$ 249,70 — comprar 2 ingressos é R$ 1,20 mais barato por
-> cabeça do que comprar 5. Por isso o card **não** anuncia "R$ 249,70 por
-> ingresso" em lugar nenhum: só o total. Some se o pacote cair para R$ 1.198,50
-> (R$ 239,70 cada) ou se a casadinha subir.
+**O card de 2 subiu para R$ 277,90 o ingresso em 19/08/2026**: 2 × 277,90 =
+R$ 555,80 à vista, 6x R$ 104,27, economia de R$ 38,20 sobre os R$ 594,00 de
+dois ingressos avulsos. **O valor do produto na Eduzz (`7WXG5GQY0A`) tem que
+subir junto** — mexer no HTML não muda o que o checkout cobra.
+
+> **A escada de preço desinverteu.** Até 18/08/2026 a casadinha saía a
+> R$ 248,50 por pessoa contra R$ 249,70 do pacote de 5 — comprar 2 era mais
+> barato por cabeça do que comprar 5. Com o duplo a R$ 277,90 a ordem ficou
+> certa: 297,00 > 277,90 > 249,70. O card de 5 continua sem anunciar
+> "R$ 249,70 por ingresso" (só o total), agora por padrão de layout e não por
+> necessidade. Se o duplo baixar de novo, conferir a escada antes.
 
 A parcela é **o valor que a Eduzz mostra na própria tela de checkout**, não o à
 vista dividido por 6. O parcelamento em 6x tem juros (até 3,49% a.m.): R$ 297 à
