@@ -18,6 +18,25 @@
 <link rel="alternate icon" href="assets/icon/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="assets/icon/apple-touch-icon.png">
 <meta name="theme-color" content="#12141C">
+
+<!-- foto que aparece ao lado do nome do site quando alguem compartilha o link
+     (WhatsApp, Instagram, Facebook, LinkedIn). Sem estas linhas cada rede
+     escolhia sozinha o que mostrar, e caia no icone da aba. E o mesmo alvo,
+     num quadrado de 512px sobre o fundo do site; o og:image quadrado com
+     twitter:card "summary" mantem a miniatura pequena ao lado do titulo, e nao
+     um cartao de imagem grande. O endereco PRECISA ser absoluto - crawler de
+     rede social nao resolve caminho relativo - e por isso aponta sempre para
+     eusougustavosampaio.com, mesmo servido de outro dominio. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Gustavo Sampaio">
+<meta property="og:url" content="https://www.eusougustavosampaio.com/opoderdaacao/">
+<meta property="og:title" content="O Poder da Ação | Imersão Presencial com Gustavo Sampaio">
+<meta property="og:description" content="Imersão presencial O Poder da Ação com Gustavo Sampaio. 12 de setembro de 2026, das 9h as 17h, no Auditorio Family - Goiania.">
+<meta property="og:image" content="https://www.eusougustavosampaio.com/opoderdaacao/assets/icon/og-image.png">
+<meta property="og:image:width" content="512">
+<meta property="og:image:height" content="512">
+<meta property="og:image:alt" content="Alvo com a flecha cravada no centro, o simbolo de O Poder da Acao">
+<meta name="twitter:card" content="summary">
 </head>
 <body>
 
@@ -39,7 +58,17 @@
       <ul class="facts">
         <li><img src="assets/img/ico-data.png" alt="" width="33" height="33">12 de Setembro de 2026</li>
         <li><img src="assets/img/ico-hora.png" alt="" width="33" height="33">9h às 17h</li>
-        <li><img src="assets/img/ico-local.png" alt="" width="36" height="36">Auditório Family - BR 153 - Rua 23, n° 40</li>
+        <!-- com a cidade no fim, o endereco nao cabe mais em uma linha de 484px:
+             quebrando sozinho, sobrava um "-" pendurado no fim da 1a linha e a
+             cidade orfa na 2a. O <br> separa o nome do lugar do endereco, que
+             e onde a linha quer quebrar. A cidade entra depois de VIRGULA (e
+             nao de "-") porque no telefone a linha quebra ali, e virgula no fim
+             de linha de endereco e normal - travessao pendurado nao e. O
+             .nobr impede que "Goiania-GO" se parta no proprio hifen.
+             O texto todo vai dentro de UM span: o <li> e flex, e ai cada filho
+             vira uma coluna - o .nobr solto no meio do texto saltava para o
+             lado do endereco em vez de ficar na linha dele. -->
+        <li><img src="assets/img/ico-local.png" alt="" width="36" height="36"><span>Auditório Family<br>BR 153 - Rua 23, n° 40, <span class="nobr">Goiânia-GO</span></span></li>
       </ul>
 
       <a class="btn btn--cta" href="https://chk.eduzz.com/E0DKDO4D91?np=6" target="_blank" rel="noopener">Quero garantir meu ingresso agora</a>
@@ -146,16 +175,11 @@
   <div class="mentor__wrap">
     <div class="mentor__figure">
       <img class="mentor__photo" src="assets/img/mentor-gustavo.jpg" alt="Gustavo Sampaio" width="353" height="529">
-    </div>
 
-    <div class="mentor__text">
-      <p class="eyebrow">SEU MENTOR</p>
-      <h2>Gustavo Sampaio</h2>
-      <p class="mentor__role">Empresário, estrategista, palestrante e mentor de mais de 500 negócios.</p>
-      <p>Especialista em liderança, inteligência emocional e negócios familiares, dedica sua atuação ao desenvolvimento de empresários, sucessores e líderes para a construção de empresas sólidas e legados duradouros.</p>
-      <p class="strong">Sua trajetória é marcada por desafios extremos, como o Acampamento Base do Everest e as travessias dos desertos do Saara e do Atacama, experiências que refletem os princípios de disciplina, resiliência e estratégia que aplica no mundo dos negócios.</p>
-      <p class="strong">À frente do Método CIS Goiânia, lidera iniciativas de desenvolvimento humano e empresarial, formando líderes e impulsionando a transformação de pessoas e organizações.</p>
-
+      <!-- as redes ficam na coluna da foto, embaixo dela: com a biografia nova
+           a coluna de texto ficou 200px mais alta que a foto, e os icones aqui
+           ocupam esse vao em vez de deixar buraco. A linha inteira mede 337px,
+           entao cabe nos 353px da foto. -->
       <nav class="mentor__social" aria-label="Redes sociais de Gustavo Sampaio">
         <a href="https://www.instagram.com/eusougustavosampaio/" target="_blank" rel="noopener" aria-label="Instagram"><img src="assets/img/soc-instagram.png" alt="" width="73" height="73"></a>
         <a href="https://www.youtube.com/@GustavoSampaio/featured" target="_blank" rel="noopener" aria-label="YouTube"><img src="assets/img/soc-youtube.png" alt="" width="75" height="75"></a>
@@ -163,6 +187,21 @@
         <a href="https://www.tiktok.com/@eusougustavosampaio" target="_blank" rel="noopener" aria-label="TikTok"><img src="assets/img/soc-tiktok.png" alt="" width="43" height="43"></a>
         <a href="https://www.facebook.com/gustavosampaiooficial" target="_blank" rel="noopener" aria-label="Facebook"><img src="assets/img/soc-facebook.png" alt="" width="53" height="53"></a>
       </nav>
+    </div>
+
+    <div class="mentor__text">
+      <p class="eyebrow">SEU MENTOR</p>
+      <h2>Gustavo Sampaio</h2>
+      <!-- o 1o paragrafo fica em dourado, no lugar da linha de cargo que havia
+           aqui antes: ele ja abre com "Empresario, estrategista e palestrante",
+           que era exatamente o texto daquela linha. Os dois ultimos vao em
+           negrito, como no original, porque sao o fecho. -->
+      <p class="mentor__role">Empresário, estrategista e palestrante, Gustavo Sampaio construiu sua base de liderança e alta performance ao longo de seis anos no Banco do Brasil, após ser aprovado em concurso público.</p>
+      <p>Em 2018, expandiu sua atuação nos negócios ao se tornar sócio de Paulo Vieira na franquia Febracis Goiânia, onde atuou como diretor até 2026.</p>
+      <p>Atualmente lidera pessoas, projetos e processos voltados ao desenvolvimento pessoal e corporativo.</p>
+      <p>Essa busca por superação também se reflete em sua paixão por desafios extremos de alta performance e inteligência emocional, como travessias no Deserto do Saara e Atacama, nos Lençóis Maranhenses e a subida ao acampamento base do Everest.</p>
+      <p class="strong">Sua trajetória prática moldou uma convicção central: nenhuma empresa cresce de forma consistente sem desenvolver as pessoas que sustentam seus resultados.</p>
+      <p class="strong">Mais do que transmitir conhecimento, seu propósito é provocar movimento: despertando indivíduos, fortalecendo lideranças e transformando intenção em ação.</p>
     </div>
   </div>
 
@@ -343,15 +382,19 @@
        faixa baixa, com borda de aco em vez de dourada e botao verde de
        WhatsApp: e um convite, nao um quarto pacote, e nao pode disputar
        atencao com os tres botoes de compra logo acima.
-       Vai para o mesmo WhatsApp do comercial (5562981084247), com mensagem
-       propria - trocar aqui se o patrocinio ganhar contato separado. -->
+       Desde 03/09/2026 o patrocinio tem contato PROPRIO: vai para o WhatsApp
+       da Gaby (5562981081683), e nao mais para o do comercial (5562981084247),
+       que continua no botao de orcamento logo acima. O cartao de contato dela
+       mostra o numero como "+55 62 8108-1683", sem o 9 do celular - o 9 entrou
+       aqui porque numero de 8 digitos comecando com 8 nao existe no Brasil.
+       Se o botao abrir a conversa errada, e por causa desse 9. -->
   <div class="patrocinio" id="patrocinio">
     <div class="patrocinio__texto">
       <p class="eyebrow">Patrocínio</p>
       <h3>Sua marca dentro do O Poder da Ação</h3>
       <p class="patrocinio__sub">Temos cotas de patrocínio para empresas que querem apresentar a marca a uma plateia de empresários e líderes. Fale com a gente e receba as opções.</p>
     </div>
-    <a class="btn btn--wa patrocinio__btn" href="https://wa.me/5562981084247?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20as%20cotas%20de%20patroc%C3%ADnio%20da%20Imers%C3%A3o%20O%20Poder%20da%20A%C3%A7%C3%A3o." target="_blank" rel="noopener">QUERO PATROCINAR</a>
+    <a class="btn btn--wa patrocinio__btn" href="https://wa.me/5562981081683?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20as%20cotas%20de%20patroc%C3%ADnio%20da%20Imers%C3%A3o%20O%20Poder%20da%20A%C3%A7%C3%A3o." target="_blank" rel="noopener">QUERO PATROCINAR</a>
   </div>
 </section>
 

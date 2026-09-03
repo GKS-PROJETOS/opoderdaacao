@@ -195,6 +195,8 @@ section { padding-inline: 20px; }
 }
 .facts img { width: 33px; height: 33px; flex: none; }
 .facts li:last-child img { width: 36px; height: 36px; }
+/* trecho que nao pode quebrar no meio - "Goiania-GO" partindo no hifen */
+.facts .nobr { white-space: nowrap; }
 
 /* No original a caixa de data/hora/local (484px) e o botao (385px) dividem o
    mesmo eixo central: caixa em x=86, botao em x=135, os dois com centro em 328.
@@ -346,7 +348,10 @@ section { padding-inline: 20px; }
 .mentor__role { color: var(--gold); font-weight: 700; }
 .mentor__text .strong { font-weight: 700; }
 
-.mentor__social { display: flex; align-items: center; gap: 8px; margin-top: 20px; }
+/* a linha de redes vive na coluna da foto. A moldura dourada desce 15px abaixo
+   da foto, mais 2px de borda, entao aqui em cima o vao e maior do que parece:
+   36px de margem deixam 17px de folga entre a moldura e a linha de icones. */
+.mentor__social { display: flex; align-items: center; gap: 8px; margin-top: 36px; }
 .mentor__social a { display: flex; transition: opacity .2s ease; }
 .mentor__social a:hover { opacity: .75; }
 
@@ -752,6 +757,8 @@ section { padding-inline: 20px; }
   .mentor__figure { width: 100%; max-width: 353px; }
   .mentor__figure::before { display: none; }
   .mentor__photo { width: 100%; }
+  /* sem moldura embaixo da foto, as redes podem subir */
+  .mentor__social { margin-top: 20px; }
   .levar__row { grid-template-columns: 1fr; gap: 20px; }
   .levar__row img { width: 100%; }
   .levar__row--flip img { order: 0; }

@@ -7,9 +7,11 @@ navegador — não precisa de servidor.
 opoderdaacao/
 ├── index.html
 ├── styles.css
-└── assets/
-    ├── img/    ← as 27 imagens usadas na página (nomes legíveis)
-    └── real/   ← os mesmos arquivos como vieram do site, sem renomear
+├── assets/
+│   ├── icon/   ← ícone da aba, atalho do iPhone e a foto do link compartilhado
+│   ├── img/    ← as 27 imagens usadas na página (nomes legíveis)
+│   └── real/   ← os mesmos arquivos como vieram do site, sem renomear
+└── ferramentas/  ← não vai para o ar: o script que gera os arquivos de ícone
 ```
 
 ## Um problema encontrado no site original
@@ -121,8 +123,14 @@ de 8 do botão "Fale com nosso time".
 
 Último bloco da seção de preço, logo abaixo do orçamento: a faixa
 **`.patrocinio`**, para a empresa que quer expor a marca no evento em vez de
-comprar ingresso. Título, uma frase de apoio e o botão **QUERO PATROCINAR**,
-que vai para o mesmo WhatsApp do comercial com mensagem própria.
+comprar ingresso. Título, uma frase de apoio e o botão **QUERO PATROCINAR**.
+
+**Desde 03/09/2026 o patrocínio tem contato próprio**: o botão vai para o
+WhatsApp da Gaby (`5562981081683`), com mensagem pronta. O do comercial
+(`5562981084247`) continua no botão de orçamento, logo acima. O cartão de
+contato dela traz o número como "+55 62 8108-1683", **sem o 9 do celular** — o 9
+foi acrescentado porque número de 8 dígitos começando com 8 não existe no
+Brasil. Se algum dia o botão abrir conversa errada, é aí que se olha.
 
 É de propósito uma faixa **baixa** (155px no desktop contra 287px do orçamento),
 com borda de aço `#A3BAC6` em vez de dourada e botão **verde de WhatsApp**: é um
@@ -165,30 +173,52 @@ Com isso a seção de preço passou de 752px para **1338px** de altura no deskto
 (1176px antes da faixa de patrocínio), e a página deixa de bater com a original
 nessa seção — a tabela abaixo é de antes da mudança.
 
-## Ícone da aba (favicon)
+## Ícone da aba e a foto do link compartilhado
 
 Até 17/08/2026 a página não tinha ícone nenhum — a aba do navegador mostrava o
-globo cinza padrão. Agora usa o **alvo com a flecha**, o mesmo motivo da capa do
-livro, em `assets/icon/`:
+globo cinza padrão. O primeiro ícone foi um alvo de geometria pura com uma seta
+dourada de duas pontas fazendo o papel de flecha; **em 03/09/2026 ele foi
+trocado**, porque aquilo não lia como flecha em tamanho nenhum. Agora é o alvo
+vetorial com uma **flecha de verdade** — haste de madeira e duas penas
+vermelhas, cravada na mosca vindo de cima à direita. Tudo em `assets/icon/`:
 
 | Arquivo | Para quê |
 |---|---|
-| `favicon.svg` | a fonte, e o que o navegador moderno usa (escala sem borrar) |
+| `favicon.svg` | a **fonte** do desenho, e o que o navegador moderno usa |
 | `favicon-32.png` | reserva de quem não lê SVG |
 | `favicon.ico` | 16/32/48px, reserva de navegador antigo |
 | `apple-touch-icon.png` | 180px, atalho na tela inicial do iPhone |
+| `og-image.png` | 512px, a foto que aparece ao lado do nome do site quando o link é compartilhado |
 
-O desenho é geometria pura, sem imagem externa: cinco círculos concêntricos
-(r 31 / 24 / 17 / 10 / 4,5 num `viewBox` de 64) alternando vermelho `#E02A1B` e
-branco, e a flecha desenhada na vertical e girada 45° para cravar na mosca vindo
-de cima à direita. Ela é **um polígono só** (penas + haste + ponta), em dourado
-`#E49525` com contorno `#12141C`: em peças separadas o contorno de cada uma
-aparece por dentro e a 16px a flecha vira um borrão escuro.
+O `apple-touch-icon` e o `og-image` são os únicos com fundo (`#12141C`, o `--bg`
+do site): o iPhone não respeita transparência no atalho, e no WhatsApp uma
+imagem transparente vira um quadrado branco.
 
-O `apple-touch-icon` é o único com fundo (`#12141C`, o `--bg` do site), porque o
-iPhone não respeita transparência no atalho. **Mexeu no SVG, gerar os PNG de
-novo** — eles não saem do SVG sozinhos; foram desenhados com a mesma geometria
-em Pillow, com 16× de supersampling e redução em LANCZOS.
+**Como gerar os arquivos depois de mexer no SVG:**
+
+```
+python ferramentas/gerar-icones.py
+```
+
+O desenho tem gradiente e filtro de sombra, então não dá mais para redesenhar a
+geometria em Pillow como era o ícone antigo: o script parte de
+`ferramentas/alvo-flecha-3000px.png` (o mesmo SVG exportado grande) e só reduz
+em LANCZOS. Mudou o SVG, exportar esse PNG de novo antes de rodar.
+
+Cada tamanho pequeno leva tratamento próprio, e isso está no script: o desenho
+tem **sete** anéis, e a 32px os brancos já lavam para rosa — por isso os
+pequenos ganham saturação, e o de 16px também um unsharp. Sem isso a aba do
+navegador mostra uma bola rosa.
+
+**A foto do link compartilhado** é o bloco `og:` do `<head>`. Antes dele cada
+rede escolhia sozinha o que mostrar e caía no ícone da aba. O `og:image`
+quadrado com `twitter:card summary` mantém a miniatura pequena ao lado do
+título, e não um cartão de imagem grande. O endereço do `og:image` **tem que ser
+absoluto** — crawler de rede social não resolve caminho relativo —, por isso
+aponta para `eusougustavosampaio.com` mesmo quando a página é servida de outro
+domínio. WhatsApp e Facebook **guardam a prévia em cache por dias**: para ver a
+nova na hora, compartilhar o link com um parâmetro qualquer no fim
+(`?v=2`) ou pedir a releitura no depurador de compartilhamento do Facebook.
 
 ## Botões
 
@@ -289,6 +319,25 @@ no CSS aplicado do site:
   cards vão cada um para o seu, na tabela acima.
 - A foto do mentor vinha em 2333×3499 para uma caixa de 353px; reduzi para 2x.
   Os originais estão intactos em `assets/real/`.
+- **Endereço do hero** (03/09/2026): entrou a cidade, e com ela o endereço deixou
+  de caber em uma linha de 484px. São duas linhas de propósito — `Auditório
+  Family` e depois o endereço —, a cidade vem depois de **vírgula** (no telefone
+  a linha quebra ali, e vírgula no fim de linha de endereço é normal, travessão
+  pendurado não é) e `Goiânia-GO` está num `.nobr` para não se partir no próprio
+  hífen. O texto todo mora dentro de **um** `<span>`: o `<li>` é flex, então
+  filho solto vira coluna e o `.nobr` saltava para o lado do endereço. A caixa
+  passou de 143px para 168px de altura.
+- **Texto do mentor** (03/09/2026): a biografia foi substituída inteira por uma
+  versão nova, em 6 parágrafos. Não existe mais a linha de cargo separada — o 1º
+  parágrafo herdou o dourado dela, porque ele já abre com "Empresário,
+  estrategista e palestrante", que era exatamente o texto daquela linha. Com o
+  texto mais longo a coluna passou a 728px contra 529px da foto, e o vão que
+  sobrava à esquerda foi preenchido movendo a **linha de redes sociais para
+  baixo da foto** (ela era o último item da coluna de texto). O
+  `align-items: start` do bloco continua de propósito, para a foto ficar
+  alinhada com o "SEU MENTOR". A margem de 36px acima dos ícones existe porque a
+  moldura dourada desce 15px + 2px de borda abaixo da foto; no mobile, onde a
+  moldura não aparece, ela volta para 20px.
 
 
 ## Deploy no Cloudflare

@@ -1,20 +1,106 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="O Poder da Ação">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="13 115 1106 1106" role="img"
+     aria-label="O Poder da Ação">
   <title>O Poder da Ação</title>
-  <!-- alvo: quatro faixas alternadas + mosca. As medidas sao as mesmas usadas
-       para gerar os PNG desta pasta (ver LEIA-ME) - mexer aqui pede gerar os
-       PNG de novo. -->
-  <circle cx="32" cy="32" r="31" fill="#E02A1B"/>
-  <circle cx="32" cy="32" r="24" fill="#FFFFFF"/>
-  <circle cx="32" cy="32" r="17" fill="#E02A1B"/>
-  <circle cx="32" cy="32" r="10" fill="#FFFFFF"/>
-  <circle cx="32" cy="32" r="4.5" fill="#E02A1B"/>
 
-  <!-- flecha: desenhada na vertical e girada 45 graus, para cravar na mosca
-       vindo de cima a direita. E um poligono unico (penas + haste + ponta) de
-       proposito: em pecas separadas o contorno de cada uma aparece por dentro
-       e a 16px a flecha vira um borrao escuro. -->
-  <path transform="rotate(45 32 32)"
-        d="M32 37 L39.5 24 L34.6 24 L34.6 13 L41.5 20 L41.5 13.6 L34.6 5
-           L29.4 5 L22.5 13.6 L22.5 20 L29.4 13 L29.4 24 L24.5 24 Z"
-        fill="#E49525" stroke="#12141C" stroke-width="1.8" stroke-linejoin="round"/>
+  <!-- Alvo com a flecha, o motivo da capa do livro. Este SVG e a FONTE do
+       desenho: os PNG e o .ico desta pasta saem dele (ver ferramentas/
+       gerar-icones.py e o LEIA-ME) - mexeu aqui, gerar os arquivos de novo.
+
+       O viewBox e quadrado e centrado no desenho ja com a sombra: o conteudo
+       ocupa x 39,8..1092 e y 126..1210, entao o quadrado de 1106 sobra 2% de
+       folga de cada lado. Sem isso a flecha, que sai para cima a direita,
+       encosta na borda do icone.
+
+       A flecha e uma flecha inteira - haste de madeira + duas penas - e nao a
+       seta de duas pontas do desenho antigo, que a 180px ninguem lia como
+       flecha. -->
+  <defs>
+    <linearGradient id="red" gradientUnits="userSpaceOnUse" x1="150" y1="250" x2="980" y2="1140">
+      <stop offset="0" stop-color="#E7263A"/>
+      <stop offset="0.42" stop-color="#CE0A1F"/>
+      <stop offset="1" stop-color="#9A0012"/>
+    </linearGradient>
+    <linearGradient id="white" gradientUnits="userSpaceOnUse" x1="150" y1="250" x2="980" y2="1140">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="0.40" stop-color="#F0EEEC"/>
+      <stop offset="1" stop-color="#C7C4BE"/>
+    </linearGradient>
+    <radialGradient id="vol" gradientUnits="userSpaceOnUse" cx="410" cy="520" r="700">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.20"/>
+      <stop offset="0.45" stop-color="#FFFFFF" stop-opacity="0.03"/>
+      <stop offset="0.78" stop-color="#000000" stop-opacity="0.05"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0.26"/>
+    </radialGradient>
+    <linearGradient id="gloss" gradientUnits="userSpaceOnUse" x1="560" y1="700" x2="560" y2="1210">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.20"/>
+      <stop offset="0.65" stop-color="#FFFFFF" stop-opacity="0.09"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="wood" gradientUnits="userSpaceOnUse" x1="40" y1="-3.6" x2="40" y2="1.4">
+      <stop offset="0" stop-color="#F6E7C6"/>
+      <stop offset="0.35" stop-color="#EBD4A6"/>
+      <stop offset="1" stop-color="#BC9459"/>
+    </linearGradient>
+    <linearGradient id="vane" gradientUnits="userSpaceOnUse" x1="48" y1="-18" x2="90" y2="0">
+      <stop offset="0" stop-color="#BB1A2C"/>
+      <stop offset="0.55" stop-color="#9C1122"/>
+      <stop offset="1" stop-color="#750C1A"/>
+    </linearGradient>
+    <linearGradient id="vaneB" gradientUnits="userSpaceOnUse" x1="46" y1="2" x2="86" y2="16">
+      <stop offset="0" stop-color="#A21324"/>
+      <stop offset="0.6" stop-color="#8B0F1E"/>
+      <stop offset="1" stop-color="#6C0A17"/>
+    </linearGradient>
+    <filter id="soft" x="-25%" y="-25%" width="150%" height="150%">
+      <feDropShadow dx="6" dy="10" stdDeviation="12" flood-color="#4A0A0A" flood-opacity="0.28"/>
+    </filter>
+    <filter id="blur6" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="9"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#soft)">
+    <!-- aneis concentricos -->
+    <circle cx="560" cy="690" r="520" fill="url(#red)"/>
+    <circle cx="560" cy="690" r="440" fill="url(#white)"/>
+    <circle cx="560" cy="690" r="359" fill="url(#red)"/>
+    <circle cx="560" cy="690" r="292" fill="url(#white)"/>
+    <circle cx="560" cy="690" r="207" fill="url(#red)"/>
+    <circle cx="560" cy="690" r="140" fill="url(#white)"/>
+    <circle cx="560" cy="690" r="58" fill="url(#red)"/>
+
+    <!-- reflexo vertical, embaixo -->
+    <ellipse cx="560" cy="925" rx="21" ry="190" fill="url(#gloss)" filter="url(#blur6)"/>
+
+    <!-- volume: clareia em cima a esquerda e fecha na borda -->
+    <circle cx="560" cy="690" r="520" fill="url(#vol)"/>
+    <circle cx="560" cy="690" r="516" fill="none" stroke="#000000" stroke-opacity="0.10" stroke-width="8"/>
+
+    <!-- flecha: as medidas locais sao em pixels do desenho original e o x corre
+         ao longo da haste, por isso o grupo inteiro e escalado e girado -45,5 -
+         a ponta fica cravada na mosca e as penas para fora do alvo. -->
+    <g transform="translate(560,690) scale(7.796) rotate(-45.5)">
+      <!-- pena de cima, a maior (a aresta de dentro entra por baixo da haste) -->
+      <path d="M 45.0,-2.2 C 51,-6.0 55,-9.2 62,-11.4
+               C 70,-14.2 79,-16.3 85.0,-15.4
+               C 88.9,-14.8 89.7,-10.1 86.8,-8.0
+               C 84.6,-6.3 82,-4.6 79.6,-3.6
+               C 72,-3.0 60,-2.8 45.0,-2.2 Z" fill="url(#vane)"/>
+      <!-- pena de baixo, menor -->
+      <path d="M 44.6,-0.6 C 51,3.4 55,7.2 61,10.4
+               C 69,14.3 77.5,15.7 82.5,13.8
+               C 86.3,12.4 86.5,8.9 84.0,7.3
+               C 82.4,6.2 81.0,3.2 79.8,0.3
+               C 70,-1.0 57,-1.0 44.6,-0.6 Z" fill="url(#vaneB)"/>
+      <!-- haste -->
+      <path d="M 1.4,-0.9 C 5,-1.6 8,-2.0 14,-2.2
+               C 30,-2.7 55,-3.5 76,-4.2
+               C 79.1,-4.3 80.7,-3.1 80.7,-1.85
+               C 80.7,-0.6 79.1,0.7 76,0.6
+               C 55,0.9 30,1.2 14,1.4
+               C 8,1.5 5,1.3 1.4,0.7
+               C 0.4,0.4 0.4,-0.6 1.4,-0.9 Z" fill="url(#wood)"/>
+      <ellipse cx="7" cy="-0.3" rx="6.5" ry="1.9" fill="#000000" opacity="0.15"/>
+    </g>
+  </g>
 </svg>
