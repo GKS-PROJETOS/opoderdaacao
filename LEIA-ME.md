@@ -37,11 +37,41 @@ seção de preço virou **três pacotes por quantidade de ingressos**, numa grad
 
 | | 1 INGRESSO | 2 INGRESSOS (destaque) | 5 INGRESSOS OU MAIS |
 |---|---|---|---|
-| De | — | ~~R$ 594,00~~ | ~~R$ 1.485,00~~ |
-| Parcelado | 6x R$ 55,72 | 6x R$ 104,27 | 6x R$ 234,23 |
-| À vista | R$ 297,00 | R$ 555,80 | R$ 1.248,50 |
-| Selo | — | Economia de R$ 38,20 | Economia de R$ 236,50 |
-| Checkout | `E0DKDO4D91` | `7WXG5GQY0A` | `39YNB33QWO` |
+| De | — | ~~R$ 698,00~~ | ~~R$ 1.745,00~~ |
+| Parcelado | 12x R$ 36,09 | 12x R$ 68,47 | 12x R$ 158,75 |
+| À vista | R$ 349,00 | R$ 662,00 | R$ 1.535,00 |
+| Selo | — | Economia de R$ 36,00 | Economia de R$ 210,00 |
+| Checkout | `D0R8A6GJ9Y` | `KW8ZK8ZB01` | `7WXGQKG20A` |
+| Preço unitário | R$ 349,00 | R$ 331,00 | R$ 307,00 |
+
+> **Valores do evento de 23/01/2027, trocados em 10/09/2026.** A tabela anterior
+> (evento de setembro/2026: R$ 297 / 555,80 / 1.248,50 nos checkouts
+> `E0DKDO4D91`, `7WXG5GQY0A` e `39YNB33QWO`) está no histórico do repo, no
+> commit anterior a este. Os produtos velhos continuam existindo na Eduzz, mas
+> **não são usados em lugar nenhum da página**.
+
+### Os três produtos novos são vendidos POR INGRESSO
+
+Diferença que muda o comportamento da página: os produtos de 23/01/2027 **não
+são pacotes de quantidade fixa**. Cada um abre a tela da Eduzz em **"1 Unidade"**,
+com a quantidade editável (1 a 4 e "Mais de 4", que libera um campo numérico), e
+o valor mostrado é o de **um** ingresso — R$ 349,00, R$ 331,00 ou R$ 307,00.
+
+Os cards de 2 e de 5+ continuam anunciando o **total do pacote** (R$ 662,00 e
+R$ 1.535,00, decisão do Danilo em 10/09/2026, para não mexer no layout). Então
+quem clica cai numa tela mostrando o valor de 1 ingresso e **precisa subir a
+quantidade na mão**. Duas consequências para quem for mexer nisso:
+
+- **Não dá para pré-selecionar a quantidade pela URL.** Testei `?qtd=2` e
+  `?quantity=2` em 10/09/2026: os dois atravessam o `chk.eduzz.com` e chegam ao
+  iframe do checkout (`elements2.eduzz.com`), e os dois são **ignorados** — a
+  tela continua em 1 unidade.
+- **Nada impede comprar 1 unidade pelo link do grupo** e pagar R$ 307,00 num
+  ingresso que avulso custa R$ 349,00. Isso se resolve no preço dos produtos na
+  Eduzz, não no HTML.
+
+Se um dia os produtos virarem pacote de quantidade fixa (como o `39YNB33QWO`
+era), os totais dos cards passam a bater com a tela e esse aviso perde o motivo.
 
 **O terceiro card era "10 INGRESSOS" (R$ 2.497 fixo) e virou "5 INGRESSOS OU
 MAIS" em 17/08/2026**, a R$ 249,70 o ingresso. As contas do card saem daí, sobre
@@ -80,12 +110,18 @@ subir junto** — mexer no HTML não muda o que o checkout cobra.
 > necessidade. Se o duplo baixar de novo, conferir a escada antes.
 
 A parcela é **o valor que a Eduzz mostra na própria tela de checkout**, não o à
-vista dividido por 6. O parcelamento em 6x tem juros (até 3,49% a.m.): R$ 297 à
-vista dá 6x R$ 55,72 (R$ 334,32), e não 6x R$ 49,50; R$ 1.248,50 dá 6x
-R$ 234,23, e não 6x R$ 208,08. A página chegou a mostrar a divisão
+vista dividido pelo número de parcelas. O parcelamento tem juros (até 3,49%
+a.m.), e a diferença aparece na segunda casa: R$ 662,00 sai **12x R$ 68,47**, e
+não 12x R$ 68,46; R$ 1.535,00 sai **12x R$ 158,75**, e não 12x R$ 127,92 (essa
+seria a divisão do total por 12 sem juros). A página chegou a mostrar a divisão
 simples; foi corrigido em 14/08/2026, porque anunciar parcela menor que a
 cobrada é propaganda enganosa. **Ao mexer em preço, ler os dois números direto
-no checkout.**
+no checkout** — e, nos cards de 2 e de 5+, ler com a quantidade do card já
+selecionada na tela, senão sai o valor de 1 ingresso.
+
+Os três números de 10/09/2026 foram lidos assim: 1 unidade no `D0R8A6GJ9Y`
+(R$ 349,00 → 12x R$ 36,09), 2 unidades no `KW8ZK8ZB01` (R$ 662,00 → 12x
+R$ 68,47) e 5 unidades no `7WXGQKG20A` (R$ 1.535,00 → 12x R$ 158,75).
 
 Cada card tem três motivos em `.card__itens`, com o "check" desenhado no CSS
 (sem imagem nova). Eles falam do **motivo de escolher aquele pacote**, não das
@@ -155,14 +191,17 @@ Se o patrocínio ganhar um contato próprio (e-mail ou outro número), trocar s�
 
 | Card | Produto na Eduzz | Link |
 |---|---|---|
-| 1 ingresso | Ingresso O Poder da Ação — Lote 1 | `chk.eduzz.com/E0DKDO4D91?np=6` |
-| 2 ingressos | Ingresso Duplo | `chk.eduzz.com/7WXG5GQY0A?np=6` |
-| 5 ingressos ou mais | Lote 5 (5 unidades, R$ 1.248,50) | `chk.eduzz.com/39YNB33QWO?np=6` |
+| 1 ingresso | O Poder da Ação - Ingresso Individual - Unitário | `chk.eduzz.com/D0R8A6GJ9Y` |
+| 2 ingressos | O Poder da Ação - Ingresso Duplo - 2 Pessoas | `chk.eduzz.com/KW8ZK8ZB01` |
+| 5 ingressos ou mais | O Poder da Ação - Ingresso em Grupo - A partir de 5 | `chk.eduzz.com/7WXGQKG20A` |
 
-Os dois primeiros chegaram em 14/08/2026 e o terceiro em 17/08/2026; antes disso
-todos apontavam para o `E0DKDO4D91` do de 1 ingresso. O `G96RVR8YW1` ("Ingresso
-10 pessoas — Lote 10 Ingressos", R$ 2.497 fixo) **saiu da página** em 17/08/2026,
-quando o card de 10 virou 5+ — continua existindo na Eduzz, mas não é usado. Os
+Os três chegaram em 10/09/2026, com o evento de 23/01/2027, e **vão sem `?np=6`**
+— do jeito que o Danilo mandou. Sem esse parâmetro a Eduzz abre o checkout em
+**12x**, e é por isso que os cards mudaram de "6x de R$" para "12x de R$".
+
+Os checkouts do evento de setembro/2026 (`E0DKDO4D91`, `7WXG5GQY0A`,
+`39YNB33QWO` e o `G96RVR8YW1` do antigo pacote de 10) **saíram da página em
+10/09/2026** e não são mais usados — continuam existindo na Eduzz. Os
 `<a>` continuam marcados com `data-checkout="casadinha"` e
 `data-checkout="pacote-5"` para achar rápido.
 
@@ -293,7 +332,7 @@ no CSS aplicado do site:
 
 | Elemento | Tratamento |
 |---|---|
-| Caixa de data / hora / local | fundo `#12141C`, borda 1px `#D96A1F`, raio 12px |
+| Caixa de data / hora (e local, quando houver) | fundo `#12141C`, borda 1px `#D96A1F`, raio 12px |
 | Ícones de "esse evento é para você" | caixa 110×104, borda 1px **vermelha**, raio 20px |
 | Foto do mentor | raio 14px, com moldura dourada 2px atrás, deslocada 8px à direita e 15px abaixo |
 | Os 3 números | card `#1D2232`, borda 1px `#E49525`, raio 7px |
@@ -315,18 +354,26 @@ no CSS aplicado do site:
   Sem JavaScript as respostas ficam abertas e legíveis — é o script que as
   recolhe, então a página nunca fica com conteúdo inacessível.
 - Os três CTAs de fora da seção de preço (hero, faixa da citação, "esse evento é
-  para você") vão para o checkout de **1 ingresso** (`E0DKDO4D91`); os botões dos
+  para você") vão para o checkout de **1 ingresso** (`D0R8A6GJ9Y`); os botões dos
   cards vão cada um para o seu, na tabela acima.
 - A foto do mentor vinha em 2333×3499 para uma caixa de 353px; reduzi para 2x.
   Os originais estão intactos em `assets/real/`.
-- **Endereço do hero** (03/09/2026): entrou a cidade, e com ela o endereço deixou
-  de caber em uma linha de 484px. São duas linhas de propósito — `Auditório
-  Family` e depois o endereço —, a cidade vem depois de **vírgula** (no telefone
-  a linha quebra ali, e vírgula no fim de linha de endereço é normal, travessão
-  pendurado não é) e `Goiânia-GO` está num `.nobr` para não se partir no próprio
-  hífen. O texto todo mora dentro de **um** `<span>`: o `<li>` é flex, então
-  filho solto vira coluna e o `.nobr` saltava para o lado do endereço. A caixa
-  passou de 143px para 168px de altura.
+- **Sem local no hero** (10/09/2026): o evento de 23/01/2027 ainda não tem
+  endereço fechado, então o terceiro `<li>` da caixa — o de local, com
+  `ico-local.png` — **saiu**, a pedido do Danilo, e a caixa voltou a ter só data
+  e horário. As três respostas do FAQ que davam endereço (`faq-4`, `faq-8` e
+  `faq-10`) passaram a dizer que o local será divulgado, o `faq-6` perdeu a
+  palavra "auditório" e as duas *meta descriptions* trocaram o endereço por
+  "Local a ser divulgado".
+  **Quando o local sair**, são esses seis pontos + o `<li>` do hero. Não copiar o
+  endereço do commit `f6edf0b` de volta: aquele era o Auditório Family, do evento
+  de setembro/2026. Como o endereço não cabe em uma linha de 484px, o `<li>`
+  quer duas linhas dentro de **um** `<span>` só: nome do lugar, `<br>`, endereço
+  terminando em **vírgula** antes da cidade (no telefone a linha quebra ali, e
+  vírgula no fim de linha de endereço é normal, travessão pendurado não é), com
+  a cidade num `.nobr` para não se partir no próprio hífen — `<li>` é flex,
+  então filho solto vira coluna. Com a linha de local a caixa tem 168px de
+  altura; sem ela, 143px.
 - **Texto do mentor** (03/09/2026): a biografia foi substituída inteira por uma
   versão nova, em 6 parágrafos. Não existe mais a linha de cargo separada — o 1º
   parágrafo herdou o dourado dela, porque ele já abre com "Empresário,
