@@ -37,6 +37,12 @@
 <meta property="og:image:height" content="512">
 <meta property="og:image:alt" content="Alvo com a flecha cravada no centro, o simbolo de O Poder da Acao">
 <meta name="twitter:card" content="summary">
+
+<!-- 10/09/2026 - marca que o JavaScript esta vivo. Tem que rodar aqui no head,
+     antes da primeira pintura: se rodasse no fim do body, o conteudo apareceria
+     e so depois sumiria para entrar de novo. Sem esta classe o .reveal do
+     styles.css nao esconde nada, entao pagina sem JS continua inteira. -->
+<script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
 
@@ -83,45 +89,45 @@
 
 <!-- ========================================================== 6 areas === -->
 <section class="areas">
-  <h2 class="areas__title">Você vai receber ferramentas comprovadas para destravar a sua vida em 6 áreas:</h2>
+  <h2 class="areas__title reveal">Você vai receber ferramentas comprovadas para destravar a sua vida em 6 áreas:</h2>
 
   <div class="areas__grid">
-    <article class="area">
+    <article class="area reveal">
       <img src="assets/img/area-saude.png" alt="" width="73" height="74">
       <div>
         <h3>Saúde Emocional</h3>
         <p>Aprenda a dominar suas emoções, controlar a ansiedade, reduzir o estresse e recuperar o equilíbrio mental com neurociência e Coaching Sistêmico.</p>
       </div>
     </article>
-    <article class="area">
+    <article class="area reveal">
       <img src="assets/img/area-financas.png" alt="" width="73" height="74">
       <div>
         <h3>Finanças Pessoais</h3>
         <p>Aprenda a aumentar sua renda, investir com inteligência e conquistar liberdade financeira mesmo sem se considerar “bom com dinheiro”.</p>
       </div>
     </article>
-    <article class="area">
+    <article class="area reveal">
       <img src="assets/img/area-performance.png" alt="" width="73" height="74">
       <div>
         <h3>Performance Pessoal</h3>
         <p>Acesse seu estado máximo de produtividade, coragem e foco com técnicas práticas e validadas, mesmo que você se considere procrastinador.</p>
       </div>
     </article>
-    <article class="area">
+    <article class="area reveal">
       <img src="assets/img/area-carreira.png" alt="" width="62" height="62">
       <div>
         <h3>Carreira e Negócios</h3>
         <p>Acelere seu crescimento profissional, alcance promoções, estruture seu negócio com clareza, posicione sua autoridade e escale resultados com consistência.</p>
       </div>
     </article>
-    <article class="area">
+    <article class="area reveal">
       <img src="assets/img/area-relacionamentos.png" alt="" width="66" height="66">
       <div>
         <h3>Relacionamentos</h3>
         <p>Melhore sua forma de se comunicar, criar conexões profundas, resolver conflitos com cônjuges, filhos, colegas e fortalecer vínculos com você mesmo.</p>
       </div>
     </article>
-    <article class="area">
+    <article class="area reveal">
       <img src="assets/img/area-proposito.png" alt="" width="70" height="70">
       <div>
         <h3>Propósito e Identidade</h3>
@@ -143,25 +149,25 @@
 <!-- ======================================================== para voce === -->
 <section class="para">
   <div class="para__grid">
-    <h2 class="para__title">Esse evento é para você que:</h2>
+    <h2 class="para__title reveal">Esse evento é para você que:</h2>
 
-    <article class="para__item">
+    <article class="para__item reveal">
       <span class="para__ico"><img src="assets/img/para-1.png" alt="" width="78" height="78"></span>
       <p>Sabe que tem um potencial enorme, mas quer aprender a usá-lo com clareza.</p>
     </article>
-    <article class="para__item">
+    <article class="para__item reveal">
       <span class="para__ico"><img src="assets/img/para-2.png" alt="" width="78" height="78"></span>
       <p>Quer conquistar mais na vida pessoal, profissional e financeira — e está pronto.</p>
     </article>
-    <article class="para__item">
+    <article class="para__item reveal">
       <span class="para__ico"><img src="assets/img/para-3.png" alt="" width="84" height="84"></span>
       <p>Está em uma jornada de autoconhecimento e busca ferramentas práticas para evoluir em todas as áreas.</p>
     </article>
-    <article class="para__item">
+    <article class="para__item reveal">
       <span class="para__ico"><img src="assets/img/para-4.png" alt="" width="80" height="80"></span>
       <p>Deseja deixar uma marca positiva no mundo e ser uma fonte de inspiração para quem ama.</p>
     </article>
-    <article class="para__item">
+    <article class="para__item reveal">
       <span class="para__ico"><img src="assets/img/para-5.png" alt="" width="79" height="79"></span>
       <p>Está em busca de uma experiência de transformação verdadeira, não conteúdo raso e motivação barata.</p>
     </article>
@@ -174,7 +180,7 @@
 <!-- =========================================================== mentor === -->
 <section class="mentor">
   <div class="mentor__wrap">
-    <div class="mentor__figure">
+    <div class="mentor__figure reveal">
       <img class="mentor__photo" src="assets/img/mentor-gustavo.jpg" alt="Gustavo Sampaio" width="353" height="529">
 
       <!-- as redes ficam na coluna da foto, embaixo dela: com a biografia nova
@@ -190,7 +196,7 @@
       </nav>
     </div>
 
-    <div class="mentor__text">
+    <div class="mentor__text reveal">
       <p class="eyebrow">SEU MENTOR</p>
       <h2>Gustavo Sampaio</h2>
       <!-- o 1o paragrafo fica em dourado, no lugar da linha de cargo que havia
@@ -217,9 +223,9 @@
 
 <!-- ============================================================ levar === -->
 <section class="levar">
-  <h2 class="levar__title">O que você vai levar do evento:</h2>
+  <h2 class="levar__title reveal">O que você vai levar do evento:</h2>
 
-  <article class="levar__row">
+  <article class="levar__row reveal">
     <img src="assets/img/levar-1.png" alt="" width="437" height="249">
     <div>
       <h3>Um diagnóstico claro e preciso da sua vida atual e dos pontos cegos.</h3>
@@ -227,7 +233,7 @@
     </div>
   </article>
 
-  <article class="levar__row">
+  <article class="levar__row reveal">
     <img src="assets/img/levar-2.png" alt="" width="437" height="250">
     <div>
       <h3>Estratégias práticas para aplicar no dia seguinte.</h3>
@@ -243,7 +249,7 @@
     </div>
   </article>
 
-  <article class="levar__row">
+  <article class="levar__row reveal">
     <img src="assets/img/levar-4.png" alt="" width="437" height="250">
     <div>
       <h3>Um estado emocional que te impulsiona.</h3>
@@ -412,7 +418,7 @@
 <!-- ============================================================== faq === -->
 <section class="faq">
   <p class="eyebrow eyebrow--center">Dúvidas Comuns</p>
-  <h2 class="faq__title">Perguntas Frequentes</h2>
+  <h2 class="faq__title reveal">Perguntas Frequentes</h2>
 
   <!-- 10/09/2026 - sem local definido para o evento de 23/01/2027, as tres
        respostas que davam endereco (faq-4 "onde e quando", faq-8 alimentacao e
@@ -540,6 +546,70 @@
       if (ans) ans.style.height = 'auto';
     });
   });
+})();
+</script>
+
+<script>
+/* 10/09/2026 - entrada das secoes abaixo da dobra.
+   O observer so poe a classe: quem anima e o CSS, e anima apenas opacity e
+   transform, que nao obrigam o navegador a recalcular o layout da pagina.
+   Cada elemento e solto do observer depois de aparecer - a animacao acontece
+   uma vez so, nao toda vez que a secao volta para a tela. */
+(function () {
+  var alvos = document.querySelectorAll('.reveal');
+  if (!alvos.length) return;
+
+  /* navegador velho sem IntersectionObserver: mostra tudo de uma vez */
+  if (!('IntersectionObserver' in window)) {
+    alvos.forEach(function (el) { el.classList.add('is-in'); });
+    return;
+  }
+
+  var obs = new IntersectionObserver(function (entradas) {
+    entradas.forEach(function (e, i) {
+      if (!e.isIntersecting) return;
+      /* irmaos que entram juntos aparecem em cascata, 80ms de diferenca */
+      e.target.style.transitionDelay = (i * 80) + 'ms';
+      e.target.classList.add('is-in');
+      obs.unobserve(e.target);
+    });
+  }, {
+    threshold: 0.15,
+    /* -10% embaixo: o elemento so conta como visivel um pouco depois de
+       cruzar a borda, senao ele ja terminou de animar quando chega ao olho */
+    rootMargin: '0px 0px -10% 0px'
+  });
+
+  alvos.forEach(function (el) { obs.observe(el); });
+
+  /* Rede de seguranca. O observer so avisa de quem *entra* na tela, e existe
+     um caso em que a secao nunca entra: a pagina abre com a rolagem ja no
+     meio - o navegador restaura a posicao ao recarregar, ou o link tinha
+     ancora, ou o visitante bateu End. Tudo o que ficou acima nunca dispara e
+     continuaria invisivel para sempre. Aqui quem ja passou aparece na hora,
+     sem animacao, que e o certo: nao se anima o que o olho nao vai ver. */
+  var faltam = Array.prototype.slice.call(alvos);
+
+  function mostrarQuemJaPassou() {
+    faltam = faltam.filter(function (el) {
+      if (el.getBoundingClientRect().bottom > 0) return true;   /* ainda vem */
+      el.style.transition = 'none';
+      el.classList.add('is-in');
+      obs.unobserve(el);
+      return false;
+    });
+    if (!faltam.length) removeEventListener('scroll', aoRolar);
+  }
+
+  var pendente = false;
+  function aoRolar() {
+    if (pendente) return;
+    pendente = true;
+    requestAnimationFrame(function () { pendente = false; mostrarQuemJaPassou(); });
+  }
+
+  addEventListener('scroll', aoRolar, { passive: true });
+  mostrarQuemJaPassou();
 })();
 </script>
 </body>
