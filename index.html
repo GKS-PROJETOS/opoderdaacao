@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>O Poder da Ação | Imersão Presencial com Gustavo Sampaio</title>
-<meta name="description" content="Imersão presencial O Poder da Ação com Gustavo Sampaio. 23 de janeiro de 2027, das 8h30 às 17h30. Local a ser divulgado.">
+<meta name="description" content="Imersão presencial O Poder da Ação com Gustavo Sampaio. 23 de janeiro de 2027, das 8h30 às 17h30, em Goiânia — GO. Endereço a ser divulgado.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
@@ -31,7 +31,7 @@
 <meta property="og:site_name" content="Gustavo Sampaio">
 <meta property="og:url" content="https://www.eusougustavosampaio.com/opoderdaacao/">
 <meta property="og:title" content="O Poder da Ação | Imersão Presencial com Gustavo Sampaio">
-<meta property="og:description" content="Imersão presencial O Poder da Ação com Gustavo Sampaio. 23 de janeiro de 2027, das 8h30 às 17h30. Local a ser divulgado.">
+<meta property="og:description" content="Imersão presencial O Poder da Ação com Gustavo Sampaio. 23 de janeiro de 2027, das 8h30 às 17h30, em Goiânia — GO. Endereço a ser divulgado.">
 <meta property="og:image" content="https://www.eusougustavosampaio.com/opoderdaacao/assets/icon/og-image.png">
 <meta property="og:image:width" content="512">
 <meta property="og:image:height" content="512">
@@ -64,18 +64,19 @@
       <ul class="facts">
         <li><img src="assets/img/ico-data.png" alt="" width="33" height="33">23 de Janeiro de 2027</li>
         <li><img src="assets/img/ico-hora.png" alt="" width="33" height="33">8h30 às 17h30</li>
-        <!-- 10/09/2026 - EVENTO DE 23/01/2027 SEM LOCAL DEFINIDO: a terceira
-             linha (o <li> de local, com ico-local.png) saiu daqui a pedido do
-             Danilo - volta quando o endereco for fechado. NAO copiar o endereco
-             do commit f6edf0b de volta: aquele era o Auditorio Family, do
-             evento de setembro/2026.
-             Ao devolver a linha, o endereco quer DUAS linhas dentro de UM
-             <span> so: nome do lugar, <br>, depois o endereco terminando em
+        <!-- 16/09/2026 - EVENTO DE 23/01/2027 COM CIDADE, SEM ENDERECO: a linha
+             de local voltou por decisao do Danilo, mas so com a cidade. O
+             cadastro da Eduzz passou a trazer o Auditorio Family (o mesmo de
+             setembro/2026) neste dia, e a producao nao confirmou - por isso a
+             casa e o numero ficam de fora ate ela confirmar.
+             Quando o endereco fechar, ele quer DUAS linhas dentro deste MESMO
+             <span>: nome do lugar, <br>, depois o endereco terminando em
              VIRGULA antes da cidade (no telefone a linha quebra ali, e virgula
              no fim de linha de endereco e normal - travessao pendurado nao e),
-             com a cidade num <span class="nobr"> para nao se partir no proprio
-             hifen. O <li> e flex: filho solto vira coluna, entao o texto todo
-             tem que ficar dentro do mesmo span. Detalhes no LEIA-ME. -->
+             mantendo a cidade no <span class="nobr"> para nao se partir no
+             proprio hifen. O <li> e flex: filho solto vira coluna, entao o
+             texto todo tem que ficar dentro do mesmo span. Detalhes no LEIA-ME. -->
+        <li><img src="assets/img/ico-local.png" alt="" width="36" height="36"><span><span class="nobr">Goiânia — GO</span></span></li>
       </ul>
 
       <a class="btn btn--cta" href="https://chk.eduzz.com/Q9N25QRP01?np=6" target="_blank" rel="noopener">Quero garantir meu ingresso agora</a>
@@ -431,11 +432,15 @@
   <p class="eyebrow eyebrow--center">Dúvidas Comuns</p>
   <h2 class="faq__title reveal">Perguntas Frequentes</h2>
 
-  <!-- 10/09/2026 - sem local definido para o evento de 23/01/2027, as tres
-       respostas que davam endereco (faq-4 "onde e quando", faq-8 alimentacao e
-       faq-10 credenciamento) passaram a dizer que o local sera divulgado, e o
-       faq-6 perdeu a palavra "auditorio". Quando o local sair, sao esses
-       quatro + o <li> do hero + as duas meta descriptions. -->
+  <!-- 16/09/2026 - o evento de 23/01/2027 ja tem CIDADE, nao tem ENDERECO. O
+       faq-4 passou a dizer "em Goiania - GO" e que o endereco exato sai depois;
+       o faq-8 (alimentacao) e o faq-10 (credenciamento) continuam prometendo o
+       endereco, e o faq-6 continua sem a palavra "auditorio". Quando a producao
+       confirmar a casa, sao esses tres + o <li> do hero + as duas meta.
+       16/09/2026 - o faq-10 dizia "as 7h, uma hora antes do inicio": era
+       verdade com o evento as 8h. Com 8h30 viraram uma hora e MEIA, e a frase
+       foi corrigida. O credenciamento continua as 7h, por decisao do Danilo -
+       em setembro o portao abriu 7h04 e 36 pessoas entraram antes das 8h. -->
   <div class="faq__cols">
     <div class="faq__col">
       <div class="faq__item">
@@ -452,7 +457,7 @@
       </div>
       <div class="faq__item">
         <button class="faq__q" type="button" aria-expanded="true" aria-controls="faq-4">Onde e quando será o evento?<span class="faq__ico" aria-hidden="true"></span></button>
-        <div class="faq__ans" id="faq-4"><p>O evento acontece no dia 23 de janeiro de 2027, das 8h30 às 17h30. O local ainda está sendo definido e será divulgado em breve.</p></div>
+        <div class="faq__ans" id="faq-4"><p>O evento acontece no dia 23 de janeiro de 2027, das 8h30 às 17h30, em Goiânia — GO. O endereço exato ainda está sendo definido e será divulgado em breve.</p></div>
       </div>
       <div class="faq__item">
         <button class="faq__q" type="button" aria-expanded="true" aria-controls="faq-5">Qual será o horário do evento?<span class="faq__ico" aria-hidden="true"></span></button>
@@ -479,7 +484,7 @@
       </div>
       <div class="faq__item">
         <button class="faq__q" type="button" aria-expanded="true" aria-controls="faq-10">Como funciona o check-in?<span class="faq__ico" aria-hidden="true"></span></button>
-        <div class="faq__ans" id="faq-10"><p>O credenciamento começa às 7h, uma hora antes do início da programação. O endereço será divulgado em breve.</p></div>
+        <div class="faq__ans" id="faq-10"><p>O credenciamento começa às 7h, uma hora e meia antes do início da programação. O endereço será divulgado em breve.</p></div>
       </div>
     </div>
   </div>
