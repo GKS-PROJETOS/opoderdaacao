@@ -247,9 +247,9 @@ section{padding:var(--band) 0;position:relative}
 .ingresso__preco{padding:1.4rem 1.7rem 1.8rem;text-align:center;margin-top:auto;display:flex;flex-direction:column;align-items:center;justify-content:flex-end}
 /* os tres cartoes cortam na mesma altura: topo, picote e preco viram linhas
    de uma grade comum (subgrid). Sem subgrid, cai no flex de cima. */
-@supports (grid-template-rows:subgrid){
+@supports (grid-template-rows:subgrid){@media (min-width:960px){
   .ingressos{grid-template-rows:auto auto auto}
-  .ingresso{display:grid;grid-row:span 3;grid-template-rows:subgrid;row-gap:0}
+  .ingresso{display:grid;grid-row:span 3;grid-template-rows:subgrid;row-gap:0}}
 }
 .ingresso__preco .de{font-size:.95rem;color:var(--cinza)}
 .ingresso__preco .parc{font-size:.95rem;color:var(--cinza);margin-top:.2rem}
