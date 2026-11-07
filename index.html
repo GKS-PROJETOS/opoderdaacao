@@ -1,632 +1,368 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>O Poder da Ação | Imersão Presencial com Gustavo Sampaio</title>
-<meta name="description" content="Imersão presencial O Poder da Ação com Gustavo Sampaio. 23 de janeiro de 2027, das 8h30 às 17h30, em Goiânia — GO. Endereço a ser divulgado.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+<meta name="description" content="Imersão presencial O Poder da Ação com Gustavo Sampaio. Sábado, 23 de janeiro de 2027, das 8h30 às 17h30, em Goiânia — GO. Ferramentas práticas para destravar a sua vida em 6 áreas.">
+<!-- 07/11/2026: pagina refeita no modelo novo (o da O Poder das Palavras e do
+     Homens de Honra), com identidade propria: grafite, o laranja da capa do
+     livro e o alvo. A versao anterior (Poppins, canvas de 980px) esta no git.
+     Fontes da casa servidas daqui (assets/fonts), sem Google Fonts. -->
+<link rel="preload" href="assets/fonts/anton-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/urbanist-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="styles.css">
-
-<!-- icone da aba: o alvo com a flecha da capa do livro. O SVG atende o
-     navegador moderno; o PNG de 32px e o .ico ficam de reserva para quem nao
-     le SVG, e o de 180px e o atalho do iPhone. Ver assets/icon/. -->
+<!-- icone da aba: o alvo com a flecha da capa do livro. Ver assets/icon/. -->
 <link rel="icon" href="assets/icon/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="assets/icon/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="alternate icon" href="assets/icon/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="assets/icon/apple-touch-icon.png">
-<meta name="theme-color" content="#12141C">
-
-<!-- foto que aparece ao lado do nome do site quando alguem compartilha o link
-     (WhatsApp, Instagram, Facebook, LinkedIn). Sem estas linhas cada rede
-     escolhia sozinha o que mostrar, e caia no icone da aba. E o mesmo alvo,
-     num quadrado de 512px sobre o fundo do site; o og:image quadrado com
-     twitter:card "summary" mantem a miniatura pequena ao lado do titulo, e nao
-     um cartao de imagem grande. O endereco PRECISA ser absoluto - crawler de
-     rede social nao resolve caminho relativo - e por isso aponta sempre para
-     eusougustavosampaio.com, mesmo servido de outro dominio. -->
+<meta name="theme-color" content="#0F1012">
+<!-- previa do link compartilhado: og:image ABSOLUTO (crawler nao resolve
+     caminho relativo). WhatsApp guarda a previa por dias: testar com ?v=2. -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Gustavo Sampaio">
 <meta property="og:url" content="https://www.eusougustavosampaio.com/opoderdaacao/">
 <meta property="og:title" content="O Poder da Ação | Imersão Presencial com Gustavo Sampaio">
-<meta property="og:description" content="Imersão presencial O Poder da Ação com Gustavo Sampaio. 23 de janeiro de 2027, das 8h30 às 17h30, em Goiânia — GO. Endereço a ser divulgado.">
+<meta property="og:description" content="Imersão presencial O Poder da Ação com Gustavo Sampaio. Sábado, 23 de janeiro de 2027, das 8h30 às 17h30, em Goiânia — GO.">
 <meta property="og:image" content="https://www.eusougustavosampaio.com/opoderdaacao/assets/icon/og-image.png">
 <meta property="og:image:width" content="512">
 <meta property="og:image:height" content="512">
 <meta property="og:image:alt" content="Alvo com a flecha cravada no centro, o simbolo de O Poder da Acao">
 <meta name="twitter:card" content="summary">
-
-<!-- 10/09/2026 - marca que o JavaScript esta vivo. Tem que rodar aqui no head,
-     antes da primeira pintura: se rodasse no fim do body, o conteudo apareceria
-     e so depois sumiria para entrar de novo. Sem esta classe o .reveal do
-     styles.css nao esconde nada, entao pagina sem JS continua inteira. -->
-<script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
 
-<!-- ============================================================== hero === -->
-<section class="hero">
-  <div class="hero__wrap">
-    <div class="hero__text">
-      <!-- kicker + titulo ficam juntos porque no telefone eles sobem para
-           dentro da foto (ver .hero__intro no styles.css); o lead, a caixa de
-           data/hora/local e o botao passam para baixo dela, como no original -->
-      <div class="hero__intro">
-        <p class="hero__kicker"><span class="hi">O PODER</span> DA AÇÃO</p>
-        <h1 class="hero__title">Você sabe que tem potencial. Mas algo está travando você.</h1>
+<header class="hdr">
+  <div class="wrap hdr__in">
+    <span class="marca">O Poder da <b>Ação</b></span>
+    <a class="hdr__cta" href="#ingressos">Garantir ingresso</a>
+  </div>
+</header>
+
+<main id="conteudo">
+
+<!-- ============ 1 · CAPA ============
+     Foto: o Gustavo no palco da edicao de 12/09/2026 (album, foto 18),
+     recortada sem o QR code do telao. -->
+<section class="capa" aria-labelledby="capa-h">
+  <div class="alvo" aria-hidden="true"></div>
+  <div class="capa__foto">
+    <img src="assets/img/novo/capa.webp" srcset="assets/img/novo/capa-420.webp 420w, assets/img/novo/capa.webp 680w" sizes="(min-width:760px) 52vw, 100vw" width="680" height="1800" alt="Gustavo Sampaio no palco do O Poder da Ação, de microfone na mão" fetchpriority="high" decoding="async">
+  </div>
+  <div class="wrap">
+    <div class="capa__txt">
+      <p class="capa__kicker">Imersão presencial · baseada no best-seller</p>
+      <h1 id="capa-h"><span class="fina">O Poder</span><span class="peso lar">da Ação</span></h1>
+      <p class="capa__com"><span>com</span> Gustavo Sampaio</p>
+      <p class="capa__lead">Você sabe que tem potencial. Mas algo está travando você. Em um dia, você sai com <strong>ferramentas comprovadas</strong> e um <strong>plano de ação</strong> para destravar a sua vida em 6 áreas.</p>
+      <p class="capa__data"><span class="grande">23 de janeiro · sábado</span><span class="menor">das 8h30 às 17h30, em Goiânia — GO</span></p>
+      <div class="capa__cta">
+        <a class="btn btn--lar" href="#ingressos">Quero garantir meu ingresso
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
-
-      <p class="hero__lead">“O Poder da Ação”, o best-seller que já transformou milhões de vidas,
-        agora vai transformar a sua vida, neste treinamento presencial com o Gustavo Sampaio.</p>
-
-      <ul class="facts">
-        <li><img src="assets/img/ico-data.png" alt="" width="33" height="33">23 de Janeiro de 2027</li>
-        <li><img src="assets/img/ico-hora.png" alt="" width="33" height="33">8h30 às 17h30</li>
-        <!-- 16/09/2026 - EVENTO DE 23/01/2027 COM CIDADE, SEM ENDERECO: a linha
-             de local voltou por decisao do Danilo, mas so com a cidade. O
-             cadastro da Eduzz passou a trazer o Auditorio Family (o mesmo de
-             setembro/2026) neste dia, e a producao nao confirmou - por isso a
-             casa e o numero ficam de fora ate ela confirmar.
-             Quando o endereco fechar, ele quer DUAS linhas dentro deste MESMO
-             <span>: nome do lugar, <br>, depois o endereco terminando em
-             VIRGULA antes da cidade (no telefone a linha quebra ali, e virgula
-             no fim de linha de endereco e normal - travessao pendurado nao e),
-             mantendo a cidade no <span class="nobr"> para nao se partir no
-             proprio hifen. O <li> e flex: filho solto vira coluna, entao o
-             texto todo tem que ficar dentro do mesmo span. Detalhes no LEIA-ME. -->
-        <li><img src="assets/img/ico-local.png" alt="" width="36" height="36"><span><span class="nobr">Goiânia — GO</span></span></li>
-      </ul>
-
-      <a class="btn btn--cta" href="https://chk.eduzz.com/Q9N25QRP01?np=6" target="_blank" rel="noopener">Quero garantir meu ingresso agora</a>
-    </div>
-
-    <div class="hero__figure">
-      <img class="hero__photo" src="assets/img/hero-gustavo.png" alt="Gustavo Sampaio" width="549" height="686">
     </div>
   </div>
 </section>
 
-<!-- ========================================================== 6 areas === -->
-<section class="areas">
-  <h2 class="areas__title reveal">Você vai receber ferramentas comprovadas para destravar a sua vida em 6 áreas:</h2>
+<!-- 16/09/2026 - EVENTO DE 23/01/2027 COM CIDADE, SEM ENDERECO, por decisao
+     do Danilo. A producao nao confirmou o local: a casa e o numero so entram
+     quando ela confirmar. Os pontos a trocar sao: esta faixa, a ficha dos
+     ingressos, as perguntas "Onde" e "check-in" e as duas meta description. -->
+<section class="fatos" aria-label="O evento em resumo">
+  <ul class="wrap">
+    <li><b>23/01/2027</b>sábado</li>
+    <li><b>8h30 às 17h30</b>um dia inteiro</li>
+    <li><b>Presencial</b>Goiânia — GO</li>
+    <li><b>Certificado</b>e material de apoio</li>
+  </ul>
+</section>
 
-  <div class="areas__grid">
-    <article class="area reveal">
-      <img src="assets/img/area-saude.png" alt="" width="73" height="74">
-      <div>
-        <h3>Saúde Emocional</h3>
-        <p>Aprenda a dominar suas emoções, controlar a ansiedade, reduzir o estresse e recuperar o equilíbrio mental com neurociência e Coaching Sistêmico.</p>
-      </div>
-    </article>
-    <article class="area reveal">
-      <img src="assets/img/area-financas.png" alt="" width="73" height="74">
-      <div>
-        <h3>Finanças Pessoais</h3>
-        <p>Aprenda a aumentar sua renda, investir com inteligência e conquistar liberdade financeira mesmo sem se considerar “bom com dinheiro”.</p>
-      </div>
-    </article>
-    <article class="area reveal">
-      <img src="assets/img/area-performance.png" alt="" width="73" height="74">
-      <div>
-        <h3>Performance Pessoal</h3>
-        <p>Acesse seu estado máximo de produtividade, coragem e foco com técnicas práticas e validadas, mesmo que você se considere procrastinador.</p>
-      </div>
-    </article>
-    <article class="area reveal">
-      <img src="assets/img/area-carreira.png" alt="" width="62" height="62">
-      <div>
-        <h3>Carreira e Negócios</h3>
-        <p>Acelere seu crescimento profissional, alcance promoções, estruture seu negócio com clareza, posicione sua autoridade e escale resultados com consistência.</p>
-      </div>
-    </article>
-    <article class="area reveal">
-      <img src="assets/img/area-relacionamentos.png" alt="" width="66" height="66">
-      <div>
-        <h3>Relacionamentos</h3>
-        <p>Melhore sua forma de se comunicar, criar conexões profundas, resolver conflitos com cônjuges, filhos, colegas e fortalecer vínculos com você mesmo.</p>
-      </div>
-    </article>
-    <article class="area reveal">
-      <img src="assets/img/area-proposito.png" alt="" width="70" height="70">
-      <div>
-        <h3>Propósito e Identidade</h3>
-        <p>Descubra seu propósito de vida, conecte-se com seus valores, desperte autenticidade e viva com mais sentido, força interior e clareza.</p>
-      </div>
-    </article>
+<!-- ============ 2 · AS 6 ÁREAS ============ -->
+<section class="areas" aria-labelledby="areas-h">
+  <div class="wrap">
+    <span class="rot">O que você recebe</span>
+    <h2 class="tit" id="areas-h"><span class="fina">Ferramentas para destravar</span><span class="peso">a sua vida em <span class="lar">6 áreas</span></span></h2>
+    <p class="intro">O best-seller que já transformou milhões de vidas, agora ao vivo, num treinamento presencial com o Gustavo Sampaio.</p>
+    <div class="areas__grid">
+      <article class="area"><h3>Saúde Emocional</h3><p>Aprenda a dominar suas emoções, controlar a ansiedade, reduzir o estresse e recuperar o equilíbrio mental com neurociência e Coaching Sistêmico.</p></article>
+      <article class="area"><h3>Finanças Pessoais</h3><p>Aprenda a aumentar sua renda, investir com inteligência e conquistar liberdade financeira mesmo sem se considerar “bom com dinheiro”.</p></article>
+      <article class="area"><h3>Performance Pessoal</h3><p>Acesse seu estado máximo de produtividade, coragem e foco com técnicas práticas e validadas, mesmo que você se considere procrastinador.</p></article>
+      <article class="area"><h3>Carreira e Negócios</h3><p>Acelere seu crescimento profissional, alcance promoções, estruture seu negócio com clareza, posicione sua autoridade e escale resultados com consistência.</p></article>
+      <article class="area"><h3>Relacionamentos</h3><p>Melhore sua forma de se comunicar, criar conexões profundas, resolver conflitos com cônjuges, filhos, colegas e fortalecer vínculos com você mesmo.</p></article>
+      <article class="area"><h3>Propósito e Identidade</h3><p>Descubra seu propósito de vida, conecte-se com seus valores, desperte autenticidade e viva com mais sentido, força interior e clareza.</p></article>
+    </div>
   </div>
 </section>
 
-<!-- ======================================================== faixa cta === -->
-<section class="band">
-  <div class="band__wrap">
-    <p class="band__lead">Você vai sair do treinamento com energia, plano de ação e uma certeza poderosa:</p>
-    <p class="band__quote">“Agora eu sei exatamente o que fazer. E eu vou fazer.”</p>
-    <a class="btn btn--cta" href="https://chk.eduzz.com/Q9N25QRP01?np=6" target="_blank" rel="noopener">Quero garantir meu ingresso agora</a>
+<!-- ============ 3 · A CERTEZA ============
+     Foto: o auditorio da edicao de 12/09/2026 (album, foto 21). -->
+<section class="certeza" aria-labelledby="certeza-h">
+  <div class="wrap certeza__grid">
+    <div>
+      <span class="rot" id="certeza-h">Como você sai do dia</span>
+      <p class="certeza__lead">Você vai sair do treinamento com energia, plano de ação e uma certeza poderosa:</p>
+      <blockquote class="citacao">
+        <p>“Agora eu sei <strong>exatamente o que fazer.</strong> E eu vou fazer.”</p>
+      </blockquote>
+      <div class="meio">
+        <a class="btn btn--lar" href="#ingressos">Quero garantir meu ingresso
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </div>
+    <figure class="plateia">
+      <img src="assets/img/novo/plateia.webp" srcset="assets/img/novo/plateia-900.webp 900w, assets/img/novo/plateia.webp 1600w" sizes="(min-width:860px) 42vw, 100vw" width="1600" height="1067" alt="Auditório cheio durante a imersão O Poder da Ação" loading="lazy" decoding="async">
+      <figcaption>O Poder da Ação <span>· edição de setembro de 2026, Goiânia</span></figcaption>
+    </figure>
   </div>
 </section>
 
-<!-- ======================================================== para voce === -->
-<section class="para">
-  <div class="para__grid">
-    <h2 class="para__title reveal">Esse evento é para você que:</h2>
-
-    <article class="para__item reveal">
-      <span class="para__ico"><img src="assets/img/para-1.png" alt="" width="78" height="78"></span>
-      <p>Sabe que tem um potencial enorme, mas quer aprender a usá-lo com clareza.</p>
-    </article>
-    <article class="para__item reveal">
-      <span class="para__ico"><img src="assets/img/para-2.png" alt="" width="78" height="78"></span>
-      <p>Quer conquistar mais na vida pessoal, profissional e financeira — e está pronto.</p>
-    </article>
-    <article class="para__item reveal">
-      <span class="para__ico"><img src="assets/img/para-3.png" alt="" width="84" height="84"></span>
-      <p>Está em uma jornada de autoconhecimento e busca ferramentas práticas para evoluir em todas as áreas.</p>
-    </article>
-    <article class="para__item reveal">
-      <span class="para__ico"><img src="assets/img/para-4.png" alt="" width="80" height="80"></span>
-      <p>Deseja deixar uma marca positiva no mundo e ser uma fonte de inspiração para quem ama.</p>
-    </article>
-    <article class="para__item reveal">
-      <span class="para__ico"><img src="assets/img/para-5.png" alt="" width="79" height="79"></span>
-      <p>Está em busca de uma experiência de transformação verdadeira, não conteúdo raso e motivação barata.</p>
-    </article>
+<!-- ============ 4 · O QUE VOCÊ LEVA ============ -->
+<section class="levar" aria-labelledby="levar-h">
+  <div class="wrap">
+    <span class="rot">O que você leva</span>
+    <h2 class="tit" id="levar-h"><span class="fina">O que você vai</span><span class="peso">levar do evento</span></h2>
+    <ol class="marcos">
+      <li class="marco"><div class="marco__ponto" aria-hidden="true"></div><h3>Um diagnóstico claro da sua vida atual e dos pontos cegos</h3><p>Você vai enxergar, com precisão cirúrgica, o que está te travando e por que seus resultados não decolaram até agora.</p></li>
+      <li class="marco"><div class="marco__ponto" aria-hidden="true"></div><h3>Estratégias práticas para aplicar no dia seguinte</h3><p>Nada de teoria vazia. Você sai com um plano de ação pronto para colocar a mão na massa e colher resultado rápido.</p></li>
+      <li class="marco"><div class="marco__ponto" aria-hidden="true"></div><h3>Ferramentas validadas que funcionam no mundo real</h3><p>Métodos usados pelas pessoas de maior sucesso para mudar padrões, acelerar decisões e romper ciclos de estagnação.</p></li>
+      <li class="marco"><div class="marco__ponto" aria-hidden="true"></div><h3 class="lar">Um estado emocional que te impulsiona</h3><p>Você vai destravar sua melhor versão, despertar sua coragem e sentir uma força interna que talvez nem soubesse que existia.</p></li>
+    </ol>
   </div>
-
-  <a class="btn btn--cta para__btn" href="https://chk.eduzz.com/Q9N25QRP01?np=6" target="_blank" rel="noopener">Quero garantir meu ingresso agora</a>
-  <p class="para__foot">Se você quer ir para o seu próximo nível, <strong>esse evento é para você.</strong></p>
 </section>
 
-<!-- =========================================================== mentor === -->
-<section class="mentor">
-  <div class="mentor__wrap">
-    <div class="mentor__figure reveal">
-      <img class="mentor__photo" src="assets/img/mentor-gustavo.jpg" alt="Gustavo Sampaio" width="353" height="529">
+<!-- ============ 5 · FRASES ============ -->
+<section class="frases" aria-label="A imersão em três frases">
+  <div class="alvo" aria-hidden="true"></div>
+  <div class="wrap">
+    <figure class="frase"><blockquote><p>Potencial sem ação <span class="lar">não muda nada.</span></p></blockquote></figure>
+    <figure class="frase frase--fina"><blockquote><p>Nada de conteúdo raso e motivação barata: <strong>um dia para transformar intenção em ação.</strong></p></blockquote></figure>
+    <figure class="frase"><blockquote><p>O seu próximo nível começa com uma decisão.</p></blockquote></figure>
+  </div>
+</section>
 
-      <!-- as redes ficam na coluna da foto, embaixo dela: com a biografia nova
-           a coluna de texto ficou 200px mais alta que a foto, e os icones aqui
-           ocupam esse vao em vez de deixar buraco. A linha inteira mede 337px,
-           entao cabe nos 353px da foto. -->
-      <nav class="mentor__social" aria-label="Redes sociais de Gustavo Sampaio">
-        <a href="https://www.instagram.com/eusougustavosampaio/" target="_blank" rel="noopener" aria-label="Instagram"><img src="assets/img/soc-instagram.png" alt="" width="73" height="73"></a>
-        <a href="https://www.youtube.com/@GustavoSampaio/featured" target="_blank" rel="noopener" aria-label="YouTube"><img src="assets/img/soc-youtube.png" alt="" width="75" height="75"></a>
-        <a href="https://www.linkedin.com/in/oficialgustavosampaio/" target="_blank" rel="noopener" aria-label="LinkedIn"><img src="assets/img/soc-linkedin.png" alt="" width="61" height="61"></a>
-        <a href="https://www.tiktok.com/@eusougustavosampaio" target="_blank" rel="noopener" aria-label="TikTok"><img src="assets/img/soc-tiktok.png" alt="" width="43" height="43"></a>
-        <a href="https://www.facebook.com/gustavosampaiooficial" target="_blank" rel="noopener" aria-label="Facebook"><img src="assets/img/soc-facebook.png" alt="" width="53" height="53"></a>
+<!-- ============ 6 · PARA QUEM É ============ -->
+<section class="pq" aria-labelledby="pq-h">
+  <div class="wrap pq__grid">
+    <div>
+      <span class="rot">Para quem é</span>
+      <h2 class="tit" id="pq-h"><span class="fina">Esse evento é</span><span class="peso">para você que</span></h2>
+      <p class="pq__nota">Se você quer ir para o seu próximo nível, <strong>esse evento é para você.</strong></p>
+    </div>
+    <ul class="pq__lista">
+      <li>Sabe que tem um potencial enorme, mas quer aprender a usá-lo com clareza.</li>
+      <li>Quer conquistar mais na vida pessoal, profissional e financeira, e está pronto.</li>
+      <li>Está em uma jornada de autoconhecimento e busca ferramentas práticas para evoluir em todas as áreas.</li>
+      <li>Deseja deixar uma marca positiva no mundo e ser uma fonte de inspiração para quem ama.</li>
+      <li>Está em busca de uma experiência de transformação verdadeira, não de conteúdo raso e motivação barata.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 7 · QUEM CONDUZ ============
+     Bio sem a Febracis: o Gustavo vendeu a franquia e nao e mais socio
+     (regra de 05/11/2026). Os tres numeros sao os que a pagina ja
+     publicava desde agosto/2026. -->
+<section class="quem" aria-labelledby="quem-h">
+  <div class="wrap quem__grid">
+    <div class="quem__foto">
+      <img src="assets/img/novo/retrato.webp" srcset="assets/img/novo/retrato-400.webp 400w, assets/img/novo/retrato.webp 800w" sizes="(min-width:760px) 32vw, 300px" width="800" height="1600" alt="Gustavo Sampaio de blazer escuro e camisa branca, sorrindo" loading="lazy" decoding="async">
+    </div>
+    <div>
+      <span class="rot" id="quem-h">Quem conduz</span>
+      <p class="quem__nome">Gustavo Sampaio</p>
+      <div class="quem__bio">
+        <p>Empresário, estrategista e palestrante, Gustavo Sampaio construiu sua base de liderança e alta performance ao longo de seis anos no Banco do Brasil, após ser aprovado em concurso público. Hoje lidera pessoas, projetos e processos voltados ao desenvolvimento pessoal e corporativo.</p>
+        <p>Essa busca por superação se reflete na paixão por desafios extremos de alta performance e inteligência emocional: travessias no Deserto do Saara e do Atacama, nos Lençóis Maranhenses e a subida ao acampamento-base do Everest.</p>
+        <p class="forte">Mais do que transmitir conhecimento, o propósito dele é provocar movimento: despertar indivíduos, fortalecer lideranças e transformar intenção em ação.</p>
+      </div>
+      <div class="nums">
+        <div class="num"><b>+15.000</b><span>alunos formados no ecossistema</span></div>
+        <div class="num"><b>+3.300h</b><span>de mentoria individual registrada</span></div>
+        <div class="num"><b>+500</b><span>empresas e negócios mentorados</span></div>
+      </div>
+      <nav class="social" aria-label="Redes sociais de Gustavo Sampaio">
+        <a href="https://www.instagram.com/eusougustavosampaio/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><g transform="translate(2.4 2.4) scale(.8)"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm7.846-10.405a1.441 1.441 0 01-2.88 0 1.44 1.44 0 012.88 0z"/></g></svg>
+      </a>
+      <a href="https://www.youtube.com/@GustavoSampaio" target="_blank" rel="noopener" aria-label="YouTube">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22.5 7.2a2.7 2.7 0 0 0-1.9-1.9C18.9 4.8 12 4.8 12 4.8s-6.9 0-8.6.5A2.7 2.7 0 0 0 1.5 7.2C1 8.9 1 12 1 12s0 3.1.5 4.8a2.7 2.7 0 0 0 1.9 1.9c1.7.5 8.6.5 8.6.5s6.9 0 8.6-.5a2.7 2.7 0 0 0 1.9-1.9c.5-1.7.5-4.8.5-4.8s0-3.1-.5-4.8zM9.8 15.3V8.7l5.7 3.3-5.7 3.3z"/></svg>
+      </a>
+      <a href="https://www.tiktok.com/@eusougustavosampaio" target="_blank" rel="noopener" aria-label="TikTok">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><g transform="translate(2.4 2.4) scale(.8)"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></g></svg>
+      </a>
+      <a href="https://www.linkedin.com/in/oficialgustavosampaio/" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm6.5 0h3.83v1.64h.05a4.2 4.2 0 0 1 3.78-2.08c4.04 0 4.79 2.66 4.79 6.12V21h-4v-5.47c0-1.3-.02-2.98-1.82-2.98-1.82 0-2.1 1.42-2.1 2.89V21h-4V9Z"/></svg>
+      </a>
+      <a href="https://www.facebook.com/gustavosampaiooficial" target="_blank" rel="noopener" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.5-3.89 3.78-3.89 1.1 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12z"/></svg>
+      </a>
       </nav>
     </div>
-
-    <div class="mentor__text reveal">
-      <p class="eyebrow">SEU MENTOR</p>
-      <h2>Gustavo Sampaio</h2>
-      <!-- o 1o paragrafo fica em dourado, no lugar da linha de cargo que havia
-           aqui antes: ele ja abre com "Empresario, estrategista e palestrante",
-           que era exatamente o texto daquela linha. Os dois ultimos vao em
-           negrito, como no original, porque sao o fecho. -->
-      <p class="mentor__role">Empresário, estrategista e palestrante, Gustavo Sampaio construiu sua base de liderança e alta performance ao longo de seis anos no Banco do Brasil, após ser aprovado em concurso público.</p>
-      <p>Em 2018, expandiu sua atuação nos negócios ao se tornar sócio de Paulo Vieira na franquia Febracis Goiânia, onde atuou como diretor até 2026.</p>
-      <p>Atualmente lidera pessoas, projetos e processos voltados ao desenvolvimento pessoal e corporativo.</p>
-      <p>Essa busca por superação também se reflete em sua paixão por desafios extremos de alta performance e inteligência emocional, como travessias no Deserto do Saara e Atacama, nos Lençóis Maranhenses e a subida ao acampamento base do Everest.</p>
-      <p class="strong">Sua trajetória prática moldou uma convicção central: nenhuma empresa cresce de forma consistente sem desenvolver as pessoas que sustentam seus resultados.</p>
-      <p class="strong">Mais do que transmitir conhecimento, seu propósito é provocar movimento: despertando indivíduos, fortalecendo lideranças e transformando intenção em ação.</p>
-    </div>
-  </div>
-
-  <p class="mentor__xp"><img src="assets/img/ico-experiencia.png" alt="" width="18" height="18">EXPERIÊNCIA CONSTRUÍDA NA PRÁTICA</p>
-
-  <div class="stats">
-    <div><strong>+15.000</strong><span>Alunos Formados no Ecossistema</span></div>
-    <div><strong>+3.300h</strong><span>De Mentoria Individual Registrada</span></div>
-    <div><strong>+500</strong><span>Empresas e Negócios Mentorados</span></div>
   </div>
 </section>
 
-<!-- ============================================================ levar === -->
-<section class="levar">
-  <h2 class="levar__title reveal">O que você vai levar do evento:</h2>
-
-  <article class="levar__row reveal">
-    <img src="assets/img/levar-1.png" alt="" width="437" height="249">
-    <div>
-      <h3>Um diagnóstico claro e preciso da sua vida atual e dos pontos cegos.</h3>
-      <p>Você vai enxergar, com precisão cirúrgica, o que está te travando e por que seus resultados não decolaram até agora.</p>
-    </div>
-  </article>
-
-  <article class="levar__row reveal">
-    <img src="assets/img/levar-2.png" alt="" width="437" height="250">
-    <div>
-      <h3>Estratégias práticas para aplicar no dia seguinte.</h3>
-      <p>Nada de teoria vazia. Você vai sair com um plano de ação pronto para colocar a mão na massa, e colher resultado rápido.</p>
-    </div>
-  </article>
-
-  <article class="levar__row levar__row--flip">
-    <img src="assets/img/levar-3.png" alt="" width="437" height="250">
-    <div>
-      <h3>Ferramentas validadas que funcionam no mundo real.</h3>
-      <p>Métodos usados pelas pessoas de maior sucesso para mudar padrões, acelerar decisões e romper ciclos de estagnação.</p>
-    </div>
-  </article>
-
-  <article class="levar__row reveal">
-    <img src="assets/img/levar-4.png" alt="" width="437" height="250">
-    <div>
-      <h3>Um estado emocional que te impulsiona.</h3>
-      <p>Você vai destravar sua melhor versão, despertar sua coragem e sentir uma força interna que talvez nem soubesse que existia.</p>
-    </div>
-  </article>
-</section>
-
-<!-- ============================================================ preco === -->
-<section class="preco">
-  <p class="eyebrow eyebrow--center">Condição Especial</p>
-  <h2 class="preco__title">Invista no seu Desenvolvimento</h2>
-  <p class="preco__lead">Garanta sua vaga hoje com condições exclusivas e prepare-se para elevar seus negócios e sua vida pessoal a um novo patamar.</p>
-
-  <!-- Os tres pacotes, por quantidade de ingressos.
-
-       10/09/2026 - EVENTO NOVO, 23/01/2027: a venda reabriu com TRES CHECKOUTS
-       NOVOS e a pagina saiu da lista de espera. Os produtos velhos
-       (E0DKDO4D91 / 7WXG5GQY0A / 39YNB33QWO, do evento de setembro/2026) nao
-       sao mais usados em lugar nenhum da pagina.
-
-       12/09/2026 - CHECKOUTS TROCADOS E PARCELAMENTO LIMITADO A 6x. Os dois
-       primeiros produtos sao novos; o de grupo continua o mesmo, so ganhou o
-       parametro. Os IDs velhos (D0R8A6GJ9Y / KW8ZK8ZB01) nao sao mais usados.
-
-       Checkouts da Eduzz, TODOS com ?np=6:
-         1 ingresso   -> Q9N25QRP01  "Ingresso Individual - Unitario"
-         2 ingressos  -> 39VKE7ABWR  "Ingresso Duplo - 2 Pessoas"
-         5 ou mais    -> 7WXGQKG20A  "Ingresso em Grupo - A partir de 5"
-       Os 3 CTAs de fora desta secao (hero, faixa da citacao, "para voce") vao
-       para o Q9N25QRP01, o de 1 ingresso.
-
-       O ?np=6 NAO e enfeite: conferido na tela em 12/09/2026, ele CORTA O TETO
-       da lista de parcelas do cartao - com ele a opcao mais alta e 6x; sem ele
-       o mesmo produto volta a oferecer 12x. Tirar o parametro de um href
-       reabre o 12x naquele botao sozinho, sem erro nenhum aparecer.
-
-       ATENCAO - PRECO POR UNIDADE: os tres sao vendidos POR INGRESSO, a
-       349,00 / 331,00 / 307,00 a unidade, com a quantidade editavel. Cada um
-       ja ABRE COM A QUANTIDADE DO CARD selecionada (1, 2 e 5 unidades) e o
-       total certo na tela - conferido nos tres em 12/09/2026. Os cards de 2 e
-       de 5+ anunciam o TOTAL do pacote, nao o preco por ingresso.
-       Testado em 10/09/2026: ?qtd=2 e ?quantity=2 chegam ao checkout mas sao
-       IGNORADOS, nao da para pre-selecionar quantidade por URL.
-       Consequencia: nada impede alguem de comprar 1 unidade pelo link do
-       grupo e pagar R$ 307 num ingresso de R$ 349 - quem resolve isso e o
-       preco dos produtos na Eduzz, nao o HTML.
-
-       Quem quer 6 ou mais tambem pode subir a quantidade na propria tela; a
-       faixa "FACA SEU ORCAMENTO", logo abaixo dos cards, continua ali para
-       quantidade fora dos pacotes e condicao especial.
-
-       Parcela = o que a Eduzz mostra na propria tela de checkout, NAO o a vista
-       dividido por 6. O parcelamento tem juros. Os tres numeros abaixo foram
-       LIDOS na tela em 12/09/2026, com ?np=6 e a quantidade do card ja
-       selecionada:
-         1 un.  R$   349,00 -> 6x R$  65,47   (a divisao simples daria 58,17)
-         2 un.  R$   662,00 -> 6x R$ 124,20   (a divisao simples daria 110,33)
-         5 un.  R$ 1.535,00 -> 6x R$ 287,98   (a divisao simples daria 255,83)
-       Os valores a vista (349 / 662 / 1.535) nao mudaram na troca de produto.
-       Ao mexer em preco ou no ?np=, conferir os dois numeros direto no
-       checkout - a parcela muda sozinha quando alguem mexe no produto. -->
-  <div class="cards">
-
-    <article class="card">
-      <h3>1 INGRESSO</h3>
-      <p class="card__sub">Ingresso O Poder da Ação</p>
-
-      <ul class="card__itens">
-        <li>Para quem vai sozinho e já quer garantir a vaga</li>
-        <li>Certificado e material de apoio inclusos</li>
-        <li>Assentos livres, por ordem de chegada</li>
-      </ul>
-
-      <div class="card__price">
-        <p class="card__apenas">POR APENAS</p>
-        <p class="card__value"><span class="card__parc">6x de R$</span>65,47</p>
-        <p class="card__avista">ou R$ 349,00 à vista</p>
-      </div>
-
-      <a class="btn btn--buy" href="https://chk.eduzz.com/Q9N25QRP01?np=6" target="_blank" rel="noopener">GARANTIR MEU INGRESSO</a>
-    </article>
-
-    <article class="card card--destaque">
-      <h3>2 INGRESSOS</h3>
-      <p class="card__sub">Ingressos O Poder da Ação</p>
-
-      <ul class="card__itens">
-        <li>Traga alguém com você e os dois pagam menos</li>
-        <li>Certificado e material de apoio para os dois</li>
-        <li>Bom para sócio, cônjuge ou dupla de trabalho</li>
-      </ul>
-
-      <div class="card__price">
-        <p class="card__de">De <s>R$ 698,00</s></p>
-        <p class="card__apenas">POR APENAS</p>
-        <p class="card__value"><span class="card__parc">6x de R$</span>124,20</p>
-        <p class="card__avista">ou R$ 662,00 à vista</p>
-        <p class="card__economia">Economia de R$ 36,00</p>
-      </div>
-
-      <a class="btn btn--buy" data-checkout="casadinha" href="https://chk.eduzz.com/39VKE7ABWR?np=6" target="_blank" rel="noopener">QUERO 2 INGRESSOS</a>
-    </article>
-
-    <article class="card">
-      <h3>5 INGRESSOS OU MAIS</h3>
-      <p class="card__sub">Ingressos O Poder da Ação</p>
-
-      <ul class="card__itens">
-        <li>Leve a sua equipe inteira na mesma turma</li>
-        <li>Certificado e material de apoio para a equipe</li>
-        <li>Um só pedido, a partir de 5 pessoas</li>
-      </ul>
-
-      <!-- Contas do pacote, a R$ 307,00 o ingresso:
-             De  = 5 x 349,00    = 1.745,00
-             Por = 5 x 307,00    = 1.535,00   (economia de 210,00)
-           A parcela de 287,98 foi LIDA na tela do 7WXGQKG20A?np=6 com 5
-           unidades selecionadas, nao calculada (a divisao simples daria 255,83
-           e mentiria na parcela).
-           O card nao anuncia "R$ 307,00 por ingresso", so o total - escolha de
-           layout, mantida em 12/09/2026. A escada por ingresso esta na ordem
-           certa (349 > 331 > 307); se algum pacote baixar, conferir de novo. -->
-      <div class="card__price">
-        <p class="card__de">De <s>R$ 1.745,00</s></p>
-        <p class="card__apenas">POR APENAS</p>
-        <p class="card__value"><span class="card__parc">6x de R$</span>287,98</p>
-        <p class="card__avista">ou R$ 1.535,00 à vista</p>
-        <p class="card__economia">Economia de R$ 210,00</p>
-      </div>
-
-      <a class="btn btn--buy" data-checkout="pacote-5" href="https://chk.eduzz.com/7WXGQKG20A?np=6" target="_blank" rel="noopener">LEVAR MINHA EQUIPE</a>
-    </article>
-
-  </div>
-
-  <!-- Orcamento para quem nao tem exatamente 1, 2 ou 5+ pessoas (3, 4, nota no
-       CNPJ, condicao especial): a quantidade e
-       o valor sao resolvidos com o comercial no WhatsApp, nao aqui na pagina.
-       Mesmo material dos cards (fundo --card, borda dourada de 1px, raio 10px) e
-       o mesmo botao dourado --buy, tudo centralizado.
-       Usa o numero do WhatsApp com o 9 (5562981084247), nao o de 8 digitos que
-       esta no botao "Fale com nosso time" - ver LEIA-ME. -->
-  <div class="comercial" id="orcamento">
-    <h3>FAÇA SEU ORÇAMENTO</h3>
-    <p class="comercial__sub">Fale com o comercial no WhatsApp e faça o orçamento para a quantidade que você precisa.</p>
-
-    <ul class="card__itens comercial__itens">
-      <li>Orçamento para qualquer quantidade de ingressos</li>
-      <li>Conversa direta com o comercial, sem formulário</li>
-    </ul>
-
-    <a class="btn btn--buy comercial__btn" href="https://wa.me/5562981084247?text=Ol%C3%A1%2C%20quero%20fazer%20um%20or%C3%A7amento%20de%20ingressos%20para%20a%20Imers%C3%A3o%20O%20Poder%20da%20A%C3%A7%C3%A3o." target="_blank" rel="noopener">FAZER MEU ORÇAMENTO</a>
-  </div>
-
-  <!-- Patrocinio: faixa curta abaixo do orcamento, para a empresa que quer
-       expor a marca no evento em vez de comprar ingresso. De proposito e uma
-       faixa baixa, com borda de aco em vez de dourada e botao verde de
-       WhatsApp: e um convite, nao um quarto pacote, e nao pode disputar
-       atencao com os tres botoes de compra logo acima.
-       Desde 03/09/2026 o patrocinio tem contato PROPRIO: vai para o WhatsApp
-       da Gaby (5562981081683), e nao mais para o do comercial (5562981084247),
-       que continua no botao de orcamento logo acima. O cartao de contato dela
-       mostra o numero como "+55 62 8108-1683", sem o 9 do celular - o 9 entrou
-       aqui porque numero de 8 digitos comecando com 8 nao existe no Brasil.
-       Se o botao abrir a conversa errada, e por causa desse 9. -->
-  <div class="patrocinio" id="patrocinio">
-    <div class="patrocinio__texto">
-      <p class="eyebrow">Patrocínio</p>
-      <h3>Sua marca dentro do O Poder da Ação</h3>
-      <p class="patrocinio__sub">Temos cotas de patrocínio para empresas que querem apresentar a marca a uma plateia de empresários e líderes. Fale com a gente e receba as opções.</p>
-    </div>
-    <a class="btn btn--wa patrocinio__btn" href="https://wa.me/5562981081683?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20as%20cotas%20de%20patroc%C3%ADnio%20da%20Imers%C3%A3o%20O%20Poder%20da%20A%C3%A7%C3%A3o." target="_blank" rel="noopener">QUERO PATROCINAR</a>
-  </div>
-</section>
-
-<!-- ============================================================== faq === -->
-<section class="faq">
-  <p class="eyebrow eyebrow--center">Dúvidas Comuns</p>
-  <h2 class="faq__title reveal">Perguntas Frequentes</h2>
-
-  <!-- 16/09/2026 - o evento de 23/01/2027 ja tem CIDADE, nao tem ENDERECO. O
-       faq-4 passou a dizer "em Goiania - GO" e que o endereco exato sai depois;
-       o faq-8 (alimentacao) e o faq-10 (credenciamento) continuam prometendo o
-       endereco, e o faq-6 continua sem a palavra "auditorio". Quando a producao
-       confirmar a casa, sao esses tres + o <li> do hero + as duas meta.
-       16/09/2026 - o faq-10 dizia "as 7h, uma hora antes do inicio": era
-       verdade com o evento as 8h. Com 8h30 viraram uma hora e MEIA, e a frase
-       foi corrigida. O credenciamento continua as 7h, por decisao do Danilo -
-       em setembro o portao abriu 7h04 e 36 pessoas entraram antes das 8h. -->
-  <div class="faq__cols">
-    <div class="faq__col">
-      <div class="faq__item">
-        <button class="faq__q" type="button" aria-expanded="true" aria-controls="faq-1">Como funciona a imersão?<span class="faq__ico" aria-hidden="true"></span></button>
-        <div class="faq__ans" id="faq-1"><p>O Poder da Ação combina conteúdo, reflexão e exercícios práticos para ajudar você a identificar padrões, tomar novas decisões e aplicar mudanças reais na vida pessoal e profissional.</p></div>
-      </div>
-      <div class="faq__item">
-        <button class="faq__q" type="button" aria-expanded="true" aria-controls="faq-2">Para quem é indicada a imersão O Poder da Ação?<span class="faq__ico" aria-hidden="true"></span></button>
-        <div class="faq__ans" id="faq-2"><p>Para quem sabe que pode viver mais, mas percebe que está preso à procrastinação, à falta de foco, a padrões emocionais ou a decisões que nunca saem do papel. A imersão é indicada para empresários, líderes, profissionais e pessoas que desejam assumir o controle da própria vida e transformar intenção em ação.</p></div>
-      </div>
-      <div class="faq__item">
-        <button class="faq__q" type="button" aria-expanded="true" aria-controls="faq-3">Já li o livro “O Poder da Ação”. Vale a pena ir ao evento mesmo assim?<span class="faq__ico" aria-hidden="true"></span></button>
-        <div class="faq__ans" id="faq-3"><p>Sim. O evento é uma experiência totalmente diferente do livro. Você vai viver o conteúdo ao vivo com o Gustavo Sampaio, com exercícios práticos, ferramentas inéditas e uma intensidade impossível de sentir apenas lendo.</p></div>
-      </div>
-      <div class="faq__item">
-        <button class="faq__q" type="button" aria-expanded="true" aria-controls="faq-4">Onde e quando será o evento?<span class="faq__ico" aria-hidden="true"></span></button>
-        <div class="faq__ans" id="faq-4"><p>O evento acontece no dia 23 de janeiro de 2027, das 8h30 às 17h30, em Goiânia — GO. O endereço exato ainda está sendo definido e será divulgado em breve.</p></div>
-      </div>
-      <div class="faq__item">
-        <button class="faq__q" type="button" aria-expanded="true" aria-controls="faq-5">Qual será o horário do evento?<span class="faq__ico" aria-hidden="true"></span></button>
-        <div class="faq__ans" id="faq-5"><p>Das 8h30 às 17h30.</p></div>
-      </div>
+<!-- ============ 8 · INGRESSOS ============
+     Checkouts da Eduzz do evento de 23/01/2027, TODOS com ?np=6 (o parametro
+     corta o teto do parcelamento em 6x; sem ele o produto volta a oferecer 12x):
+       1 ingresso   -> Q9N25QRP01  "Ingresso Individual - Unitario"
+       2 ingressos  -> 39VKE7ABWR  "Ingresso Duplo - 2 Pessoas"
+       5 ou mais    -> 7WXGQKG20A  "Ingresso em Grupo - A partir de 5"
+     ATENCAO: 39VKE7ABWR (Duplo do OPA) e 39VKE3GBWR (Homens de Honra) diferem
+     em UM caractere.
+     Parcela = o que a Eduzz mostra na tela (tem juros), lida em 12/09/2026
+     com a quantidade do card selecionada. Nunca dividir o a vista por 6.
+     Os tres sao vendidos POR INGRESSO (349,00 / 331,00 / 307,00); os cards de
+     2 e 5+ anunciam o TOTAL do pacote. Fonte unica: Cerebro, "Ofertas e
+     Eventos - Gustavo Sampaio", secao O Poder da Acao > Proxima edicao. -->
+<section class="vaga" id="ingressos" aria-labelledby="vaga-h">
+  <div class="wrap">
+    <span class="rot">Condição especial</span>
+    <h2 class="tit" id="vaga-h"><span class="fina">Invista no seu</span><span class="peso">desenvolvimento</span></h2>
+    <p class="intro">Garanta sua vaga hoje com condições exclusivas e prepare-se para elevar seus negócios e sua vida pessoal a um novo patamar.</p>
+    <div class="ingressos">
+      <article class="ingresso">
+        <div class="ingresso__topo">
+          <h3>1 ingresso</h3>
+          <p class="ingresso__sub">Para quem vai sozinho</p>
+          <ul>
+            <li>Garante a sua vaga na imersão</li>
+            <li>Certificado e material de apoio inclusos</li>
+            <li>Assentos livres, por ordem de chegada</li>
+          </ul>
+        </div>
+        <div class="ingresso__corte" aria-hidden="true"></div>
+        <div class="ingresso__preco">
+          <p class="parc">por apenas<b>6x R$ 65,47</b></p>
+          <p class="avista">ou R$ 349,00 à vista</p>
+          <a class="btn btn--linha" href="https://chk.eduzz.com/Q9N25QRP01?np=6" target="_blank" rel="noopener">Garantir meu ingresso</a>
+        </div>
+      </article>
+      <article class="ingresso ingresso--destaque">
+        <span class="ingresso__selo">Mais escolhido</span>
+        <div class="ingresso__topo">
+          <h3>2 ingressos</h3>
+          <p class="ingresso__sub">Traga alguém com você</p>
+          <ul>
+            <li>Os dois pagam menos por ingresso</li>
+            <li>Certificado e material de apoio para os dois</li>
+            <li>Bom para sócio, cônjuge ou dupla de trabalho</li>
+          </ul>
+        </div>
+        <div class="ingresso__corte" aria-hidden="true"></div>
+        <div class="ingresso__preco">
+          <p class="de">De <s>R$ 698,00</s></p>
+          <p class="parc">por apenas<b>6x R$ 124,20</b></p>
+          <p class="avista">ou R$ 662,00 à vista</p>
+          <span class="eco">Economia de R$ 36,00</span>
+          <a class="btn btn--lar" href="https://chk.eduzz.com/39VKE7ABWR?np=6" target="_blank" rel="noopener">Quero 2 ingressos</a>
+        </div>
+      </article>
+      <article class="ingresso">
+        <div class="ingresso__topo">
+          <h3>5 ingressos ou mais</h3>
+          <p class="ingresso__sub">Leve a sua equipe</p>
+          <ul>
+            <li>A equipe inteira na mesma turma</li>
+            <li>Certificado e material de apoio para todos</li>
+            <li>Um só pedido, a partir de 5 pessoas</li>
+          </ul>
+        </div>
+        <div class="ingresso__corte" aria-hidden="true"></div>
+        <div class="ingresso__preco">
+          <p class="de">De <s>R$ 1.745,00</s></p>
+          <p class="parc">por apenas<b>6x R$ 287,98</b></p>
+          <p class="avista">ou R$ 1.535,00 à vista</p>
+          <span class="eco">Economia de R$ 210,00</span>
+          <a class="btn btn--linha" href="https://chk.eduzz.com/7WXGQKG20A?np=6" target="_blank" rel="noopener">Levar minha equipe</a>
+        </div>
+      </article>
     </div>
 
-    <div class="faq__col">
-      <div class="faq__item">
-        <button class="faq__q" type="button" aria-expanded="true" aria-controls="faq-6">Os lugares são marcados?<span class="faq__ico" aria-hidden="true"></span></button>
-        <div class="faq__ans" id="faq-6"><p>Não. Os lugares são livres e respeitam a ordem de chegada.</p></div>
+    <!-- Orcamento (WhatsApp do comercial, com o 9) e patrocinio (WhatsApp da
+         Gaby, desde 03/09/2026). Faixas baixas: nao disputam com os ingressos. -->
+    <div class="extras">
+      <div class="extra" id="orcamento">
+        <h3>Faça seu orçamento</h3>
+        <p>Outra quantidade de ingressos, nota no CNPJ ou condição especial: fale direto com o comercial no WhatsApp, sem formulário.</p>
+        <a class="btn btn--linha" href="https://wa.me/5562981084247?text=Ol%C3%A1%2C%20quero%20fazer%20um%20or%C3%A7amento%20de%20ingressos%20para%20a%20Imers%C3%A3o%20O%20Poder%20da%20A%C3%A7%C3%A3o." target="_blank" rel="noopener">Fazer meu orçamento</a>
       </div>
-      <div class="faq__item">
-        <button class="faq__q" type="button" aria-expanded="true" aria-controls="faq-7">Haverá intervalos durante a programação?<span class="faq__ico" aria-hidden="true"></span></button>
-        <div class="faq__ans" id="faq-7"><p>Sim. A programação é organizada com pausas para garantir melhor aproveitamento ao longo da experiência.</p></div>
-      </div>
-      <div class="faq__item">
-        <button class="faq__q" type="button" aria-expanded="true" aria-controls="faq-8">Haverá alimentação no evento?<span class="faq__ico" aria-hidden="true"></span></button>
-        <div class="faq__ans" id="faq-8"><p>Recomenda-se levar snacks leves e água para maior conforto durante o evento. As opções de alimentação próximas serão divulgadas junto com o local.</p></div>
-      </div>
-      <div class="faq__item">
-        <button class="faq__q" type="button" aria-expanded="true" aria-controls="faq-9">Vou receber certificado?<span class="faq__ico" aria-hidden="true"></span></button>
-        <div class="faq__ans" id="faq-9"><p>Sim. Ao concluir a imersão, você receberá seu certificado de participação no Poder da Ação.</p></div>
-      </div>
-      <div class="faq__item">
-        <button class="faq__q" type="button" aria-expanded="true" aria-controls="faq-10">Como funciona o check-in?<span class="faq__ico" aria-hidden="true"></span></button>
-        <div class="faq__ans" id="faq-10"><p>O credenciamento começa às 7h, uma hora e meia antes do início da programação. O endereço será divulgado em breve.</p></div>
+      <div class="extra" id="patrocinio">
+        <h3>Sua marca no evento</h3>
+        <p>Temos cotas de patrocínio para empresas que querem apresentar a marca a uma plateia de empresários e líderes. Fale com a gente e receba as opções.</p>
+        <a class="btn btn--wa" href="https://wa.me/5562981081683?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20as%20cotas%20de%20patroc%C3%ADnio%20da%20Imers%C3%A3o%20O%20Poder%20da%20A%C3%A7%C3%A3o." target="_blank" rel="noopener">Quero patrocinar</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============================================================ ajuda === -->
-<section class="ajuda">
-  <div class="ajuda__wrap">
-    <div>
-      <h2>Ainda precisa de ajuda?</h2>
-      <p>Entre em contato com nosso time pelo WhatsApp</p>
+<!-- ============ 9 · PERGUNTAS ============
+     Credenciamento as 7h (decisao de 16/09/2026): com o evento as 8h30, sao
+     uma hora e MEIA antes. -->
+<section class="faq" aria-labelledby="faq-h">
+  <div class="wrap">
+    <span class="rot">Dúvidas comuns</span>
+    <h2 class="tit" id="faq-h"><span class="fina">Perguntas</span><span class="peso">frequentes</span></h2>
+    <div class="faq__lista">
+      <details><summary>Como funciona a imersão?</summary><p>O Poder da Ação combina conteúdo, reflexão e exercícios práticos para ajudar você a identificar padrões, tomar novas decisões e aplicar mudanças reais na vida pessoal e profissional.</p></details>
+      <details><summary>Para quem é indicada a imersão O Poder da Ação?</summary><p>Para quem sabe que pode viver mais, mas percebe que está preso à procrastinação, à falta de foco, a padrões emocionais ou a decisões que nunca saem do papel. A imersão é indicada para empresários, líderes, profissionais e pessoas que desejam assumir o controle da própria vida e transformar intenção em ação.</p></details>
+      <details><summary>Já li o livro “O Poder da Ação”. Vale a pena ir ao evento mesmo assim?</summary><p>Sim. O evento é uma experiência totalmente diferente do livro. Você vai viver o conteúdo ao vivo com o Gustavo Sampaio, com exercícios práticos, ferramentas inéditas e uma intensidade impossível de sentir apenas lendo.</p></details>
+      <details><summary>Onde e quando será o evento?</summary><p>No sábado, 23 de janeiro de 2027, das 8h30 às 17h30, em Goiânia — GO. O endereço exato ainda está sendo definido e será divulgado em breve.</p></details>
+      <details><summary>Os lugares são marcados?</summary><p>Não. Os lugares são livres e respeitam a ordem de chegada.</p></details>
+      <details><summary>Haverá intervalos durante a programação?</summary><p>Sim. A programação é organizada com pausas para garantir melhor aproveitamento ao longo da experiência.</p></details>
+      <details><summary>Haverá alimentação no evento?</summary><p>Recomenda-se levar snacks leves e água para maior conforto durante o evento. As opções de alimentação próximas serão divulgadas junto com o local.</p></details>
+      <details><summary>Vou receber certificado?</summary><p>Sim. Ao concluir a imersão, você receberá seu certificado de participação no O Poder da Ação.</p></details>
+      <details><summary>Como funciona o check-in?</summary><p>O credenciamento começa às 7h, uma hora e meia antes do início da programação. O endereço será divulgado em breve.</p></details>
     </div>
-    <!-- numero exatamente como esta no site (ver README: parece faltar o 9) -->
-    <a class="btn btn--wa" href="https://wa.me/556281084247?text=Ola%2C%20gostaria%20de%20saber%20mais%20sobre%20a%20Imers%C3%A3o%20O%20Poder%20da%20A%C3%A7%C3%A3o." target="_blank" rel="noopener">Fale com nosso time</a>
+    <!-- "Fale com nosso time": numero exatamente como sempre esteve na pagina
+         (556281084247, sem o 9). Decisao do Danilo: nao corrigir sem perguntar
+         de novo. Ver Cerebro, "Canais e Contatos - Gustavo Sampaio". -->
+    <div class="faq__wa">
+      <a class="btn btn--wa" href="https://wa.me/556281084247?text=Ola%2C%20gostaria%20de%20saber%20mais%20sobre%20a%20Imers%C3%A3o%20O%20Poder%20da%20A%C3%A7%C3%A3o." target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.1 8.1 0 0 1-4.2-1.16l-.3-.18-3 .78.8-2.93-.2-.31A8.2 8.2 0 1 1 12 20.2zm4.6-5.8c-.25-.13-1.5-.74-1.73-.82-.23-.09-.4-.13-.57.12-.17.25-.66.82-.8 1-.15.17-.3.19-.55.06-.25-.12-1.07-.39-2.03-1.25-.75-.67-1.26-1.5-1.4-1.75-.15-.25-.02-.39.11-.51.11-.11.25-.29.38-.44.12-.15.16-.25.25-.42.08-.17.04-.31-.02-.44-.07-.12-.57-1.37-.78-1.88-.2-.49-.41-.42-.57-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1s.9 2.44 1.03 2.6c.13.18 1.78 2.72 4.3 3.81.6.26 1.07.41 1.44.53.6.19 1.15.16 1.59.1.48-.07 1.5-.61 1.7-1.2.22-.59.22-1.09.16-1.2-.07-.1-.23-.16-.48-.29z"/></svg>
+        Fale com nosso time</a>
+      <p>Ainda precisa de ajuda? Chame o nosso time no WhatsApp.</p>
+    </div>
   </div>
 </section>
+
+<!-- ============ 10 · FECHO ============ -->
+<section class="fecho" aria-labelledby="fecho-h">
+  <div class="alvo" aria-hidden="true"></div>
+  <div class="wrap">
+    <span class="rot">Para terminar</span>
+    <h2 class="fecho__frase" id="fecho-h">Transforme intenção <span class="lar">em ação.</span></h2>
+    <p class="sub">Um dia, presencial, com o Gustavo Sampaio. Sábado, 23 de janeiro de 2027, em Goiânia.</p>
+    <a class="btn btn--lar" href="#ingressos">Quero garantir meu ingresso
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </div>
+</section>
+
+</main>
 
 <footer class="rodape">
-  &copy; Copyright 2026 Gustavo Sampaio. Todos os direitos reservados.
+  <div class="wrap">
+    <span>Uma realização de Gustavo Sampaio · <a class="site" href="https://www.eusougustavosampaio.com/">eusougustavosampaio.com</a><br>© 2026 Gustavo Sampaio. Todos os direitos reservados.</span>
+  </div>
 </footer>
 
-
-<script>
-/* Acordeao do FAQ. As respostas comecam visiveis no HTML: se o JS nao rodar, a
-   pagina continua legivel. E o script que as recolhe e liga o clique. */
-(function () {
-  var DUR = 280;   /* precisa casar com a transicao de .faq__ans no styles.css */
-  var semAnim = matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  document.querySelectorAll('.faq__item').forEach(function (item) {
-    var q = item.querySelector('.faq__q');
-    var ans = item.querySelector('.faq__ans');
-    if (!q || !ans) return;
-
-    q.setAttribute('aria-expanded', 'false');
-    ans.style.height = '0px';
-
-    var soltar = function () {          /* devolve a altura ao fluxo */
-      if (q.getAttribute('aria-expanded') === 'true') ans.style.height = 'auto';
-    };
-
-    q.addEventListener('click', function () {
-      var aberto = q.getAttribute('aria-expanded') === 'true';
-      q.setAttribute('aria-expanded', String(!aberto));
-
-      if (semAnim) {                   /* respeita quem pediu menos movimento */
-        ans.style.height = aberto ? '0px' : 'auto';
-        return;
-      }
-
-      if (aberto) {
-        /* de "auto" nao da para animar: fixa a altura atual, forca o reflow
-           para o navegador registrar esse ponto de partida, e ai vai a zero */
-        ans.style.height = ans.scrollHeight + 'px';
-        void ans.offsetHeight;
-        ans.style.height = '0px';
-      } else {
-        ans.style.height = ans.scrollHeight + 'px';
-        /* transitionend e o caminho normal; o timer cobre o caso de a
-           transicao nao rodar, para o painel nao ficar preso num valor fixo */
-        ans.addEventListener('transitionend', function fim(e) {
-          if (e.propertyName !== 'height') return;
-          ans.removeEventListener('transitionend', fim);
-          soltar();
-        });
-        setTimeout(soltar, DUR + 60);
-      }
-    });
-  });
-
-  /* se a largura muda, o texto reflui: painel aberto volta a se medir */
-  addEventListener('resize', function () {
-    document.querySelectorAll('.faq__q[aria-expanded="true"]').forEach(function (q) {
-      var ans = document.getElementById(q.getAttribute('aria-controls'));
-      if (ans) ans.style.height = 'auto';
-    });
-  });
-})();
-</script>
-
-<script>
-/* 10/09/2026 - entrada das secoes abaixo da dobra.
-   O observer so poe a classe: quem anima e o CSS, e anima apenas opacity e
-   transform, que nao obrigam o navegador a recalcular o layout da pagina.
-   Cada elemento e solto do observer depois de aparecer - a animacao acontece
-   uma vez so, nao toda vez que a secao volta para a tela. */
-(function () {
-  var alvos = document.querySelectorAll('.reveal');
-  if (!alvos.length) return;
-
-  /* navegador velho sem IntersectionObserver: mostra tudo de uma vez */
-  if (!('IntersectionObserver' in window)) {
-    alvos.forEach(function (el) { el.classList.add('is-in'); });
-    return;
-  }
-
-  var obs = new IntersectionObserver(function (entradas) {
-    entradas.forEach(function (e, i) {
-      if (!e.isIntersecting) return;
-      /* irmaos que entram juntos aparecem em cascata, 80ms de diferenca */
-      e.target.style.transitionDelay = (i * 80) + 'ms';
-      e.target.classList.add('is-in');
-      obs.unobserve(e.target);
-    });
-  }, {
-    threshold: 0.15,
-    /* -10% embaixo: o elemento so conta como visivel um pouco depois de
-       cruzar a borda, senao ele ja terminou de animar quando chega ao olho */
-    rootMargin: '0px 0px -10% 0px'
-  });
-
-  alvos.forEach(function (el) { obs.observe(el); });
-
-  /* Rede de seguranca. O observer so avisa de quem *entra* na tela, e existe
-     um caso em que a secao nunca entra: a pagina abre com a rolagem ja no
-     meio - o navegador restaura a posicao ao recarregar, ou o link tinha
-     ancora, ou o visitante bateu End. Tudo o que ficou acima nunca dispara e
-     continuaria invisivel para sempre. Aqui quem ja passou aparece na hora,
-     sem animacao, que e o certo: nao se anima o que o olho nao vai ver. */
-  var faltam = Array.prototype.slice.call(alvos);
-
-  function mostrarQuemJaPassou() {
-    faltam = faltam.filter(function (el) {
-      if (el.getBoundingClientRect().bottom > 0) return true;   /* ainda vem */
-      el.style.transition = 'none';
-      el.classList.add('is-in');
-      obs.unobserve(el);
-      return false;
-    });
-    if (!faltam.length) removeEventListener('scroll', aoRolar);
-  }
-
-  var pendente = false;
-  function aoRolar() {
-    if (pendente) return;
-    pendente = true;
-    requestAnimationFrame(function () { pendente = false; mostrarQuemJaPassou(); });
-  }
-
-  addEventListener('scroll', aoRolar, { passive: true });
-  mostrarQuemJaPassou();
-})();
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Event",
+  "name":"O Poder da Ação",
+  "description":"Imersão presencial com Gustavo Sampaio para destravar a vida em 6 áreas: saúde emocional, finanças, performance, carreira, relacionamentos e propósito.",
+  "startDate":"2027-01-23T08:30:00-03:00",
+  "endDate":"2027-01-23T17:30:00-03:00",
+  "eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode",
+  "eventStatus":"https://schema.org/EventScheduled",
+  "url":"https://www.eusougustavosampaio.com/opoderdaacao/",
+  "inLanguage":"pt-BR",
+  "location":{"@type":"Place","name":"Goiânia — GO","address":{"@type":"PostalAddress","addressLocality":"Goiânia","addressRegion":"GO","addressCountry":"BR"}},
+  "performer":{"@type":"Person","name":"Gustavo Sampaio","url":"https://www.eusougustavosampaio.com/"},
+  "offers":{"@type":"Offer","price":"349.00","priceCurrency":"BRL","availability":"https://schema.org/InStock","url":"https://chk.eduzz.com/Q9N25QRP01?np=6"}
+}
 </script>
 </body>
 </html>
